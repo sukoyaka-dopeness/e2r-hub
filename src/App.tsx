@@ -12,6 +12,7 @@ const links = {
   berlinWall: 'https://github.com/sukoyaka-dopeness/e2r-narrative-line/blob/main/src/sample/berlin-wall-history.en.e2r.json',
   lighthouse: 'https://github.com/sukoyaka-dopeness/e2r-liaison-scape/blob/main/public/lighthouse-restoration-demo.en.e2r.json',
   apollo: 'https://github.com/sukoyaka-dopeness/e2r-spec/blob/main/examples/apollo-11-mission.en.e2r.json',
+  ashenCrown: 'https://github.com/sukoyaka-dopeness/e2r-spec/blob/main/examples/ashen-crown.en.e2r.json',
 }
 
 const copy = {
@@ -34,6 +35,8 @@ const copy = {
     berlinDescription: 'Explore historical events through both time and relationships.',
     apolloDescription: 'A representative sample that can be viewed and edited in multiple E2R applications.',
     lighthouseDescription: 'A fictional sample about people restoring an old lighthouse.',
+    ashenCrownDescription: 'A creative-writing sample about ten characters, alliances, rivalries, and secrets in a fictional kingdom.',
+    ashenCrownTitle: 'The Ashen Crown',
     openNarrative: 'Open NarrativeLine',
     openLiaison: 'Open LiaisonScape',
     viewDataset: 'View Dataset JSON',
@@ -81,6 +84,8 @@ const copy = {
     berlinDescription: '歴史上のイベントを、時間と関係の両方から見られるサンプルです。',
     apolloDescription: '複数のE2Rアプリで閲覧、編集できる代表的なサンプルです。',
     lighthouseDescription: '架空の古い灯台を修復する人々を描いたサンプルです。',
+    ashenCrownDescription: '架空の王国を舞台に、10人の人物とその歴史、同盟、対立、秘密を描く創作サンプルです。',
+    ashenCrownTitle: '灰冠の王国',
     openNarrative: 'NarrativeLineを開く',
     openLiaison: 'LiaisonScapeを開く',
     viewDataset: 'Dataset JSONを見る',
@@ -185,6 +190,11 @@ function App() {
               <h3>{text.lighthouse}</h3>
               <p>{text.lighthouseDescription}</p>
               <div className="sample-card-actions"><ExternalLink href={links.lighthouse}>{text.viewDataset}</ExternalLink></div>
+            </article>
+            <article className="sample-card">
+              <h3>{text.ashenCrownTitle}</h3>
+              <p>{text.ashenCrownDescription}</p>
+              <div className="sample-card-actions"><ExternalLink href={links.ashenCrown}>{text.viewDataset}</ExternalLink></div>
             </article>
           </div>
         </section>

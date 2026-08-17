@@ -1,0 +1,6 @@
+.hub-page {
+  display: grid;
+  min-height: 100svh;
+  place-items: center;
+  padding: 24px;
+}

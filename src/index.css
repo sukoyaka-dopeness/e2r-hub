@@ -1,0 +1,16 @@
+:root {
+  font-family: system-ui, 'Segoe UI', Roboto, sans-serif;
+  color: #08060d;
+  background: #fff;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+* { box-sizing: border-box; }
+
+html, body, #root { min-width: 100%; min-height: 100%; }
+
+body { margin: 0; }
+
+h1 { margin: 0; font-size: clamp(2rem, 6vw, 3.5rem); font-weight: 500; }

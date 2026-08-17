@@ -38,6 +38,7 @@ main { width: min(1080px, 100%); margin: 0 auto; }
 .sample-card p { margin: 0; color: #6b6375; }
 .sample-card-actions { display: flex; flex-wrap: wrap; gap: 8px; align-items: flex-end; margin-top: auto; padding-top: 28px; }
 .sample-card-actions a, .action-link { border: 1px solid #d9d5df; border-radius: 6px; padding: 8px 10px; color: #4f2390; font-size: .86rem; text-decoration: none; }
+.sample-card-actions a { display: flex; width: 10.5rem; max-width: 100%; justify-content: center; }
 .sample-card-actions a:hover, .action-link:hover { border-color: #aa3bff; background: #f5e9ff; }
 .explanation-section { display: block; }
 .explanation-section h2 { max-width: 780px; margin-bottom: 24px; font-size: clamp(1.6rem, 3vw, 2.5rem); }
@@ -66,6 +67,5 @@ main { width: min(1080px, 100%); margin: 0 auto; }
   .application-grid, .sample-grid { grid-template-columns: 1fr; }
   .application-card { min-height: 210px; padding: 22px; }
   .application-card h3 { margin-top: 34px; }
-  .sample-card-actions { flex-direction: column; align-items: stretch; }
-  .sample-card-actions a { text-align: center; }
+  .sample-card-actions { flex-direction: column; align-items: flex-start; }
 }

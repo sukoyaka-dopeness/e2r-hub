@@ -13,6 +13,7 @@ const links = {
   lighthouse: 'https://github.com/sukoyaka-dopeness/e2r-liaison-scape/blob/main/public/lighthouse-restoration-demo.en.e2r.json',
   apollo: 'https://github.com/sukoyaka-dopeness/e2r-spec/blob/main/examples/apollo-11-mission.en.e2r.json',
   ashenCrown: 'https://github.com/sukoyaka-dopeness/e2r-spec/blob/main/examples/ashen-crown.en.e2r.json',
+  titanic: 'https://github.com/sukoyaka-dopeness/e2r-spec/blob/main/examples/titanic-final-voyage.en.e2r.json',
 }
 
 const copy = {
@@ -37,6 +38,8 @@ const copy = {
     lighthouseDescription: 'A fictional sample about people restoring an old lighthouse.',
     ashenCrownDescription: 'A creative-writing sample about ten characters, alliances, rivalries, and secrets in a fictional kingdom.',
     ashenCrownTitle: 'The Ashen Crown',
+    titanicTitle: 'Titanic: Final Voyage',
+    titanicDescription: "A historical sample following Titanic's final voyage through people, ships, relationships, and events.",
     openNarrative: 'Open NarrativeLine',
     openLiaison: 'Open LiaisonScape',
     viewDataset: 'View Dataset JSON',
@@ -86,6 +89,8 @@ const copy = {
     lighthouseDescription: '架空の古い灯台を修復する人々を描いたサンプルです。',
     ashenCrownDescription: '架空の王国を舞台に、10人の人物とその歴史、同盟、対立、秘密を描く創作サンプルです。',
     ashenCrownTitle: '灰冠の王国',
+    titanicTitle: 'タイタニック号 最後の航海',
+    titanicDescription: 'タイタニック号の最後の航海を、人々、船、関係、出来事からたどる歴史サンプルです。',
     openNarrative: 'NarrativeLineを開く',
     openLiaison: 'LiaisonScapeを開く',
     viewDataset: 'Dataset JSONを見る',
@@ -195,6 +200,11 @@ function App() {
               <h3>{text.ashenCrownTitle}</h3>
               <p>{text.ashenCrownDescription}</p>
               <div className="sample-card-actions"><ExternalLink href={links.ashenCrown}>{text.viewDataset}</ExternalLink></div>
+            </article>
+            <article className="sample-card">
+              <h3>{text.titanicTitle}</h3>
+              <p>{text.titanicDescription}</p>
+              <div className="sample-card-actions"><ExternalLink href={links.titanic}>{text.viewDataset}</ExternalLink></div>
             </article>
           </div>
         </section>

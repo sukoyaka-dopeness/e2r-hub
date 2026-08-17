@@ -1,4 +1,6 @@
-.hub-shell { min-height: 100svh; }
+.hub-shell { min-height: 100dvh; display: flex; flex-direction: column; }
+
+.hub-shell main { flex: 1; }
 
 .site-header,
 .site-footer { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 18px max(24px, calc((100% - 1080px) / 2)); border-bottom: 1px solid #e5e4e7; }

@@ -23,7 +23,7 @@ main { width: min(1080px, 100%); margin: 0 auto; }
 .application-card { position: relative; min-height: 230px; padding: 28px; border: 1px solid #cdb9df; border-radius: 10px; color: #08060d; background: #fbf7ff; text-decoration: none; }
 .application-card:hover { border-color: #aa3bff; box-shadow: 0 12px 28px rgba(80, 30, 110, .1); }
 .card-kicker { color: #6d3aa3; font-size: .92rem; font-weight: 700; letter-spacing: .06em; line-height: 1.45; }
-.application-card h3 { margin: 12px 0 4px; font-size: 1.65rem; line-height: 1.2; }
+.application-card h3 { margin: 0 0 4px; font-size: 1.65rem; line-height: 1.2; }
 .application-card .product-name { margin: 0 0 10px; color: #4f2390; font-size: .95rem; font-weight: 650; }
 .application-card p { max-width: 28rem; margin: 0; color: #6b6375; }
 .application-card small { display: block; max-width: 28rem; margin-top: 24px; color: #6b6375; font-size: .82rem; }

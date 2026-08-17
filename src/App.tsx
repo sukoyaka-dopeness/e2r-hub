@@ -146,14 +146,12 @@ function App() {
           <h2 id="choose-heading">{text.choose}</h2>
           <div className="application-grid">
             <ExternalLink className="application-card" href={links.narrativeLine}>
-              <span className="card-kicker">{text.timeline}</span>
               <h3>{text.narrativeAction}</h3>
               <p className="product-name">{text.narrativeTitle}</p>
               <p>{text.narrativeDescription}</p>
               <span className="card-arrow" aria-hidden="true">↗</span>
             </ExternalLink>
             <ExternalLink className="application-card" href={links.liaisonScape}>
-              <span className="card-kicker">{text.relationshipDiagram}</span>
               <h3>{text.liaisonAction}</h3>
               <p className="product-name">{text.liaisonTitle}</p>
               <p>{text.liaisonDescription}</p>

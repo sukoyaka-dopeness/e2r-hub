@@ -101,7 +101,7 @@ const copy = {
     learnSpec: 'E2R Specificationを読む',
     tools: 'ツールとリソース',
     validator: 'E2R Validator',
-    validatorDescription: 'E2R Datasetを検証します。現在はCLIとJavaScriptライブラリとして提供されており、Hub上のブラウザツールではありません。',
+    validatorDescription: 'E2Rデータセットを検証します。現在はCLIとJavaScriptライブラリとして提供されており、Hub上のブラウザツールではありません。',
     credits: 'クレジット',
     close: '閉じる',
     createdBy: 'Created by sukoyaka-dopeness',

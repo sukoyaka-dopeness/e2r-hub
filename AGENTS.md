@@ -1,5 +1,12 @@
 # E2R Hub Development Guidance
 
+## Reusable knowledge
+
+The central workspace knowledge base is `C:\Users\extra\E2R\ai-knowledge`.
+Search its `INDEX.md` before Handoff, routing, Dataset replacement, or
+cross-application work. Apply entries only when their explicit scope matches;
+hypotheses must not be treated as accepted behavior.
+
 E2R Hub is the lightweight ecosystem entry point and navigation/distribution
 surface for E2R applications.
 

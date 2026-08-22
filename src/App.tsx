@@ -137,7 +137,7 @@ const landingCopy = {
   },
   ja: {
     guide: 'ユーザーガイド',
-    narrativeDescription: 'できごとの時間の流れを見たり、編集したりできます。',
+    narrativeDescription: 'できごとを時間順に見たり、編集したりできます。',
     sampleIntro: 'アプリを選ぶ前に、サンプルデータセットを見てみましょう。ソースリンクはJSONを開くもので、HubのHandoffリンクを生成するものではありません。',
     documentation: 'ドキュメント',
     documentationIntro: '各アプリケーションの使い方とE2Rデータセットの構造を確認できます。',

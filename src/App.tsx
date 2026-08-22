@@ -135,7 +135,7 @@ const landingCopy = {
   en: {
     guide: 'User Guide',
     narrativeDescription: 'View and edit events over time.',
-    sampleIntro: 'Explore sample Datasets before choosing an application. The source link opens the JSON; it does not create a Hub handoff link.',
+    sampleIntro: 'Choose a sample Dataset and open it in NarrativeLine or LiaisonScape.',
     documentation: 'Documentation',
     documentationIntro: 'Learn how to use each application and how E2R Datasets are structured.',
     specificationDocs: 'E2R documentation',
@@ -209,52 +209,52 @@ function App() {
           <div className="section-heading">
             <span className="eyebrow">{text.tryIt}</span>
             <h2 id="sample-heading">{text.otherSamples}</h2>
-            <p>{landing.sampleIntro}</p>
+            <p>{locale === 'ja' ? 'サンプルデータセットを選んで、NarrativeLineまたはLiaisonScapeで開いてみましょう。' : landing.sampleIntro}</p>
           </div>
           <div className="sample-grid">
             <article className="sample-card">
               <h3>{text.berlinTitle}</h3>
               <p>{text.berlinDescription}</p>
+              <small>{locale === 'ja' ? 'データセット: 英語' : 'Dataset: English'}</small>
               <div className="sample-card-actions">
                 <ExternalLink href={buildDatasetHandoffUrl(links.narrativeLine, links.berlinWallDataset)}>{text.openNarrative}</ExternalLink>
                 <ExternalLink href={buildDatasetHandoffUrl(links.liaisonScape, links.berlinWallDataset)}>{text.openLiaison}</ExternalLink>
-                <ExternalLink href={links.berlinWall}>{text.viewDataset}</ExternalLink>
               </div>
             </article>
             <article className="sample-card">
               <h3>{text.apollo}</h3>
               <p>{text.apolloDescription}</p>
+              <small>{locale === 'ja' ? 'データセット: 英語' : 'Dataset: English'}</small>
               <div className="sample-card-actions">
                 <ExternalLink href={buildDatasetHandoffUrl(links.narrativeLine, links.apolloDataset)}>{text.openNarrative}</ExternalLink>
                 <ExternalLink href={buildDatasetHandoffUrl(links.liaisonScape, links.apolloDataset)}>{text.openLiaison}</ExternalLink>
-                <ExternalLink href={links.apollo}>{text.viewDataset}</ExternalLink>
               </div>
             </article>
             <article className="sample-card">
               <h3>{text.lighthouse}</h3>
               <p>{text.lighthouseDescription}</p>
+              <small>{locale === 'ja' ? 'データセット: 英語' : 'Dataset: English'}</small>
               <div className="sample-card-actions">
                 <ExternalLink href={buildDatasetHandoffUrl(links.narrativeLine, links.lighthouseDataset)}>{text.openNarrative}</ExternalLink>
                 <ExternalLink href={buildDatasetHandoffUrl(links.liaisonScape, links.lighthouseDataset)}>{text.openLiaison}</ExternalLink>
-                <ExternalLink href={links.lighthouse}>{text.viewDataset}</ExternalLink>
               </div>
             </article>
             <article className="sample-card">
               <h3>{text.ashenCrownTitle}</h3>
               <p>{text.ashenCrownDescription}</p>
+              <small>{locale === 'ja' ? 'データセット: 英語' : 'Dataset: English'}</small>
               <div className="sample-card-actions">
                 <ExternalLink href={buildDatasetHandoffUrl(links.narrativeLine, links.ashenCrownDataset)}>{text.openNarrative}</ExternalLink>
                 <ExternalLink href={buildDatasetHandoffUrl(links.liaisonScape, links.ashenCrownDataset)}>{text.openLiaison}</ExternalLink>
-                <ExternalLink href={links.ashenCrown}>{text.viewDataset}</ExternalLink>
               </div>
             </article>
             <article className="sample-card">
               <h3>{text.titanicTitle}</h3>
               <p>{text.titanicDescription}</p>
+              <small>{locale === 'ja' ? 'データセット: 英語' : 'Dataset: English'}</small>
               <div className="sample-card-actions">
                 <ExternalLink href={buildDatasetHandoffUrl(links.narrativeLine, links.titanicDataset)}>{text.openNarrative}</ExternalLink>
                 <ExternalLink href={buildDatasetHandoffUrl(links.liaisonScape, links.titanicDataset)}>{text.openLiaison}</ExternalLink>
-                <ExternalLink href={links.titanic}>{text.viewDataset}</ExternalLink>
               </div>
             </article>
           </div>
@@ -282,7 +282,7 @@ function App() {
           <ExternalLink href={links.validator}>{text.validator} ↗</ExternalLink>
         </section>
         <section className="section documentation-section" aria-labelledby="documentation-heading">
-          <span className="eyebrow">{landing.documentation}</span>
+          <span className="eyebrow">{locale === 'ja' ? 'さらに詳しく' : 'Learn more'}</span>
           <h2 id="documentation-heading">{landing.documentation}</h2>
           <p>{landing.documentationIntro}</p>
           <div className="documentation-grid">
@@ -308,6 +308,17 @@ function App() {
               <div className="documentation-actions">
                 <ExternalLink href={links.specificationDocs}>{landing.specificationDocs}</ExternalLink>
                 <ExternalLink href={links.specification}>{text.specificationRepo}</ExternalLink>
+              </div>
+            </article>
+            <article className="documentation-card">
+              <h3>{locale === 'ja' ? 'サンプルデータセットのソース' : 'Sample Dataset sources'}</h3>
+              <p>{locale === 'ja' ? 'データセット: 英語' : 'Dataset: English'}</p>
+              <div className="documentation-actions">
+                <ExternalLink href={links.berlinWall}>{text.berlinTitle}</ExternalLink>
+                <ExternalLink href={links.apollo}>{text.apollo}</ExternalLink>
+                <ExternalLink href={links.lighthouse}>{text.lighthouse}</ExternalLink>
+                <ExternalLink href={links.ashenCrown}>{text.ashenCrownTitle}</ExternalLink>
+                <ExternalLink href={links.titanic}>{text.titanicTitle}</ExternalLink>
               </div>
             </article>
           </div>

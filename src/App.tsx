@@ -129,19 +129,19 @@ const copy = {
 const landingCopy = {
   en: {
     guide: 'User Guide',
+    narrativeDescription: 'View and edit events over time.',
     sampleIntro: 'Explore sample Datasets before choosing an application. The source link opens the JSON; it does not create a Hub handoff link.',
     documentation: 'Documentation',
     documentationIntro: 'Learn how to use each application and how E2R Datasets are structured.',
     specificationDocs: 'E2R documentation',
-    handoffNote: 'Dataset Handoff v0 is implemented by the receiving applications. Hub handoff-link generation is future work.',
   },
   ja: {
     guide: 'ユーザーガイド',
+    narrativeDescription: 'できごとの時間の流れを見たり、編集したりできます。',
     sampleIntro: 'アプリを選ぶ前に、サンプルデータセットを見てみましょう。ソースリンクはJSONを開くもので、HubのHandoffリンクを生成するものではありません。',
     documentation: 'ドキュメント',
     documentationIntro: '各アプリケーションの使い方とE2Rデータセットの構造を確認できます。',
     specificationDocs: 'E2Rドキュメント',
-    handoffNote: 'Dataset Handoff v0は受け取り側のアプリケーションで実装されています。HubによるHandoffリンク生成は今後の作業です。',
   },
 } as const
 
@@ -183,7 +183,7 @@ function App() {
             <ExternalLink className="application-card" href={links.narrativeLine}>
               <h3>{text.narrativeAction}</h3>
               <p className="product-name">{text.narrativeTitle}</p>
-              <p>{text.narrativeDescription}</p>
+              <p>{landing.narrativeDescription}</p>
               <span className="card-arrow" aria-hidden="true">↗</span>
             </ExternalLink>
             <ExternalLink className="application-card" href={links.liaisonScape}>
@@ -263,7 +263,7 @@ function App() {
           <div className="documentation-grid">
             <article className="documentation-card">
               <h3>{text.narrativeTitle}</h3>
-              <p>{text.narrativeDescription}</p>
+              <p>{landing.narrativeDescription}</p>
               <div className="documentation-actions">
                 <ExternalLink href={links.narrativeGuideEn}>{landing.guide} (EN)</ExternalLink>
                 <ExternalLink href={links.narrativeGuideJa}>{landing.guide} (JA)</ExternalLink>
@@ -286,7 +286,6 @@ function App() {
               </div>
             </article>
           </div>
-          <p className="documentation-note">{landing.handoffNote}</p>
         </section>
       </main>
 

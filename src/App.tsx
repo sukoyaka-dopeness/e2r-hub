@@ -14,6 +14,11 @@ const links = {
   specification: 'https://github.com/sukoyaka-dopeness/e2r-spec',
   specificationDocs: 'https://github.com/sukoyaka-dopeness/e2r-spec/tree/main/docs',
   validator: 'https://github.com/sukoyaka-dopeness/e2r-validator',
+  berlinWallDataset: 'https://raw.githubusercontent.com/sukoyaka-dopeness/e2r-narrative-line/main/src/sample/berlin-wall-history.en.e2r.json',
+  lighthouseDataset: 'https://raw.githubusercontent.com/sukoyaka-dopeness/e2r-liaison-scape/main/public/lighthouse-restoration-demo.en.e2r.json',
+  apolloDataset: 'https://raw.githubusercontent.com/sukoyaka-dopeness/e2r-spec/main/examples/apollo-11-mission.en.e2r.json',
+  ashenCrownDataset: 'https://raw.githubusercontent.com/sukoyaka-dopeness/e2r-spec/main/examples/ashen-crown.en.e2r.json',
+  titanicDataset: 'https://raw.githubusercontent.com/sukoyaka-dopeness/e2r-spec/main/examples/titanic-final-voyage.en.e2r.json',
   berlinWall: 'https://github.com/sukoyaka-dopeness/e2r-narrative-line/blob/main/src/sample/berlin-wall-history.en.e2r.json',
   lighthouse: 'https://github.com/sukoyaka-dopeness/e2r-liaison-scape/blob/main/public/lighthouse-restoration-demo.en.e2r.json',
   apollo: 'https://github.com/sukoyaka-dopeness/e2r-spec/blob/main/examples/apollo-11-mission.en.e2r.json',
@@ -154,6 +159,10 @@ function MultilineText({ value }: { value: string }) {
   return <>{lines.map((line, index) => <span key={`${line}-${index}`}>{line}{index < lines.length - 1 && <br />}</span>)}</>
 }
 
+function buildDatasetHandoffUrl(applicationUrl: string, datasetUrl: string) {
+  return `${applicationUrl}#datasetUrl=${encodeURIComponent(datasetUrl)}`
+}
+
 function App() {
   const [locale, setLocale] = useState<Locale>('en')
   const [creditsOpen, setCreditsOpen] = useState(false)
@@ -207,30 +216,46 @@ function App() {
               <h3>{text.berlinTitle}</h3>
               <p>{text.berlinDescription}</p>
               <div className="sample-card-actions">
-                <ExternalLink href={links.narrativeLine}>{text.openNarrative}</ExternalLink>
-                <ExternalLink href={links.liaisonScape}>{text.openLiaison}</ExternalLink>
+                <ExternalLink href={buildDatasetHandoffUrl(links.narrativeLine, links.berlinWallDataset)}>{text.openNarrative}</ExternalLink>
+                <ExternalLink href={buildDatasetHandoffUrl(links.liaisonScape, links.berlinWallDataset)}>{text.openLiaison}</ExternalLink>
                 <ExternalLink href={links.berlinWall}>{text.viewDataset}</ExternalLink>
               </div>
             </article>
             <article className="sample-card">
               <h3>{text.apollo}</h3>
               <p>{text.apolloDescription}</p>
-              <div className="sample-card-actions"><ExternalLink href={links.apollo}>{text.viewDataset}</ExternalLink></div>
+              <div className="sample-card-actions">
+                <ExternalLink href={buildDatasetHandoffUrl(links.narrativeLine, links.apolloDataset)}>{text.openNarrative}</ExternalLink>
+                <ExternalLink href={buildDatasetHandoffUrl(links.liaisonScape, links.apolloDataset)}>{text.openLiaison}</ExternalLink>
+                <ExternalLink href={links.apollo}>{text.viewDataset}</ExternalLink>
+              </div>
             </article>
             <article className="sample-card">
               <h3>{text.lighthouse}</h3>
               <p>{text.lighthouseDescription}</p>
-              <div className="sample-card-actions"><ExternalLink href={links.lighthouse}>{text.viewDataset}</ExternalLink></div>
+              <div className="sample-card-actions">
+                <ExternalLink href={buildDatasetHandoffUrl(links.narrativeLine, links.lighthouseDataset)}>{text.openNarrative}</ExternalLink>
+                <ExternalLink href={buildDatasetHandoffUrl(links.liaisonScape, links.lighthouseDataset)}>{text.openLiaison}</ExternalLink>
+                <ExternalLink href={links.lighthouse}>{text.viewDataset}</ExternalLink>
+              </div>
             </article>
             <article className="sample-card">
               <h3>{text.ashenCrownTitle}</h3>
               <p>{text.ashenCrownDescription}</p>
-              <div className="sample-card-actions"><ExternalLink href={links.ashenCrown}>{text.viewDataset}</ExternalLink></div>
+              <div className="sample-card-actions">
+                <ExternalLink href={buildDatasetHandoffUrl(links.narrativeLine, links.ashenCrownDataset)}>{text.openNarrative}</ExternalLink>
+                <ExternalLink href={buildDatasetHandoffUrl(links.liaisonScape, links.ashenCrownDataset)}>{text.openLiaison}</ExternalLink>
+                <ExternalLink href={links.ashenCrown}>{text.viewDataset}</ExternalLink>
+              </div>
             </article>
             <article className="sample-card">
               <h3>{text.titanicTitle}</h3>
               <p>{text.titanicDescription}</p>
-              <div className="sample-card-actions"><ExternalLink href={links.titanic}>{text.viewDataset}</ExternalLink></div>
+              <div className="sample-card-actions">
+                <ExternalLink href={buildDatasetHandoffUrl(links.narrativeLine, links.titanicDataset)}>{text.openNarrative}</ExternalLink>
+                <ExternalLink href={buildDatasetHandoffUrl(links.liaisonScape, links.titanicDataset)}>{text.openLiaison}</ExternalLink>
+                <ExternalLink href={links.titanic}>{text.viewDataset}</ExternalLink>
+              </div>
             </article>
           </div>
         </section>

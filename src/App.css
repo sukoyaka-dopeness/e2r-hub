@@ -49,6 +49,16 @@ main { width: min(1080px, 100%); margin: 0 auto; }
 .explanation-copy .action-link { justify-self: start; }
 .tools-section { padding-bottom: 88px; }
 .tools-section > a { display: inline-block; margin-top: 18px; }
+.documentation-section { padding-top: 24px; }
+.documentation-section > p { max-width: 700px; color: #6b6375; }
+.documentation-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+.documentation-card { display: flex; min-height: 190px; flex-direction: column; padding: 22px; border: 1px solid #d9d5df; border-radius: 10px; }
+.documentation-card h3 { margin: 0 0 10px; font-size: 1.15rem; }
+.documentation-card p { margin: 0; color: #6b6375; }
+.documentation-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: auto; padding-top: 22px; }
+.documentation-actions a { border: 1px solid #d9d5df; border-radius: 6px; padding: 8px 10px; color: #4f2390; font-size: .86rem; text-decoration: none; }
+.documentation-actions a:hover { border-color: #aa3bff; background: #f5e9ff; }
+.documentation-note { margin-top: 22px; font-size: .92rem; }
 .site-footer button { padding: 6px 10px; font-size: .86rem; }
 
 .modal-backdrop { position: fixed; z-index: 10; inset: 0; display: grid; place-items: center; padding: 20px; background: rgba(8, 6, 13, .28); }
@@ -64,7 +74,7 @@ main { width: min(1080px, 100%); margin: 0 auto; }
   .site-footer { align-items: flex-start; flex-direction: column; gap: 8px; }
   .hero-section { padding: 64px 20px 56px; }
   .section { padding: 52px 20px; }
-  .application-grid, .sample-grid { grid-template-columns: 1fr; }
+  .application-grid, .sample-grid, .documentation-grid { grid-template-columns: 1fr; }
   .application-card { min-height: 210px; padding: 22px; }
   .application-card h3 { margin-top: 34px; }
   .sample-card-actions { flex-direction: column; align-items: flex-start; }

@@ -7,7 +7,12 @@ type Locale = 'en' | 'ja'
 const links = {
   narrativeLine: 'https://sukoyaka-dopeness.github.io/e2r-narrative-line/',
   liaisonScape: 'https://sukoyaka-dopeness.github.io/e2r-liaison-scape/',
+  narrativeGuideEn: 'https://github.com/sukoyaka-dopeness/e2r-narrative-line/blob/main/docs/user-guide-en.md',
+  narrativeGuideJa: 'https://github.com/sukoyaka-dopeness/e2r-narrative-line/blob/main/docs/user-guide-ja.md',
+  liaisonGuideEn: 'https://github.com/sukoyaka-dopeness/e2r-liaison-scape/blob/main/docs/user-guide-en.md',
+  liaisonGuideJa: 'https://github.com/sukoyaka-dopeness/e2r-liaison-scape/blob/main/docs/user-guide-ja.md',
   specification: 'https://github.com/sukoyaka-dopeness/e2r-spec',
+  specificationDocs: 'https://github.com/sukoyaka-dopeness/e2r-spec/tree/main/docs',
   validator: 'https://github.com/sukoyaka-dopeness/e2r-validator',
   berlinWall: 'https://github.com/sukoyaka-dopeness/e2r-narrative-line/blob/main/src/sample/berlin-wall-history.en.e2r.json',
   lighthouse: 'https://github.com/sukoyaka-dopeness/e2r-liaison-scape/blob/main/public/lighthouse-restoration-demo.en.e2r.json',
@@ -121,6 +126,25 @@ const copy = {
   },
 } as const
 
+const landingCopy = {
+  en: {
+    guide: 'User Guide',
+    sampleIntro: 'Explore sample Datasets before choosing an application. The source link opens the JSON; it does not create a Hub handoff link.',
+    documentation: 'Documentation',
+    documentationIntro: 'Learn how to use each application and how E2R Datasets are structured.',
+    specificationDocs: 'E2R documentation',
+    handoffNote: 'Dataset Handoff v0 is implemented by the receiving applications. Hub handoff-link generation is future work.',
+  },
+  ja: {
+    guide: 'ユーザーガイド',
+    sampleIntro: 'アプリを選ぶ前に、サンプルデータセットを見てみましょう。ソースリンクはJSONを開くもので、HubのHandoffリンクを生成するものではありません。',
+    documentation: 'ドキュメント',
+    documentationIntro: '各アプリケーションの使い方とE2Rデータセットの構造を確認できます。',
+    specificationDocs: 'E2Rドキュメント',
+    handoffNote: 'Dataset Handoff v0は受け取り側のアプリケーションで実装されています。HubによるHandoffリンク生成は今後の作業です。',
+  },
+} as const
+
 function ExternalLink({ href, children, className = '' }: { href: string; children: ReactNode; className?: string }) {
   return <a className={className} href={href} target="_blank" rel="noreferrer">{children}</a>
 }
@@ -134,6 +158,7 @@ function App() {
   const [locale, setLocale] = useState<Locale>('en')
   const [creditsOpen, setCreditsOpen] = useState(false)
   const text = copy[locale]
+  const landing = landingCopy[locale]
 
   return (
     <div className="hub-shell">
@@ -175,6 +200,7 @@ function App() {
           <div className="section-heading">
             <span className="eyebrow">{text.tryIt}</span>
             <h2 id="sample-heading">{text.otherSamples}</h2>
+            <p>{landing.sampleIntro}</p>
           </div>
           <div className="sample-grid">
             <article className="sample-card">
@@ -229,6 +255,38 @@ function App() {
           <h2 id="tools-heading">{text.validator}</h2>
           <p>{text.validatorDescription}</p>
           <ExternalLink href={links.validator}>{text.validator} ↗</ExternalLink>
+        </section>
+        <section className="section documentation-section" aria-labelledby="documentation-heading">
+          <span className="eyebrow">{landing.documentation}</span>
+          <h2 id="documentation-heading">{landing.documentation}</h2>
+          <p>{landing.documentationIntro}</p>
+          <div className="documentation-grid">
+            <article className="documentation-card">
+              <h3>{text.narrativeTitle}</h3>
+              <p>{text.narrativeDescription}</p>
+              <div className="documentation-actions">
+                <ExternalLink href={links.narrativeGuideEn}>{landing.guide} (EN)</ExternalLink>
+                <ExternalLink href={links.narrativeGuideJa}>{landing.guide} (JA)</ExternalLink>
+              </div>
+            </article>
+            <article className="documentation-card">
+              <h3>{text.liaisonTitle}</h3>
+              <p>{text.liaisonDescription}</p>
+              <div className="documentation-actions">
+                <ExternalLink href={links.liaisonGuideEn}>{landing.guide} (EN)</ExternalLink>
+                <ExternalLink href={links.liaisonGuideJa}>{landing.guide} (JA)</ExternalLink>
+              </div>
+            </article>
+            <article className="documentation-card">
+              <h3>{text.specificationRepo}</h3>
+              <p>{landing.documentationIntro}</p>
+              <div className="documentation-actions">
+                <ExternalLink href={links.specificationDocs}>{landing.specificationDocs}</ExternalLink>
+                <ExternalLink href={links.specification}>{text.specificationRepo}</ExternalLink>
+              </div>
+            </article>
+          </div>
+          <p className="documentation-note">{landing.handoffNote}</p>
         </section>
       </main>
 

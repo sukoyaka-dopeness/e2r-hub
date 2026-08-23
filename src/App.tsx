@@ -39,6 +39,7 @@ const links = {
 const copy = {
   en: {
     ecosystem: 'E2R application ecosystem',
+    footerDescriptor: 'application ecosystem',
     hero: 'One dataset,\nmany ways\nto understand it.',
     heroIntro: 'Choose the application that fits what you want to do.',
     choose: 'What do you want to do?',
@@ -90,6 +91,7 @@ const copy = {
   },
   ja: {
     ecosystem: 'E2R アプリケーションエコシステム',
+    footerDescriptor: 'アプリケーションエコシステム',
     hero: 'ひとつのDatasetを、\nいろいろな視点で、\n見てみよう。',
     heroIntro: 'やりたいことに合ったアプリを選べます。',
     choose: '何をしたいですか？',
@@ -340,7 +342,7 @@ function App() {
       </main>
 
       <footer className="site-footer">
-        <span><strong>E2R Hub</strong><br />{text.ecosystem}</span>
+        <span>{text.footerDescriptor}</span>
         <div>
           <button type="button" onClick={() => setCreditsOpen(true)}>{text.credits}</button>
         </div>

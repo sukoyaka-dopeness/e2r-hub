@@ -71,7 +71,7 @@ main { width: min(1080px, 100%); margin: 0 auto; }
 
 @media (max-width: 700px) {
   .site-header, .site-footer { padding: 14px 16px; }
-  .site-footer { align-items: flex-start; flex-direction: column; gap: 8px; }
+  .site-footer { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 8px; }
   .hero-section { padding: 64px 20px 56px; }
   .section { padding: 52px 20px; }
   .application-grid, .sample-grid, .documentation-grid { grid-template-columns: 1fr; }

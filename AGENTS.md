@@ -10,6 +10,15 @@ hypotheses must not be treated as accepted behavior.
 E2R Hub is the lightweight ecosystem entry point and navigation/distribution
 surface for E2R applications.
 
+## Application modularization policy
+
+Apply the workspace Decision in
+`ai-knowledge/decisions/application-modularization-and-incremental-extraction.md`.
+Keep Hub's entry-point responsibilities lightweight and separate. Use
+incremental, responsibility-based extraction when new behavior would enlarge
+its root component; do not introduce a fixed file layout, premature
+abstractions, or application/Dataset semantics that belong elsewhere.
+
 ## Boundaries
 
 - E2R specification semantics are owned by `e2r-spec`.

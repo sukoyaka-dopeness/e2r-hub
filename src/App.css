@@ -62,6 +62,9 @@ main { width: min(1080px, 100%); margin: 0 auto; }
 .documentation-actions a:hover { border-color: #aa3bff; background: #f5e9ff; }
 .documentation-actions a.sample-info-link { border: 0; border-radius: 0; padding: 0; color: #6d3aa3; }
 .documentation-actions a.sample-info-link:hover { border-color: transparent; background: transparent; color: #4f2390; }
+.sample-source-links { display: flex; flex-direction: column; gap: 8px; margin-top: auto; padding-top: 22px; }
+.sample-source-links > .sample-info-link { margin-top: 0; }
+.sample-source-links .documentation-actions { margin-top: 0; padding-top: 0; }
 .documentation-note { margin-top: 22px; font-size: .92rem; }
 .site-support { padding: 0 24px 48px; text-align: center; }
 .site-support-link { color: #6b6375; font-size: .86rem; text-underline-offset: .18em; }

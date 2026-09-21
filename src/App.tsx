@@ -356,13 +356,15 @@ function App() {
             <article className="documentation-card">
               <h3>{locale === 'ja' ? 'サンプルデータセットのソース' : 'Sample Dataset sources'}</h3>
               <p>{locale === 'ja' ? 'データセット: 日本語' : 'Dataset: English'}</p>
-              <div className="documentation-actions">
+              <div className="sample-source-links">
                 <ExternalLink className="sample-info-link" href={links.sampleProvenance}>{text.sampleInfo}</ExternalLink>
-                <ExternalLink href={localizedSampleUrl(locale, links.berlinWall, links.berlinWallJa)}>{text.berlinTitle}</ExternalLink>
-                <ExternalLink href={localizedSampleUrl(locale, links.apollo, links.apolloJa)}>{text.apollo}</ExternalLink>
-                <ExternalLink href={localizedSampleUrl(locale, links.lighthouse, links.lighthouseJa)}>{text.lighthouse}</ExternalLink>
-                <ExternalLink href={localizedSampleUrl(locale, links.ashenCrown, links.ashenCrownJa)}>{text.ashenCrownTitle}</ExternalLink>
-                <ExternalLink href={localizedSampleUrl(locale, links.titanic, links.titanicJa)}>{text.titanicTitle}</ExternalLink>
+                <div className="documentation-actions">
+                  <ExternalLink href={localizedSampleUrl(locale, links.berlinWall, links.berlinWallJa)}>{text.berlinTitle}</ExternalLink>
+                  <ExternalLink href={localizedSampleUrl(locale, links.apollo, links.apolloJa)}>{text.apollo}</ExternalLink>
+                  <ExternalLink href={localizedSampleUrl(locale, links.lighthouse, links.lighthouseJa)}>{text.lighthouse}</ExternalLink>
+                  <ExternalLink href={localizedSampleUrl(locale, links.ashenCrown, links.ashenCrownJa)}>{text.ashenCrownTitle}</ExternalLink>
+                  <ExternalLink href={localizedSampleUrl(locale, links.titanic, links.titanicJa)}>{text.titanicTitle}</ExternalLink>
+                </div>
               </div>
             </article>
           </div>

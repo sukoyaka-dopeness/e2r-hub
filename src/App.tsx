@@ -36,6 +36,7 @@ const links = {
   titanic: 'https://github.com/sukoyaka-dopeness/e2r-spec/blob/main/examples/titanic-final-voyage.en.e2r.json',
   titanicJa: 'https://github.com/sukoyaka-dopeness/e2r-spec/blob/main/examples/titanic-final-voyage.ja.e2r.json',
   selfDescriptionDataset: 'https://raw.githubusercontent.com/sukoyaka-dopeness/e2r-spec/main/examples/e2r-self-description.json',
+  githubSponsors: 'https://github.com/sponsors/sukoyaka-dopeness',
 }
 
 const copy = {
@@ -95,6 +96,7 @@ const copy = {
     createdDate: 'Created 2026-08',
     gratitude: 'With gratitude to all the AI systems that contributed to this project.',
     specificationRepo: 'E2R specification repository',
+    supportE2r: 'Support E2R on GitHub Sponsors',
   },
   ja: {
     ecosystem: 'E2R アプリケーションエコシステム',
@@ -152,6 +154,7 @@ const copy = {
     createdDate: 'Created 2026-08',
     gratitude: 'With gratitude to all the AI systems that contributed to this project.',
     specificationRepo: 'E2R specification repository',
+    supportE2r: 'GitHub SponsorsでE2Rを支援する',
   },
 } as const
 
@@ -364,6 +367,9 @@ function App() {
             </article>
           </div>
         </section>
+        <div className="site-support">
+          <ExternalLink className="site-support-link" href={links.githubSponsors}>{text.supportE2r}</ExternalLink>
+        </div>
       </main>
 
       <footer className="site-footer">

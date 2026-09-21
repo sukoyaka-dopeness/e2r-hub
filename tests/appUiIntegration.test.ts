@@ -40,6 +40,13 @@ test('renders the production Hub Home surface', async () => {
     assert.equal(specificationLink?.getAttribute('target'), '_blank')
     assert.equal(specificationLink?.getAttribute('rel'), 'noreferrer')
     assert.equal(environment.document.querySelectorAll('.sample-info-link').length, 5)
+    const supportLink = environment.document.querySelector('.site-support-link')
+    assert.equal(supportLink?.textContent, 'Support E2R on GitHub Sponsors')
+    assert.equal(supportLink?.getAttribute('href'), 'https://github.com/sponsors/sukoyaka-dopeness')
+    assert.equal(supportLink?.getAttribute('target'), '_blank')
+    assert.equal(supportLink?.getAttribute('rel'), 'noreferrer')
+    assert.equal(environment.document.querySelector('main')?.lastElementChild?.className, 'site-support')
+    assert.equal(environment.document.querySelector('.site-footer')?.previousElementSibling?.tagName, 'MAIN')
     assert.equal(environment.document.querySelector('.self-description-section h2')?.textContent, 'E2R Self-Description')
     assert.ok(environment.document.querySelector('.self-description-section a[href*="public-sample-provenance.md"]'))
 
@@ -50,6 +57,7 @@ test('renders the production Hub Home surface', async () => {
     assert.equal(environment.document.querySelector('#choose-heading')?.textContent, 'どちらを使いますか？')
     assert.equal(environment.document.querySelector('.application-card:nth-child(2) small')?.textContent, '編集にはPC画面が適しています。')
     assert.equal(environment.document.querySelectorAll('.application-card > p:not(.product-name)').length, 0)
+    assert.equal(environment.document.querySelector('.site-support-link')?.textContent, 'GitHub SponsorsでE2Rを支援する')
   } finally {
     await environment.cleanup()
   }

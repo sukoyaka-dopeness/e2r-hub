@@ -61,6 +61,8 @@ main { width: min(1080px, 100%); margin: 0 auto; }
 .documentation-actions a { border: 1px solid #d9d5df; border-radius: 6px; padding: 8px 10px; color: #4f2390; font-size: .86rem; text-decoration: none; }
 .documentation-actions a:hover { border-color: #aa3bff; background: #f5e9ff; }
 .documentation-note { margin-top: 22px; font-size: .92rem; }
+.site-support { padding: 0 24px 48px; text-align: center; }
+.site-support-link { color: #6b6375; font-size: .86rem; text-underline-offset: .18em; }
 .site-footer button { padding: 6px 10px; font-size: .86rem; }
 
 .modal-backdrop { position: fixed; z-index: 10; inset: 0; display: grid; place-items: center; padding: 20px; background: rgba(8, 6, 13, .28); }

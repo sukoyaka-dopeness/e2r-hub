@@ -45,8 +45,9 @@ test('renders the production Hub Home surface', async () => {
     const sourceCard = [...environment.document.querySelectorAll('.documentation-card')]
       .find((card) => card.querySelector('h3')?.textContent === 'Sample Dataset sources')
     const sourceLinks = sourceCard?.querySelector('.sample-source-links')
-    assert.equal(sourceLinks?.firstElementChild?.className, 'sample-info-link')
     assert.equal(sourceLinks?.querySelectorAll('.documentation-actions a').length, 5)
+    assert.equal(sourceLinks?.firstElementChild?.className, 'documentation-actions')
+    assert.equal(sourceLinks?.lastElementChild?.className, 'sample-info-link')
     const supportLink = environment.document.querySelector('.site-support-link')
     assert.equal(supportLink?.textContent, 'Support E2R on GitHub Sponsors')
     assert.equal(supportLink?.getAttribute('href'), 'https://github.com/sponsors/sukoyaka-dopeness')

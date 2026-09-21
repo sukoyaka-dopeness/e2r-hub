@@ -53,7 +53,7 @@ const copy = {
     narrativeDescription: 'View and edit events over time.',
     liaisonTitle: 'LiaisonScape',
     liaisonDescription: 'View and edit relationships between entities.',
-    mobileNote: 'You can view on smartphones. Editing is designed for desktop.',
+    mobileNote: 'Editing is best on a desktop screen.',
     tryIt: 'Try real examples',
     berlinTitle: 'History of the Berlin Wall',
     berlinDescription: 'Explore historical events through both time and relationships.',
@@ -110,7 +110,7 @@ const copy = {
     narrativeDescription: 'イベントの時間の流れを見たり、編集したりできます。',
     liaisonTitle: 'LiaisonScape',
     liaisonDescription: 'エンティティ同士の関係を見たり、編集したりできます。',
-    mobileNote: 'スマートフォンでは閲覧できます。編集はPC向けです。',
+    mobileNote: '編集にはPC画面が適しています。',
     tryIt: '実際の例を見る',
     berlinTitle: 'ベルリンの壁の歴史',
     berlinDescription: '歴史上のイベントを、時間と関係の両方から見られるサンプルです。',
@@ -220,12 +220,10 @@ function App() {
             <ExternalLink className="application-card" href={links.narrativeLine}>
               <h3>{text.narrativeAction}</h3>
               <p className="product-name">{text.narrativeTitle}</p>
-              <p>{landing.narrativeDescription}</p>
             </ExternalLink>
             <ExternalLink className="application-card" href={links.liaisonScape}>
               <h3>{text.liaisonAction}</h3>
               <p className="product-name">{text.liaisonTitle}</p>
-              <p>{text.liaisonDescription}</p>
               <small>{text.mobileNote}</small>
             </ExternalLink>
           </div>

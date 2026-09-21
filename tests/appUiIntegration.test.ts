@@ -34,12 +34,22 @@ test('renders the production Hub Home surface', async () => {
     assert.equal(environment.document.querySelectorAll('.card-arrow').length, 0)
     assert.ok(environment.document.querySelector('.application-card h3')?.textContent?.includes('View and edit a timeline'))
     assert.ok(environment.document.querySelector('.application-card:nth-child(2) h3')?.textContent?.includes('View and edit a relationship diagram'))
+    assert.equal(environment.document.querySelectorAll('.application-card > p:not(.product-name)').length, 0)
+    assert.equal(environment.document.querySelector('.application-card:nth-child(2) small')?.textContent, 'Editing is best on a desktop screen.')
     const specificationLink = environment.document.querySelector('.action-link')
     assert.equal(specificationLink?.getAttribute('target'), '_blank')
     assert.equal(specificationLink?.getAttribute('rel'), 'noreferrer')
     assert.equal(environment.document.querySelectorAll('.sample-info-link').length, 5)
     assert.equal(environment.document.querySelector('.self-description-section h2')?.textContent, 'E2R Self-Description')
     assert.ok(environment.document.querySelector('.self-description-section a[href*="public-sample-provenance.md"]'))
+
+    const japaneseButton = [...environment.document.querySelectorAll<HTMLButtonElement>('.locale-switch button')]
+      .find((button) => button.textContent === '日本語')
+    assert.ok(japaneseButton)
+    await act(async () => japaneseButton?.click())
+    assert.equal(environment.document.querySelector('#choose-heading')?.textContent, 'どちらを使いますか？')
+    assert.equal(environment.document.querySelector('.application-card:nth-child(2) small')?.textContent, '編集にはPC画面が適しています。')
+    assert.equal(environment.document.querySelectorAll('.application-card > p:not(.product-name)').length, 0)
   } finally {
     await environment.cleanup()
   }

@@ -37,6 +37,9 @@ test('renders the production Hub Home surface', async () => {
     const specificationLink = environment.document.querySelector('.action-link')
     assert.equal(specificationLink?.getAttribute('target'), '_blank')
     assert.equal(specificationLink?.getAttribute('rel'), 'noreferrer')
+    assert.equal(environment.document.querySelectorAll('.sample-info-link').length, 5)
+    assert.equal(environment.document.querySelector('.self-description-section h2')?.textContent, 'E2R Self-Description')
+    assert.ok(environment.document.querySelector('.self-description-section a[href*="public-sample-provenance.md"]'))
   } finally {
     await environment.cleanup()
   }

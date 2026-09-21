@@ -13,6 +13,7 @@ const links = {
   liaisonGuideJa: 'https://github.com/sukoyaka-dopeness/e2r-liaison-scape/blob/main/docs/user-guide-ja.md',
   specification: 'https://github.com/sukoyaka-dopeness/e2r-spec',
   specificationDocs: 'https://github.com/sukoyaka-dopeness/e2r-spec/tree/main/docs',
+  sampleProvenance: 'https://github.com/sukoyaka-dopeness/e2r-spec/blob/main/docs/public-sample-provenance.md',
   validator: 'https://github.com/sukoyaka-dopeness/e2r-validator',
   berlinWallDataset: 'https://raw.githubusercontent.com/sukoyaka-dopeness/e2r-narrative-line/main/src/sample/berlin-wall-history.en.e2r.json',
   berlinWallDatasetJa: 'https://raw.githubusercontent.com/sukoyaka-dopeness/e2r-narrative-line/main/src/sample/berlin-wall-history.ja.e2r.json',
@@ -34,6 +35,7 @@ const links = {
   ashenCrownJa: 'https://github.com/sukoyaka-dopeness/e2r-spec/blob/main/examples/ashen-crown.ja.e2r.json',
   titanic: 'https://github.com/sukoyaka-dopeness/e2r-spec/blob/main/examples/titanic-final-voyage.en.e2r.json',
   titanicJa: 'https://github.com/sukoyaka-dopeness/e2r-spec/blob/main/examples/titanic-final-voyage.ja.e2r.json',
+  selfDescriptionDataset: 'https://raw.githubusercontent.com/sukoyaka-dopeness/e2r-spec/main/examples/e2r-self-description.json',
 }
 
 const copy = {
@@ -64,6 +66,11 @@ const copy = {
     openNarrative: 'Open NarrativeLine',
     openLiaison: 'Open LiaisonScape',
     viewDataset: 'View Dataset JSON',
+    sampleInfo: 'Sources / License',
+    selfDescriptionTitle: 'E2R Self-Description',
+    selfDescriptionDescription: 'A dogfood Dataset that describes E2R itself. It is non-normative and separate from the five-sample Gallery.',
+    selfDescriptionOpen: 'Open Self-Description',
+    selfDescriptionInfo: 'Self-Description info',
     otherSamples: 'Sample Datasets',
     source: 'Dataset source',
     apollo: 'Apollo 11 Mission',
@@ -116,6 +123,11 @@ const copy = {
     openNarrative: 'NarrativeLineで開く',
     openLiaison: 'LiaisonScapeで開く',
     viewDataset: 'Dataset JSONを見る',
+    sampleInfo: '出典・ライセンス',
+    selfDescriptionTitle: 'E2R Self-Description',
+    selfDescriptionDescription: '通常のサンプルギャラリーとは別の、E2R自身を説明するdogfood Datasetです。非規範的な内容です。',
+    selfDescriptionOpen: 'Self-Descriptionを開く',
+    selfDescriptionInfo: 'Self-Descriptionの情報',
     otherSamples: 'サンプルデータセット',
     source: 'Datasetのソース',
     apollo: 'アポロ11号ミッション',
@@ -234,6 +246,7 @@ function App() {
                 <ExternalLink href={buildDatasetHandoffUrl(links.narrativeLine, localizedSampleUrl(locale, links.berlinWallDataset, links.berlinWallDatasetJa))}>{text.openNarrative}</ExternalLink>
                 <ExternalLink href={buildDatasetHandoffUrl(links.liaisonScape, localizedSampleUrl(locale, links.berlinWallDataset, links.berlinWallDatasetJa))}>{text.openLiaison}</ExternalLink>
               </div>
+              <ExternalLink className="sample-info-link" href={links.sampleProvenance}>{text.sampleInfo}</ExternalLink>
             </article>
             <article className="sample-card">
               <h3>{text.apollo}</h3>
@@ -243,6 +256,7 @@ function App() {
                 <ExternalLink href={buildDatasetHandoffUrl(links.narrativeLine, localizedSampleUrl(locale, links.apolloDataset, links.apolloDatasetJa))}>{text.openNarrative}</ExternalLink>
                 <ExternalLink href={buildDatasetHandoffUrl(links.liaisonScape, localizedSampleUrl(locale, links.apolloDataset, links.apolloDatasetJa))}>{text.openLiaison}</ExternalLink>
               </div>
+              <ExternalLink className="sample-info-link" href={links.sampleProvenance}>{text.sampleInfo}</ExternalLink>
             </article>
             <article className="sample-card">
               <h3>{text.lighthouse}</h3>
@@ -252,6 +266,7 @@ function App() {
                 <ExternalLink href={buildDatasetHandoffUrl(links.narrativeLine, localizedSampleUrl(locale, links.lighthouseDataset, links.lighthouseDatasetJa))}>{text.openNarrative}</ExternalLink>
                 <ExternalLink href={buildDatasetHandoffUrl(links.liaisonScape, localizedSampleUrl(locale, links.lighthouseDataset, links.lighthouseDatasetJa))}>{text.openLiaison}</ExternalLink>
               </div>
+              <ExternalLink className="sample-info-link" href={links.sampleProvenance}>{text.sampleInfo}</ExternalLink>
             </article>
             <article className="sample-card">
               <h3>{text.ashenCrownTitle}</h3>
@@ -261,6 +276,7 @@ function App() {
                 <ExternalLink href={buildDatasetHandoffUrl(links.narrativeLine, localizedSampleUrl(locale, links.ashenCrownDataset, links.ashenCrownDatasetJa))}>{text.openNarrative}</ExternalLink>
                 <ExternalLink href={buildDatasetHandoffUrl(links.liaisonScape, localizedSampleUrl(locale, links.ashenCrownDataset, links.ashenCrownDatasetJa))}>{text.openLiaison}</ExternalLink>
               </div>
+              <ExternalLink className="sample-info-link" href={links.sampleProvenance}>{text.sampleInfo}</ExternalLink>
             </article>
             <article className="sample-card">
               <h3>{text.titanicTitle}</h3>
@@ -270,7 +286,19 @@ function App() {
                 <ExternalLink href={buildDatasetHandoffUrl(links.narrativeLine, localizedSampleUrl(locale, links.titanicDataset, links.titanicDatasetJa))}>{text.openNarrative}</ExternalLink>
                 <ExternalLink href={buildDatasetHandoffUrl(links.liaisonScape, localizedSampleUrl(locale, links.titanicDataset, links.titanicDatasetJa))}>{text.openLiaison}</ExternalLink>
               </div>
+              <ExternalLink className="sample-info-link" href={links.sampleProvenance}>{text.sampleInfo}</ExternalLink>
             </article>
+          </div>
+        </section>
+
+        <section className="section self-description-section" aria-labelledby="self-description-heading">
+          <span className="eyebrow">{text.selfDescriptionTitle}</span>
+          <h2 id="self-description-heading">{text.selfDescriptionTitle}</h2>
+          <p>{text.selfDescriptionDescription}</p>
+          <div className="documentation-actions">
+            <ExternalLink href={buildDatasetHandoffUrl(links.narrativeLine, links.selfDescriptionDataset)}>{text.selfDescriptionOpen} / {text.narrativeTitle}</ExternalLink>
+            <ExternalLink href={buildDatasetHandoffUrl(links.liaisonScape, links.selfDescriptionDataset)}>{text.selfDescriptionOpen} / {text.liaisonTitle}</ExternalLink>
+            <ExternalLink href={links.sampleProvenance}>{text.selfDescriptionInfo}</ExternalLink>
           </div>
         </section>
 
@@ -328,6 +356,7 @@ function App() {
               <h3>{locale === 'ja' ? 'サンプルデータセットのソース' : 'Sample Dataset sources'}</h3>
               <p>{locale === 'ja' ? 'データセット: 日本語' : 'Dataset: English'}</p>
               <div className="documentation-actions">
+                <ExternalLink href={links.sampleProvenance}>{text.sampleInfo}</ExternalLink>
                 <ExternalLink href={localizedSampleUrl(locale, links.berlinWall, links.berlinWallJa)}>{text.berlinTitle}</ExternalLink>
                 <ExternalLink href={localizedSampleUrl(locale, links.apollo, links.apolloJa)}>{text.apollo}</ExternalLink>
                 <ExternalLink href={localizedSampleUrl(locale, links.lighthouse, links.lighthouseJa)}>{text.lighthouse}</ExternalLink>

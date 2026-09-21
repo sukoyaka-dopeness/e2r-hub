@@ -29,7 +29,6 @@ main { width: min(1080px, 100%); margin: 0 auto; }
 .application-card .product-name { margin: 0 0 10px; color: #4f2390; font-size: .95rem; font-weight: 650; }
 .application-card p { max-width: 28rem; margin: 0; color: #6b6375; }
 .application-card small { display: block; max-width: 28rem; margin-top: 24px; color: #6b6375; font-size: .82rem; }
-.card-arrow { position: absolute; right: 24px; bottom: 20px; color: #6d3aa3; font-size: 1.5rem; }
 .section-heading { max-width: 650px; }
 .section-heading p, .tools-section p { max-width: 700px; color: #6b6375; }
 .sample-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }

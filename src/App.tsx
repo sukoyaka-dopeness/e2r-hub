@@ -40,9 +40,9 @@ const copy = {
   en: {
     ecosystem: 'E2R application ecosystem',
     footerDescriptor: 'application ecosystem',
-    hero: 'One dataset,\nmany ways\nto understand it.',
-    heroIntro: 'Choose the application that fits what you want to do.',
-    choose: 'What do you want to do?',
+    hero: 'One dataset\ntwo views.',
+    heroIntro: 'View and edit the same dataset as a timeline or a relationship diagram.',
+    choose: 'Which would you like to use?',
     timeline: 'Timeline',
     relationshipDiagram: 'Relationship diagram',
     narrativeAction: 'View and edit a timeline',
@@ -92,9 +92,9 @@ const copy = {
   ja: {
     ecosystem: 'E2R アプリケーションエコシステム',
     footerDescriptor: 'アプリケーションエコシステム',
-    hero: 'ひとつのDatasetを、\nいろいろな視点で、\n見てみよう。',
-    heroIntro: 'やりたいことに合ったアプリを選べます。',
-    choose: '何をしたいですか？',
+    hero: 'ひとつのDatasetを\nふたつの視点で\n見てみよう。',
+    heroIntro: '同じDatasetを年表と相関図で見たり編集したりできます。',
+    choose: 'どちらを使いますか？',
     timeline: '年表',
     relationshipDiagram: '相関図',
     narrativeAction: '年表を見たり、作ったり',
@@ -209,14 +209,12 @@ function App() {
               <h3>{text.narrativeAction}</h3>
               <p className="product-name">{text.narrativeTitle}</p>
               <p>{landing.narrativeDescription}</p>
-              <span className="card-arrow" aria-hidden="true">↗</span>
             </ExternalLink>
             <ExternalLink className="application-card" href={links.liaisonScape}>
               <h3>{text.liaisonAction}</h3>
               <p className="product-name">{text.liaisonTitle}</p>
               <p>{text.liaisonDescription}</p>
               <small>{text.mobileNote}</small>
-              <span className="card-arrow" aria-hidden="true">↗</span>
             </ExternalLink>
           </div>
         </section>
@@ -287,7 +285,7 @@ function App() {
               <li>{text.whatIsPoint3}</li>
               <li>{text.whatIsPoint4}</li>
             </ol>
-            <ExternalLink className="action-link" href={links.specification}>{text.learnSpec} ↗</ExternalLink>
+            <ExternalLink className="action-link" href={links.specification}>{text.learnSpec}</ExternalLink>
           </div>
         </section>
 
@@ -295,7 +293,7 @@ function App() {
           <span className="eyebrow">{text.tools}</span>
           <h2 id="tools-heading">{text.validator}</h2>
           <p>{text.validatorDescription}</p>
-          <ExternalLink href={links.validator}>{text.validator} ↗</ExternalLink>
+          <ExternalLink href={links.validator}>{text.validator}</ExternalLink>
         </section>
         <section className="section documentation-section" aria-labelledby="documentation-heading">
           <span className="eyebrow">{locale === 'ja' ? 'さらに詳しく' : 'Learn more'}</span>

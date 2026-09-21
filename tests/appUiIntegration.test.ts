@@ -29,9 +29,14 @@ test('renders the production Hub Home surface', async () => {
 
     assert.equal(environment.document.querySelector('.brand')?.textContent, 'E2R Hub')
     assert.ok(environment.document.querySelector('h1'))
-    assert.equal(environment.document.querySelector('#choose-heading')?.textContent, 'What do you want to do?')
+    assert.equal(environment.document.querySelector('#choose-heading')?.textContent, 'Which would you like to use?')
+    assert.equal(environment.document.querySelector('h1')?.textContent, 'One datasettwo views.')
+    assert.equal(environment.document.querySelectorAll('.card-arrow').length, 0)
     assert.ok(environment.document.querySelector('.application-card h3')?.textContent?.includes('View and edit a timeline'))
     assert.ok(environment.document.querySelector('.application-card:nth-child(2) h3')?.textContent?.includes('View and edit a relationship diagram'))
+    const specificationLink = environment.document.querySelector('.action-link')
+    assert.equal(specificationLink?.getAttribute('target'), '_blank')
+    assert.equal(specificationLink?.getAttribute('rel'), 'noreferrer')
   } finally {
     await environment.cleanup()
   }

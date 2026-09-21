@@ -2,7 +2,8 @@
 
 E2R Hub is a lightweight entry point to the E2R application ecosystem.
 
-Status: local First Distribution preparation.
+Status: First Distribution preparation; public rollout remains subject to
+separate release approval.
 
 Expected GitHub Pages URL:
 
@@ -29,3 +30,7 @@ npm run build
 The Hub is a lightweight entry point to the E2R ecosystem. It links to
 independent E2R applications, the specification, the Validator, and canonical
 sample Dataset sources. It does not modify or persist Dataset files.
+
+## License
+
+This project is licensed under the MIT License. See [LICENSE](LICENSE).

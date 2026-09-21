@@ -357,7 +357,7 @@ function App() {
               <h3>{locale === 'ja' ? 'サンプルデータセットのソース' : 'Sample Dataset sources'}</h3>
               <p>{locale === 'ja' ? 'データセット: 日本語' : 'Dataset: English'}</p>
               <div className="documentation-actions">
-                <ExternalLink href={links.sampleProvenance}>{text.sampleInfo}</ExternalLink>
+                <ExternalLink className="sample-info-link" href={links.sampleProvenance}>{text.sampleInfo}</ExternalLink>
                 <ExternalLink href={localizedSampleUrl(locale, links.berlinWall, links.berlinWallJa)}>{text.berlinTitle}</ExternalLink>
                 <ExternalLink href={localizedSampleUrl(locale, links.apollo, links.apolloJa)}>{text.apollo}</ExternalLink>
                 <ExternalLink href={localizedSampleUrl(locale, links.lighthouse, links.lighthouseJa)}>{text.lighthouse}</ExternalLink>

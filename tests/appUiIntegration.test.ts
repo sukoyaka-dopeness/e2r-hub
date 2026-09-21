@@ -39,7 +39,10 @@ test('renders the production Hub Home surface', async () => {
     const specificationLink = environment.document.querySelector('.action-link')
     assert.equal(specificationLink?.getAttribute('target'), '_blank')
     assert.equal(specificationLink?.getAttribute('rel'), 'noreferrer')
-    assert.equal(environment.document.querySelectorAll('.sample-info-link').length, 5)
+    assert.equal(environment.document.querySelectorAll('.sample-info-link').length, 6)
+    const provenanceLinks = [...environment.document.querySelectorAll<HTMLAnchorElement>('.sample-info-link')]
+    assert.ok(provenanceLinks.every((link) => link.getAttribute('href') === 'https://github.com/sukoyaka-dopeness/e2r-spec/blob/main/docs/public-sample-provenance.md'))
+    assert.ok(environment.document.querySelector('.documentation-card a.sample-info-link'))
     const supportLink = environment.document.querySelector('.site-support-link')
     assert.equal(supportLink?.textContent, 'Support E2R on GitHub Sponsors')
     assert.equal(supportLink?.getAttribute('href'), 'https://github.com/sponsors/sukoyaka-dopeness')

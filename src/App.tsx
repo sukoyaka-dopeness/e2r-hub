@@ -297,8 +297,8 @@ function App() {
           <h2 id="self-description-heading">{text.selfDescriptionTitle}</h2>
           <p>{text.selfDescriptionDescription}</p>
           <div className="documentation-actions">
-            <ExternalLink href={buildDatasetHandoffUrl(links.narrativeLine, links.selfDescriptionDataset)}>{text.selfDescriptionOpen} / {text.narrativeTitle}</ExternalLink>
-            <ExternalLink href={buildDatasetHandoffUrl(links.liaisonScape, links.selfDescriptionDataset)}>{text.selfDescriptionOpen} / {text.liaisonTitle}</ExternalLink>
+            <ExternalLink href={buildDatasetHandoffUrl(links.narrativeLine, links.selfDescriptionDataset)}>{text.openNarrative}</ExternalLink>
+            <ExternalLink href={buildDatasetHandoffUrl(links.liaisonScape, links.selfDescriptionDataset)}>{text.openLiaison}</ExternalLink>
             <ExternalLink href={links.sampleProvenance}>{text.selfDescriptionInfo}</ExternalLink>
           </div>
         </section>

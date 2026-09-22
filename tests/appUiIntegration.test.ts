@@ -57,6 +57,12 @@ test('renders the production Hub Home surface', async () => {
     assert.equal(environment.document.querySelector('.site-footer')?.previousElementSibling?.tagName, 'MAIN')
     assert.equal(environment.document.querySelector('.self-description-section h2')?.textContent, 'E2R Self-Description')
     assert.ok(environment.document.querySelector('.self-description-section a[href*="public-sample-provenance.md"]'))
+    assert.deepEqual(
+      [...environment.document.querySelectorAll('.self-description-section .documentation-actions a')]
+        .slice(0, 2)
+        .map((link) => link.textContent),
+      ['Open NarrativeLine', 'Open LiaisonScape'],
+    )
 
     const japaneseButton = [...environment.document.querySelectorAll<HTMLButtonElement>('.locale-switch button')]
       .find((button) => button.textContent === '日本語')
@@ -66,6 +72,11 @@ test('renders the production Hub Home surface', async () => {
     assert.equal(environment.document.querySelector('.application-card:nth-child(2) small')?.textContent, '編集にはPC画面が適しています。')
     assert.equal(environment.document.querySelectorAll('.application-card > p:not(.product-name)').length, 0)
     assert.equal(environment.document.querySelector('.site-support-link')?.textContent, 'GitHub SponsorsでE2Rを支援する')
+    const japaneseSelfDescriptionActions = [...environment.document.querySelectorAll('.self-description-section .documentation-actions a')]
+      .slice(0, 2)
+      .map((link) => link.textContent ?? '')
+    assert.ok(japaneseSelfDescriptionActions[0]?.includes('NarrativeLine'))
+    assert.ok(japaneseSelfDescriptionActions[1]?.includes('LiaisonScape'))
   } finally {
     await environment.cleanup()
   }

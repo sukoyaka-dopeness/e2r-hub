@@ -13,7 +13,7 @@ const links = {
   liaisonGuideJa: 'https://github.com/sukoyaka-dopeness/e2r-liaison-scape/blob/main/docs/user-guide-ja.md',
   specification: 'https://github.com/sukoyaka-dopeness/e2r-spec',
   specificationDocs: 'https://github.com/sukoyaka-dopeness/e2r-spec/tree/main/docs',
-  sampleProvenance: 'https://github.com/sukoyaka-dopeness/e2r-spec/blob/main/docs/public-sample-provenance.md',
+  sampleProvenance: 'https://github.com/sukoyaka-dopeness/e2r-spec/blob/main/docs/public-samples/public-sample-provenance.md',
   validator: 'https://github.com/sukoyaka-dopeness/e2r-validator',
   berlinWallDataset: 'https://raw.githubusercontent.com/sukoyaka-dopeness/e2r-narrative-line/main/src/sample/berlin-wall-history.en.e2r.json',
   berlinWallDatasetJa: 'https://raw.githubusercontent.com/sukoyaka-dopeness/e2r-narrative-line/main/src/sample/berlin-wall-history.ja.e2r.json',

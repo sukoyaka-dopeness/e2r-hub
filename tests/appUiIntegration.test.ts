@@ -41,7 +41,7 @@ test('renders the production Hub Home surface', async () => {
     assert.equal(specificationLink?.getAttribute('rel'), 'noreferrer')
     assert.equal(environment.document.querySelectorAll('.sample-info-link').length, 6)
     const provenanceLinks = [...environment.document.querySelectorAll<HTMLAnchorElement>('.sample-info-link')]
-    assert.ok(provenanceLinks.every((link) => link.getAttribute('href') === 'https://github.com/sukoyaka-dopeness/e2r-spec/blob/main/docs/public-sample-provenance.md'))
+    assert.ok(provenanceLinks.every((link) => link.getAttribute('href') === 'https://github.com/sukoyaka-dopeness/e2r-spec/blob/main/docs/public-samples/public-sample-provenance.md'))
     const sourceCard = [...environment.document.querySelectorAll('.documentation-card')]
       .find((card) => card.querySelector('h3')?.textContent === 'Sample Dataset sources')
     const sourceLinks = sourceCard?.querySelector('.sample-source-links')

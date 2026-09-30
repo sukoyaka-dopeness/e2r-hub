@@ -28,8 +28,11 @@ npm run build
 ```
 
 The Hub is a lightweight entry point to the E2R ecosystem. It links to
-independent E2R applications, the specification, the Validator, and canonical
-sample Dataset sources. It does not modify or persist Dataset files.
+independent E2R applications, the specification, the Validator, canonical
+sample Dataset sources, and NarrativeLine's application-owned Cedar Observatory
+showcase candidate. The Cedar Gallery entry hands off the NarrativeLine-owned
+EN/JA source files; it does not make Cedar a canonical cross-app sample or a
+Hub-owned content copy. It does not modify or persist Dataset files.
 
 ## License
 

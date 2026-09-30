@@ -17,6 +17,8 @@ const links = {
   validator: 'https://github.com/sukoyaka-dopeness/e2r-validator',
   berlinWallDataset: 'https://raw.githubusercontent.com/sukoyaka-dopeness/e2r-narrative-line/main/src/sample/berlin-wall-history.en.e2r.json',
   berlinWallDatasetJa: 'https://raw.githubusercontent.com/sukoyaka-dopeness/e2r-narrative-line/main/src/sample/berlin-wall-history.ja.e2r.json',
+  cedarDataset: 'https://raw.githubusercontent.com/sukoyaka-dopeness/e2r-narrative-line/main/src/sample/cedar-observatory-showcase.en.e2r.json',
+  cedarDatasetJa: 'https://raw.githubusercontent.com/sukoyaka-dopeness/e2r-narrative-line/main/src/sample/cedar-observatory-showcase.ja.e2r.json',
   lighthouseDataset: 'https://raw.githubusercontent.com/sukoyaka-dopeness/e2r-liaison-scape/main/public/lighthouse-restoration-demo.en.e2r.json',
   lighthouseDatasetJa: 'https://raw.githubusercontent.com/sukoyaka-dopeness/e2r-liaison-scape/main/public/lighthouse-restoration-demo.ja.e2r.json',
   apolloDataset: 'https://raw.githubusercontent.com/sukoyaka-dopeness/e2r-spec/main/examples/apollo-11-mission.en.e2r.json',
@@ -27,6 +29,8 @@ const links = {
   titanicDatasetJa: 'https://raw.githubusercontent.com/sukoyaka-dopeness/e2r-spec/main/examples/titanic-final-voyage.ja.e2r.json',
   berlinWall: 'https://github.com/sukoyaka-dopeness/e2r-narrative-line/blob/main/src/sample/berlin-wall-history.en.e2r.json',
   berlinWallJa: 'https://github.com/sukoyaka-dopeness/e2r-narrative-line/blob/main/src/sample/berlin-wall-history.ja.e2r.json',
+  cedar: 'https://github.com/sukoyaka-dopeness/e2r-narrative-line/blob/main/src/sample/cedar-observatory-showcase.en.e2r.json',
+  cedarJa: 'https://github.com/sukoyaka-dopeness/e2r-narrative-line/blob/main/src/sample/cedar-observatory-showcase.ja.e2r.json',
   lighthouse: 'https://github.com/sukoyaka-dopeness/e2r-liaison-scape/blob/main/public/lighthouse-restoration-demo.en.e2r.json',
   lighthouseJa: 'https://github.com/sukoyaka-dopeness/e2r-liaison-scape/blob/main/public/lighthouse-restoration-demo.ja.e2r.json',
   apollo: 'https://github.com/sukoyaka-dopeness/e2r-spec/blob/main/examples/apollo-11-mission.en.e2r.json',
@@ -58,6 +62,9 @@ const copy = {
     tryIt: 'Try real examples',
     berlinTitle: 'History of the Berlin Wall',
     berlinDescription: 'Explore historical events through both time and relationships.',
+    cedarTitle: 'Cedar Observatory: An Open Night',
+    cedarDescription: 'A fictional neighborhood observatory preparing for an open night, with recorded events and time-based plans.',
+    cedarRole: 'NarrativeLine showcase candidate',
     apolloDescription: 'A representative sample that can be viewed and edited in multiple E2R applications.',
     lighthouseDescription: 'A fictional sample about people restoring an old lighthouse.',
     ashenCrownDescription: 'A creative-writing sample about ten characters, alliances, rivalries, and secrets in a fictional kingdom.',
@@ -69,7 +76,7 @@ const copy = {
     viewDataset: 'View Dataset JSON',
     sampleInfo: 'Sources / License',
     selfDescriptionTitle: 'E2R Self-Description',
-    selfDescriptionDescription: 'A dogfood Dataset that describes E2R itself. It is non-normative and separate from the five-sample Gallery.',
+    selfDescriptionDescription: 'A dogfood Dataset that describes E2R itself. It is non-normative and separate from the sample Gallery.',
     selfDescriptionOpen: 'Open Self-Description',
     selfDescriptionInfo: 'Self-Description info',
     otherSamples: 'Sample Datasets',
@@ -116,6 +123,9 @@ const copy = {
     tryIt: '実際の例を見る',
     berlinTitle: 'ベルリンの壁の歴史',
     berlinDescription: '歴史上のイベントを、時間と関係の両方から見られるサンプルです。',
+    cedarTitle: 'シダー天文台：公開観望会',
+    cedarDescription: '地域の天文台が公開観望会を準備する架空の年表です。記録済みのできごとと時間に基づく計画をたどれます。',
+    cedarRole: 'NarrativeLineのショーケース候補',
     apolloDescription: '複数のE2Rアプリで閲覧、編集できる代表的なサンプルです。',
     lighthouseDescription: '架空の古い灯台を修復する人々を描いたサンプルです。',
     ashenCrownDescription: '架空の王国を舞台に、10人の人物とその歴史、同盟、対立、秘密を描く創作サンプルです。',
@@ -162,7 +172,7 @@ const landingCopy = {
   en: {
     guide: 'User Guide',
     narrativeDescription: 'View and edit events over time.',
-    sampleIntro: 'Choose a sample Dataset and open it in NarrativeLine or LiaisonScape.',
+    sampleIntro: 'Choose a sample Dataset and open it in an available E2R application.',
     documentation: 'Documentation',
     documentationIntro: 'Learn how to use each application and how E2R Datasets are structured.',
     specificationDocs: 'E2R documentation',
@@ -170,7 +180,7 @@ const landingCopy = {
   ja: {
     guide: 'ユーザーガイド',
     narrativeDescription: 'できごとを時間順に見たり、編集したりできます。',
-    sampleIntro: 'アプリを選ぶ前に、サンプルデータセットを見てみましょう。ソースリンクはJSONを開くもので、HubのHandoffリンクを生成するものではありません。',
+    sampleIntro: 'アプリを選ぶ前に、サンプルデータセットを見てみましょう。利用できるアプリはサンプルごとに異なります。',
     documentation: 'ドキュメント',
     documentationIntro: '各アプリケーションの使い方とE2Rデータセットの構造を確認できます。',
     specificationDocs: 'E2Rドキュメント',
@@ -236,9 +246,18 @@ function App() {
           <div className="section-heading">
             <span className="eyebrow">{text.tryIt}</span>
             <h2 id="sample-heading">{text.otherSamples}</h2>
-            <p>{locale === 'ja' ? 'サンプルデータセットを選んで、NarrativeLineまたはLiaisonScapeで開いてみましょう。' : landing.sampleIntro}</p>
+            <p>{landing.sampleIntro}</p>
           </div>
           <div className="sample-grid">
+            <article className="sample-card">
+              <h3>{text.cedarTitle}</h3>
+              <p>{text.cedarDescription}</p>
+              <small>{text.cedarRole} · {locale === 'ja' ? 'データセット: 日本語' : 'Dataset: English'}</small>
+              <div className="sample-card-actions">
+                <ExternalLink href={buildDatasetHandoffUrl(links.narrativeLine, localizedSampleUrl(locale, links.cedarDataset, links.cedarDatasetJa))}>{text.openNarrative}</ExternalLink>
+              </div>
+              <ExternalLink className="sample-info-link" href={links.sampleProvenance}>{text.sampleInfo}</ExternalLink>
+            </article>
             <article className="sample-card">
               <h3>{text.berlinTitle}</h3>
               <p>{text.berlinDescription}</p>
@@ -359,6 +378,7 @@ function App() {
               <div className="sample-source-links">
                 <div className="documentation-actions">
                   <ExternalLink href={localizedSampleUrl(locale, links.berlinWall, links.berlinWallJa)}>{text.berlinTitle}</ExternalLink>
+                  <ExternalLink href={localizedSampleUrl(locale, links.cedar, links.cedarJa)}>{text.cedarTitle}</ExternalLink>
                   <ExternalLink href={localizedSampleUrl(locale, links.apollo, links.apolloJa)}>{text.apollo}</ExternalLink>
                   <ExternalLink href={localizedSampleUrl(locale, links.lighthouse, links.lighthouseJa)}>{text.lighthouse}</ExternalLink>
                   <ExternalLink href={localizedSampleUrl(locale, links.ashenCrown, links.ashenCrownJa)}>{text.ashenCrownTitle}</ExternalLink>

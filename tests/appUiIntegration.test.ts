@@ -63,6 +63,12 @@ test('renders the production Hub Home surface', async () => {
       .find((card) => card.querySelector('h3')?.textContent === 'Sample Dataset sources')
     const sourceLinks = sourceCard?.querySelector('.sample-source-links')
     assert.equal(sourceLinks?.querySelectorAll('.documentation-actions a').length, 6)
+    assert.deepEqual(
+      [...(sourceLinks?.querySelectorAll<HTMLAnchorElement>('.documentation-actions a') ?? [])].map((link) => link.textContent),
+      sampleCards.map((card) => card.querySelector('h3')?.textContent),
+    )
+    assert.equal(sourceLinks?.querySelector('.documentation-actions a:last-child')?.getAttribute('href'),
+      'https://github.com/sukoyaka-dopeness/e2r-narrative-line/blob/main/src/sample/cedar-observatory-showcase.en.e2r.json')
     assert.equal(sourceLinks?.firstElementChild?.className, 'documentation-actions')
     assert.equal(sourceLinks?.lastElementChild?.className, 'sample-info-link')
     const supportLink = environment.document.querySelector('.site-support-link')
@@ -91,6 +97,12 @@ test('renders the production Hub Home surface', async () => {
     assert.ok(japaneseCedarCard)
     assert.equal(japaneseCedarCard.querySelector('small')?.textContent, 'データセット: 日本語')
     assert.equal(japaneseCedarCard, environment.document.querySelector('.sample-card:last-child'))
+    assert.deepEqual(
+      [...environment.document.querySelectorAll('.sample-source-links .documentation-actions a')].map((link) => link.textContent),
+      [...environment.document.querySelectorAll('.sample-card h3')].map((heading) => heading.textContent),
+    )
+    assert.equal(environment.document.querySelector('.sample-source-links .documentation-actions a:last-child')?.getAttribute('href'),
+      'https://github.com/sukoyaka-dopeness/e2r-narrative-line/blob/main/src/sample/cedar-observatory-showcase.ja.e2r.json')
     assert.equal(japaneseCedarCard.querySelector('.sample-card-actions a')?.getAttribute('href'),
       'https://sukoyaka-dopeness.github.io/e2r-narrative-line/#datasetUrl=' +
       encodeURIComponent('https://raw.githubusercontent.com/sukoyaka-dopeness/e2r-narrative-line/main/src/sample/cedar-observatory-showcase.ja.e2r.json'))

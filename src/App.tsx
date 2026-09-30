@@ -377,11 +377,11 @@ function App() {
               <div className="sample-source-links">
                 <div className="documentation-actions">
                   <ExternalLink href={localizedSampleUrl(locale, links.berlinWall, links.berlinWallJa)}>{text.berlinTitle}</ExternalLink>
-                  <ExternalLink href={localizedSampleUrl(locale, links.cedar, links.cedarJa)}>{text.cedarTitle}</ExternalLink>
                   <ExternalLink href={localizedSampleUrl(locale, links.apollo, links.apolloJa)}>{text.apollo}</ExternalLink>
                   <ExternalLink href={localizedSampleUrl(locale, links.lighthouse, links.lighthouseJa)}>{text.lighthouse}</ExternalLink>
                   <ExternalLink href={localizedSampleUrl(locale, links.ashenCrown, links.ashenCrownJa)}>{text.ashenCrownTitle}</ExternalLink>
                   <ExternalLink href={localizedSampleUrl(locale, links.titanic, links.titanicJa)}>{text.titanicTitle}</ExternalLink>
+                  <ExternalLink href={localizedSampleUrl(locale, links.cedar, links.cedarJa)}>{text.cedarTitle}</ExternalLink>
                 </div>
                 <ExternalLink className="sample-info-link" href={links.sampleProvenance}>{text.sampleInfo}</ExternalLink>
               </div>

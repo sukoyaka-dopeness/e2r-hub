@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import type { ReactNode } from 'react'
 import './App.css'
 
@@ -98,8 +98,12 @@ const copy = {
     validatorDescription: 'Validates E2R Datasets. It is currently available as a CLI and JavaScript library, not as a browser tool on the Hub.',
     credits: 'Credits',
     close: 'Close',
-    createdBy: 'Created by sukoyaka-dopeness',
-    createdDate: 'Created 2026-08',
+    creditsApplication: 'Application',
+    creditsCreator: 'Creator',
+    creditsFirstRelease: 'First release',
+    creditsUpdated: 'Updated',
+    creditsFirstReleaseDate: '2026-08-18',
+    creditsUpdatedDate: '2026-09-30',
     gratitude: 'With gratitude to all the AI systems that contributed to this project.',
     specificationRepo: 'E2R specification repository',
     supportE2r: 'Support E2R on GitHub Sponsors',
@@ -158,10 +162,14 @@ const copy = {
     validatorDescription: 'E2Rデータセットを検証します。現在はCLIとJavaScriptライブラリとして提供されており、Hub上のブラウザツールではありません。',
     credits: 'クレジット',
     close: '閉じる',
-    createdBy: 'Created by sukoyaka-dopeness',
-    createdDate: 'Created 2026-08',
-    gratitude: 'With gratitude to all the AI systems that contributed to this project.',
-    specificationRepo: 'E2R specification repository',
+    creditsApplication: '\u30a2\u30d7\u30ea\u30b1\u30fc\u30b7\u30e7\u30f3',
+    creditsCreator: '\u4f5c\u6210\u8005',
+    creditsFirstRelease: '\u521d\u56de\u30ea\u30ea\u30fc\u30b9',
+    creditsUpdated: '\u66f4\u65b0\u65e5',
+    creditsFirstReleaseDate: '2026-08-18',
+    creditsUpdatedDate: '2026-09-30',
+    gratitude: '\u3053\u306e\u30d7\u30ed\u30b8\u30a7\u30af\u30c8\u306b\u8ca2\u732e\u3057\u305f\u3059\u3079\u3066\u306eAI\u30b7\u30b9\u30c6\u30e0\u306b\u611f\u8b1d\u3057\u307e\u3059\u3002',
+    specificationRepo: 'E2R\u4ed5\u69d8\u30ea\u30dd\u30b8\u30c8\u30ea',
     supportE2r: 'GitHub SponsorsでE2Rを支援する',
   },
 } as const
@@ -205,8 +213,30 @@ function localizedSampleUrl(locale: Locale, englishUrl: string, japaneseUrl: str
 function App() {
   const [locale, setLocale] = useState<Locale>('en')
   const [creditsOpen, setCreditsOpen] = useState(false)
+  const creditsOpenerRef = useRef<HTMLButtonElement>(null)
+  const creditsWasOpenRef = useRef(false)
   const text = copy[locale]
   const landing = landingCopy[locale]
+
+  useEffect(() => {
+    if (!creditsOpen) {
+      if (creditsWasOpenRef.current) {
+        creditsWasOpenRef.current = false
+        creditsOpenerRef.current?.focus()
+      }
+      return
+    }
+
+    creditsWasOpenRef.current = true
+    const dismissOnEscape = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        event.preventDefault()
+        setCreditsOpen(false)
+      }
+    }
+    window.addEventListener('keydown', dismissOnEscape)
+    return () => window.removeEventListener('keydown', dismissOnEscape)
+  }, [creditsOpen])
 
   return (
     <div className="hub-shell">
@@ -396,7 +426,7 @@ function App() {
       <footer className="site-footer">
         <span>{text.footerDescriptor}</span>
         <div>
-          <button type="button" onClick={() => setCreditsOpen(true)}>{text.credits}</button>
+          <button ref={creditsOpenerRef} type="button" onClick={() => setCreditsOpen(true)}>{text.credits}</button>
         </div>
       </footer>
 
@@ -405,10 +435,11 @@ function App() {
           <section className="credits-modal" role="dialog" aria-modal="true" aria-labelledby="credits-heading">
             <div className="modal-header">
               <h2 id="credits-heading">{text.credits}</h2>
-              <button type="button" aria-label={text.close} onClick={() => setCreditsOpen(false)}>×</button>
             </div>
-            <p>E2R Hub</p>
-            <p>{text.createdBy}<br />{text.createdDate}</p>
+            <p>{text.creditsApplication}: E2R Hub 0.2.0</p>
+            <p>{text.creditsCreator}: sukoyaka-dopeness</p>
+            <p>{text.creditsFirstRelease}: {text.creditsFirstReleaseDate}</p>
+            <p>{text.creditsUpdated}: {text.creditsUpdatedDate}</p>
             <p>{text.gratitude}</p>
             <ExternalLink href={links.specification}>{text.specificationRepo}</ExternalLink>
             <button className="modal-close" type="button" onClick={() => setCreditsOpen(false)}>{text.close}</button>

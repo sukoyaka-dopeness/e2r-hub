@@ -121,3 +121,87 @@ test('renders the production Hub Home surface', async () => {
     await environment.cleanup()
   }
 })
+
+test('renders localized Credits metadata with one Close action and restores focus on every dismissal path', async () => {
+  const environment = createDomTestEnvironment()
+  environment.installGlobal('IS_REACT_ACT_ENVIRONMENT', true)
+  const container = environment.document.createElement('div')
+  environment.document.body.append(container)
+
+  try {
+    const server = await createServer({
+      root: process.cwd(),
+      server: { middlewareMode: true, hmr: false },
+      appType: 'custom',
+    })
+    environment.addCleanup(() => server.close())
+
+    const root = createRoot(container)
+    environment.addCleanup(() => act(async () => root.unmount()))
+    const { default: App } = await server.ssrLoadModule('/src/App.tsx')
+    await act(async () => root.render(React.createElement(App)))
+
+    const opener = environment.document.querySelector<HTMLButtonElement>('.site-footer button')
+    assert.ok(opener)
+    const openCredits = async () => act(async () => {
+      opener.focus()
+      opener.click()
+    })
+    const assertOneClose = () => {
+      const dialog = environment.document.querySelector<HTMLElement>('.credits-modal')
+      assert.ok(dialog)
+      const buttons = [...dialog.querySelectorAll('button')]
+      assert.equal(buttons.length, 1)
+      assert.equal(buttons[0]?.textContent, 'Close')
+      return dialog
+    }
+
+    await openCredits()
+    let dialog = assertOneClose()
+    for (const expected of [
+      'Application: E2R Hub 0.2.0',
+      'Creator: sukoyaka-dopeness',
+      'First release: 2026-08-18',
+      'Updated: 2026-09-30',
+      'With gratitude to all the AI systems that contributed to this project.',
+      'E2R specification repository',
+    ]) assert.ok(dialog.textContent?.includes(expected), `Expected Credits to include: ${expected}`)
+    assert.equal(dialog.querySelector('a')?.getAttribute('href'), 'https://github.com/sukoyaka-dopeness/e2r-spec')
+
+    await act(async () => environment.window.dispatchEvent(new environment.window.KeyboardEvent('keydown', { key: 'Escape', bubbles: true })))
+    assert.equal(environment.document.querySelector('.credits-modal'), null)
+    assert.equal(environment.document.activeElement, opener)
+
+    await openCredits()
+    const backdrop = environment.document.querySelector<HTMLElement>('.modal-backdrop')
+    assert.ok(backdrop)
+    await act(async () => backdrop.dispatchEvent(new environment.window.MouseEvent('mousedown', { bubbles: true })))
+    assert.equal(environment.document.querySelector('.credits-modal'), null)
+    assert.equal(environment.document.activeElement, opener)
+
+    await openCredits()
+    dialog = assertOneClose()
+    await act(async () => dialog.querySelector('button')?.click())
+    assert.equal(environment.document.querySelector('.credits-modal'), null)
+    assert.equal(environment.document.activeElement, opener)
+
+    const japaneseButton = environment.document.querySelector<HTMLButtonElement>('.locale-switch button:last-child')
+    assert.ok(japaneseButton)
+    await act(async () => japaneseButton.click())
+    await openCredits()
+    dialog = environment.document.querySelector<HTMLElement>('.credits-modal')!
+    for (const expected of [
+      '\u30a2\u30d7\u30ea\u30b1\u30fc\u30b7\u30e7\u30f3: E2R Hub 0.2.0',
+      '\u4f5c\u6210\u8005: sukoyaka-dopeness',
+      '\u521d\u56de\u30ea\u30ea\u30fc\u30b9: 2026-08-18',
+      '\u66f4\u65b0\u65e5: 2026-09-30',
+      '\u3053\u306e\u30d7\u30ed\u30b8\u30a7\u30af\u30c8\u306b\u8ca2\u732e\u3057\u305f\u3059\u3079\u3066\u306eAI\u30b7\u30b9\u30c6\u30e0\u306b\u611f\u8b1d\u3057\u307e\u3059\u3002',
+      'E2R\u4ed5\u69d8\u30ea\u30dd\u30b8\u30c8\u30ea',
+    ]) assert.ok(dialog.textContent?.includes(expected), `Expected Japanese Credits to include: ${expected}`)
+    assert.equal(dialog.querySelectorAll('button').length, 1)
+    assert.equal(dialog.querySelector('button')?.textContent, '\u9589\u3058\u308b')
+    assert.equal(dialog.querySelector('a')?.getAttribute('href'), 'https://github.com/sukoyaka-dopeness/e2r-spec')
+  } finally {
+    await environment.cleanup()
+  }
+})

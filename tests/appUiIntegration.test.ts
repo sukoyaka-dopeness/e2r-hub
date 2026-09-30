@@ -162,7 +162,7 @@ test('renders localized Credits metadata with one Close action and restores focu
       'Application: E2R Hub 0.2.0',
       'Creator: sukoyaka-dopeness',
       'First release: 2026-08-18',
-      'Updated: 2026-09-30',
+      'Updated: 2026-10-01',
       'With gratitude to all the AI systems that contributed to this project.',
       'E2R specification repository',
     ]) assert.ok(dialog.textContent?.includes(expected), `Expected Credits to include: ${expected}`)
@@ -196,7 +196,7 @@ test('renders localized Credits metadata with one Close action and restores focu
       '\u30a2\u30d7\u30ea\u30b1\u30fc\u30b7\u30e7\u30f3: E2R Hub 0.2.0',
       '\u4f5c\u6210\u8005: sukoyaka-dopeness',
       '\u521d\u56de\u30ea\u30ea\u30fc\u30b9: 2026-08-18',
-      '\u66f4\u65b0\u65e5: 2026-09-30',
+      '\u66f4\u65b0\u65e5: 2026-10-01',
       '\u3053\u306e\u30d7\u30ed\u30b8\u30a7\u30af\u30c8\u306b\u8ca2\u732e\u3057\u305f\u3059\u3079\u3066\u306eAI\u30b7\u30b9\u30c6\u30e0\u306b\u611f\u8b1d\u3057\u307e\u3059\u3002',
       'E2R\u4ed5\u69d8\u30ea\u30dd\u30b8\u30c8\u30ea',
     ]) assert.ok(dialog.textContent?.includes(expected), `Expected Japanese Credits to include: ${expected}`)

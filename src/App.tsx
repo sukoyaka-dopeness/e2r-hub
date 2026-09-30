@@ -74,6 +74,7 @@ const copy = {
     openLiaison: 'Open LiaisonScape',
     viewDataset: 'View Dataset JSON',
     sampleInfo: 'Sources / License',
+    selfDescriptionEyebrow: 'Dogfood Dataset',
     selfDescriptionTitle: 'E2R Self-Description',
     selfDescriptionDescription: 'A dogfood Dataset that describes E2R itself. It is non-normative and separate from the sample Gallery.',
     selfDescriptionOpen: 'Open Self-Description',
@@ -138,6 +139,7 @@ const copy = {
     openLiaison: 'LiaisonScapeで開く',
     viewDataset: 'Dataset JSONを見る',
     sampleInfo: '出典・ライセンス',
+    selfDescriptionEyebrow: 'ドッグフードDataset',
     selfDescriptionTitle: 'E2R Self-Description',
     selfDescriptionDescription: '通常のサンプルギャラリーとは別の、E2R自身を説明するdogfood Datasetです。非規範的な内容です。',
     selfDescriptionOpen: 'Self-Descriptionを開く',
@@ -341,7 +343,7 @@ function App() {
         </section>
 
         <section className="section self-description-section" aria-labelledby="self-description-heading">
-          <span className="eyebrow">{text.selfDescriptionTitle}</span>
+          <span className="eyebrow">{text.selfDescriptionEyebrow}</span>
           <h2 id="self-description-heading">{text.selfDescriptionTitle}</h2>
           <p>{text.selfDescriptionDescription}</p>
           <div className="documentation-actions">

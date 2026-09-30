@@ -40,7 +40,6 @@ main { width: min(1080px, 100%); margin: 0 auto; }
 .sample-card-actions a { display: flex; width: 10.5rem; max-width: 100%; justify-content: center; }
 .sample-card-actions a:hover, .action-link:hover { border-color: #aa3bff; background: #f5e9ff; }
 .sample-info-link { margin-top: 12px; color: #6d3aa3; font-size: .86rem; }
-.self-description-section { background: #fbf7ff; }
 .self-description-section > p { max-width: 700px; color: #6b6375; }
 .explanation-section { display: block; }
 .explanation-section h2 { max-width: 780px; margin-bottom: 24px; font-size: clamp(1.6rem, 3vw, 2.5rem); }

@@ -28,6 +28,7 @@ test('renders the production Hub Home surface', async () => {
     })
 
     assert.equal(environment.document.querySelector('.brand')?.textContent, 'E2R Hub')
+    assert.equal(environment.document.documentElement.lang, 'en')
     assert.ok(environment.document.querySelector('h1'))
     assert.equal(environment.document.querySelector('#choose-heading')?.textContent, 'Which would you like to use?')
     assert.equal(environment.document.querySelector('h1')?.textContent, 'One datasettwo views.')
@@ -92,6 +93,7 @@ test('renders the production Hub Home surface', async () => {
       .find((button) => button.textContent === '日本語')
     assert.ok(japaneseButton)
     await act(async () => japaneseButton?.click())
+    assert.equal(environment.document.documentElement.lang, 'ja')
     assert.equal(environment.document.querySelector('#choose-heading')?.textContent, 'どちらを使いますか？')
     const japaneseCedarCard = [...environment.document.querySelectorAll<HTMLElement>('.sample-card')]
       .find((card) => card.querySelector('h3')?.textContent === 'シダー天文台：公開観望会')

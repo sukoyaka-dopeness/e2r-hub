@@ -229,6 +229,10 @@ function App() {
   const landing = landingCopy[locale]
 
   useEffect(() => {
+    document.documentElement.lang = locale
+  }, [locale])
+
+  useEffect(() => {
     if (!creditsOpen) {
       if (creditsWasOpenRef.current) {
         creditsWasOpenRef.current = false

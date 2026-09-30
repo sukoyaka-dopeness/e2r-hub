@@ -40,14 +40,23 @@ test('renders the production Hub Home surface', async () => {
     assert.equal(specificationLink?.getAttribute('target'), '_blank')
     assert.equal(specificationLink?.getAttribute('rel'), 'noreferrer')
     assert.equal(environment.document.querySelectorAll('.sample-info-link').length, 7)
-    const cedarCard = [...environment.document.querySelectorAll<HTMLElement>('.sample-card')]
+    const sampleCards = [...environment.document.querySelectorAll<HTMLElement>('.sample-card')]
+    assert.deepEqual(sampleCards.map((card) => card.querySelector('h3')?.textContent), [
+      'History of the Berlin Wall', 'Apollo 11 Mission', 'Lighthouse Restoration Project',
+      'The Ashen Crown', 'Titanic: Final Voyage', 'Cedar Observatory: An Open Night',
+    ])
+    const cedarCard = sampleCards
       .find((card) => card.querySelector('h3')?.textContent === 'Cedar Observatory: An Open Night')
     assert.ok(cedarCard)
-    assert.match(cedarCard.textContent ?? '', /NarrativeLine showcase candidate/)
-    assert.equal(cedarCard.querySelectorAll('.sample-card-actions a').length, 1)
+    assert.equal(cedarCard.querySelector('small')?.textContent, 'Dataset: English')
+    assert.equal(cedarCard.querySelectorAll('.sample-card-actions a').length, 2)
     assert.equal(cedarCard.querySelector('.sample-card-actions a')?.getAttribute('href'),
       'https://sukoyaka-dopeness.github.io/e2r-narrative-line/#datasetUrl=' +
       encodeURIComponent('https://raw.githubusercontent.com/sukoyaka-dopeness/e2r-narrative-line/main/src/sample/cedar-observatory-showcase.en.e2r.json'))
+    assert.equal(cedarCard.querySelectorAll('.sample-card-actions a')[1]?.getAttribute('href'),
+      'https://sukoyaka-dopeness.github.io/e2r-liaison-scape/#datasetUrl=' +
+      encodeURIComponent('https://raw.githubusercontent.com/sukoyaka-dopeness/e2r-narrative-line/main/src/sample/cedar-observatory-showcase.en.e2r.json'))
+    assert.equal(cedarCard.querySelector('.sample-info-link')?.textContent, 'Sources / License')
     const provenanceLinks = [...environment.document.querySelectorAll<HTMLAnchorElement>('.sample-info-link')]
     assert.ok(provenanceLinks.every((link) => link.getAttribute('href') === 'https://github.com/sukoyaka-dopeness/e2r-spec/blob/main/docs/public-samples/public-sample-provenance.md'))
     const sourceCard = [...environment.document.querySelectorAll('.documentation-card')]
@@ -80,9 +89,13 @@ test('renders the production Hub Home surface', async () => {
     const japaneseCedarCard = [...environment.document.querySelectorAll<HTMLElement>('.sample-card')]
       .find((card) => card.querySelector('h3')?.textContent === 'シダー天文台：公開観望会')
     assert.ok(japaneseCedarCard)
-    assert.match(japaneseCedarCard.textContent ?? '', /NarrativeLineのショーケース候補/)
+    assert.equal(japaneseCedarCard.querySelector('small')?.textContent, 'データセット: 日本語')
+    assert.equal(japaneseCedarCard, environment.document.querySelector('.sample-card:last-child'))
     assert.equal(japaneseCedarCard.querySelector('.sample-card-actions a')?.getAttribute('href'),
       'https://sukoyaka-dopeness.github.io/e2r-narrative-line/#datasetUrl=' +
+      encodeURIComponent('https://raw.githubusercontent.com/sukoyaka-dopeness/e2r-narrative-line/main/src/sample/cedar-observatory-showcase.ja.e2r.json'))
+    assert.equal(japaneseCedarCard.querySelectorAll('.sample-card-actions a')[1]?.getAttribute('href'),
+      'https://sukoyaka-dopeness.github.io/e2r-liaison-scape/#datasetUrl=' +
       encodeURIComponent('https://raw.githubusercontent.com/sukoyaka-dopeness/e2r-narrative-line/main/src/sample/cedar-observatory-showcase.ja.e2r.json'))
     assert.equal(environment.document.querySelector('.application-card:nth-child(2) small')?.textContent, '編集にはPC画面が適しています。')
     assert.equal(environment.document.querySelectorAll('.application-card > p:not(.product-name)').length, 0)

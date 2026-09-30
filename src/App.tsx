@@ -64,7 +64,6 @@ const copy = {
     berlinDescription: 'Explore historical events through both time and relationships.',
     cedarTitle: 'Cedar Observatory: An Open Night',
     cedarDescription: 'A fictional neighborhood observatory preparing for an open night, with recorded events and time-based plans.',
-    cedarRole: 'NarrativeLine showcase candidate',
     apolloDescription: 'A representative sample that can be viewed and edited in multiple E2R applications.',
     lighthouseDescription: 'A fictional sample about people restoring an old lighthouse.',
     ashenCrownDescription: 'A creative-writing sample about ten characters, alliances, rivalries, and secrets in a fictional kingdom.',
@@ -125,7 +124,6 @@ const copy = {
     berlinDescription: '歴史上のイベントを、時間と関係の両方から見られるサンプルです。',
     cedarTitle: 'シダー天文台：公開観望会',
     cedarDescription: '地域の天文台が公開観望会を準備する架空の年表です。記録済みのできごとと時間に基づく計画をたどれます。',
-    cedarRole: 'NarrativeLineのショーケース候補',
     apolloDescription: '複数のE2Rアプリで閲覧、編集できる代表的なサンプルです。',
     lighthouseDescription: '架空の古い灯台を修復する人々を描いたサンプルです。',
     ashenCrownDescription: '架空の王国を舞台に、10人の人物とその歴史、同盟、対立、秘密を描く創作サンプルです。',
@@ -250,15 +248,6 @@ function App() {
           </div>
           <div className="sample-grid">
             <article className="sample-card">
-              <h3>{text.cedarTitle}</h3>
-              <p>{text.cedarDescription}</p>
-              <small>{text.cedarRole} · {locale === 'ja' ? 'データセット: 日本語' : 'Dataset: English'}</small>
-              <div className="sample-card-actions">
-                <ExternalLink href={buildDatasetHandoffUrl(links.narrativeLine, localizedSampleUrl(locale, links.cedarDataset, links.cedarDatasetJa))}>{text.openNarrative}</ExternalLink>
-              </div>
-              <ExternalLink className="sample-info-link" href={links.sampleProvenance}>{text.sampleInfo}</ExternalLink>
-            </article>
-            <article className="sample-card">
               <h3>{text.berlinTitle}</h3>
               <p>{text.berlinDescription}</p>
               <small>{locale === 'ja' ? 'データセット: 日本語' : 'Dataset: English'}</small>
@@ -305,6 +294,16 @@ function App() {
               <div className="sample-card-actions">
                 <ExternalLink href={buildDatasetHandoffUrl(links.narrativeLine, localizedSampleUrl(locale, links.titanicDataset, links.titanicDatasetJa))}>{text.openNarrative}</ExternalLink>
                 <ExternalLink href={buildDatasetHandoffUrl(links.liaisonScape, localizedSampleUrl(locale, links.titanicDataset, links.titanicDatasetJa))}>{text.openLiaison}</ExternalLink>
+              </div>
+              <ExternalLink className="sample-info-link" href={links.sampleProvenance}>{text.sampleInfo}</ExternalLink>
+            </article>
+            <article className="sample-card">
+              <h3>{text.cedarTitle}</h3>
+              <p>{text.cedarDescription}</p>
+              <small>{locale === 'ja' ? 'データセット: 日本語' : 'Dataset: English'}</small>
+              <div className="sample-card-actions">
+                <ExternalLink href={buildDatasetHandoffUrl(links.narrativeLine, localizedSampleUrl(locale, links.cedarDataset, links.cedarDatasetJa))}>{text.openNarrative}</ExternalLink>
+                <ExternalLink href={buildDatasetHandoffUrl(links.liaisonScape, localizedSampleUrl(locale, links.cedarDataset, links.cedarDatasetJa))}>{text.openLiaison}</ExternalLink>
               </div>
               <ExternalLink className="sample-info-link" href={links.sampleProvenance}>{text.sampleInfo}</ExternalLink>
             </article>

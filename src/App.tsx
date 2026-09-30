@@ -431,7 +431,12 @@ function App() {
       </footer>
 
       {creditsOpen && (
-        <div className="modal-backdrop" role="presentation" onMouseDown={(event) => { if (event.currentTarget === event.target) setCreditsOpen(false) }}>
+        <div className="modal-backdrop" role="presentation" onMouseDown={(event) => {
+          if (event.currentTarget === event.target) {
+            event.preventDefault()
+            setCreditsOpen(false)
+          }
+        }}>
           <section className="credits-modal" role="dialog" aria-modal="true" aria-labelledby="credits-heading">
             <div className="modal-header">
               <h2 id="credits-heading">{text.credits}</h2>

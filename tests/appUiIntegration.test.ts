@@ -175,7 +175,9 @@ test('renders localized Credits metadata with one Close action and restores focu
     await openCredits()
     const backdrop = environment.document.querySelector<HTMLElement>('.modal-backdrop')
     assert.ok(backdrop)
-    await act(async () => backdrop.dispatchEvent(new environment.window.MouseEvent('mousedown', { bubbles: true })))
+    const backdropMouseDown = new environment.window.MouseEvent('mousedown', { bubbles: true, cancelable: true })
+    await act(async () => backdrop.dispatchEvent(backdropMouseDown))
+    assert.equal(backdropMouseDown.defaultPrevented, true)
     assert.equal(environment.document.querySelector('.credits-modal'), null)
     assert.equal(environment.document.activeElement, opener)
 

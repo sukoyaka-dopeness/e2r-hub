@@ -36,6 +36,7 @@ test('renders the production Hub Home surface', async () => {
     assert.ok(environment.document.querySelector('.application-card:nth-child(2) h3')?.textContent?.includes('View and edit a relationship diagram'))
     assert.equal(environment.document.querySelectorAll('.application-card > p:not(.product-name)').length, 0)
     assert.equal(environment.document.querySelector('.application-card:nth-child(2) small')?.textContent, 'Editing is best on a desktop screen.')
+    assert.equal(new URL(environment.document.querySelector('.application-card')!.getAttribute('href')!, 'https://sukoyaka-dopeness.github.io/e2r-hub/').hash, '#locale=en')
     const specificationLink = environment.document.querySelector('.action-link')
     assert.equal(specificationLink?.getAttribute('target'), '_blank')
     assert.equal(specificationLink?.getAttribute('rel'), 'noreferrer')
@@ -52,10 +53,10 @@ test('renders the production Hub Home surface', async () => {
     assert.equal(cedarCard.querySelectorAll('.sample-card-actions a').length, 2)
     assert.equal(cedarCard.querySelector('.sample-card-actions a')?.getAttribute('href'),
       'https://sukoyaka-dopeness.github.io/e2r-narrative-line/#datasetUrl=' +
-      encodeURIComponent('https://raw.githubusercontent.com/sukoyaka-dopeness/e2r-narrative-line/main/src/sample/cedar-observatory-showcase.en.e2r.json'))
+      encodeURIComponent('https://raw.githubusercontent.com/sukoyaka-dopeness/e2r-narrative-line/main/src/sample/cedar-observatory-showcase.en.e2r.json') + '&locale=en')
     assert.equal(cedarCard.querySelectorAll('.sample-card-actions a')[1]?.getAttribute('href'),
       'https://sukoyaka-dopeness.github.io/e2r-liaison-scape/#datasetUrl=' +
-      encodeURIComponent('https://raw.githubusercontent.com/sukoyaka-dopeness/e2r-narrative-line/main/src/sample/cedar-observatory-showcase.en.e2r.json'))
+      encodeURIComponent('https://raw.githubusercontent.com/sukoyaka-dopeness/e2r-narrative-line/main/src/sample/cedar-observatory-showcase.en.e2r.json') + '&locale=en')
     assert.equal(cedarCard.querySelector('.sample-info-link')?.textContent, 'Sources / License')
     const provenanceLinks = [...environment.document.querySelectorAll<HTMLAnchorElement>('.sample-info-link')]
     assert.ok(provenanceLinks.every((link) => link.getAttribute('href') === 'https://github.com/sukoyaka-dopeness/e2r-spec/blob/main/docs/public-samples/public-sample-provenance.md'))
@@ -105,16 +106,18 @@ test('renders the production Hub Home surface', async () => {
       'https://github.com/sukoyaka-dopeness/e2r-narrative-line/blob/main/src/sample/cedar-observatory-showcase.ja.e2r.json')
     assert.equal(japaneseCedarCard.querySelector('.sample-card-actions a')?.getAttribute('href'),
       'https://sukoyaka-dopeness.github.io/e2r-narrative-line/#datasetUrl=' +
-      encodeURIComponent('https://raw.githubusercontent.com/sukoyaka-dopeness/e2r-narrative-line/main/src/sample/cedar-observatory-showcase.ja.e2r.json'))
+      encodeURIComponent('https://raw.githubusercontent.com/sukoyaka-dopeness/e2r-narrative-line/main/src/sample/cedar-observatory-showcase.ja.e2r.json') + '&locale=ja')
     assert.equal(japaneseCedarCard.querySelectorAll('.sample-card-actions a')[1]?.getAttribute('href'),
       'https://sukoyaka-dopeness.github.io/e2r-liaison-scape/#datasetUrl=' +
-      encodeURIComponent('https://raw.githubusercontent.com/sukoyaka-dopeness/e2r-narrative-line/main/src/sample/cedar-observatory-showcase.ja.e2r.json'))
+      encodeURIComponent('https://raw.githubusercontent.com/sukoyaka-dopeness/e2r-narrative-line/main/src/sample/cedar-observatory-showcase.ja.e2r.json') + '&locale=ja')
+    assert.equal(new URL(environment.document.querySelector('.application-card')!.getAttribute('href')!, 'https://sukoyaka-dopeness.github.io/e2r-hub/').hash, '#locale=ja')
     assert.equal(environment.document.querySelector('.application-card:nth-child(2) small')?.textContent, '編集にはPC画面が適しています。')
     assert.equal(environment.document.querySelectorAll('.application-card > p:not(.product-name)').length, 0)
     assert.equal(environment.document.querySelector('.site-support-link')?.textContent, 'GitHub SponsorsでE2Rを支援する')
     const japaneseSelfDescriptionActions = [...environment.document.querySelectorAll('.self-description-section .documentation-actions a')]
       .slice(0, 2)
       .map((link) => link.textContent ?? '')
+    assert.equal(new URL(environment.document.querySelector('.self-description-section .documentation-actions a')!.getAttribute('href')!, 'https://sukoyaka-dopeness.github.io/e2r-hub/').hash.endsWith('&locale=ja'), true)
     assert.ok(japaneseSelfDescriptionActions[0]?.includes('NarrativeLine'))
     assert.ok(japaneseSelfDescriptionActions[1]?.includes('LiaisonScape'))
   } finally {

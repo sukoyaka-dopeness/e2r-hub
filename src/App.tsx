@@ -204,8 +204,16 @@ function MultilineText({ value }: { value: string }) {
   return <>{lines.map((line, index) => <span key={`${line}-${index}`}>{line}{index < lines.length - 1 && <br />}</span>)}</>
 }
 
-function buildDatasetHandoffUrl(applicationUrl: string, datasetUrl: string) {
-  return `${applicationUrl}#datasetUrl=${encodeURIComponent(datasetUrl)}`
+function buildLocaleRequestUrl(applicationUrl: string, locale: Locale) {
+  const url = new URL(applicationUrl)
+  url.hash = new URLSearchParams([['locale', locale]]).toString()
+  return url.toString()
+}
+
+function buildDatasetHandoffUrl(applicationUrl: string, datasetUrl: string, locale: Locale) {
+  const url = new URL(applicationUrl)
+  url.hash = new URLSearchParams([['datasetUrl', datasetUrl], ['locale', locale]]).toString()
+  return url.toString()
 }
 
 function localizedSampleUrl(locale: Locale, englishUrl: string, japaneseUrl: string) {
@@ -260,11 +268,11 @@ function App() {
         <section className="section choice-section" aria-labelledby="choose-heading">
           <h2 id="choose-heading">{text.choose}</h2>
           <div className="application-grid">
-            <ExternalLink className="application-card" href={links.narrativeLine}>
+            <ExternalLink className="application-card" href={buildLocaleRequestUrl(links.narrativeLine, locale)}>
               <h3>{text.narrativeAction}</h3>
               <p className="product-name">{text.narrativeTitle}</p>
             </ExternalLink>
-            <ExternalLink className="application-card" href={links.liaisonScape}>
+            <ExternalLink className="application-card" href={buildLocaleRequestUrl(links.liaisonScape, locale)}>
               <h3>{text.liaisonAction}</h3>
               <p className="product-name">{text.liaisonTitle}</p>
               <small>{text.mobileNote}</small>
@@ -284,8 +292,8 @@ function App() {
               <p>{text.berlinDescription}</p>
               <small>{locale === 'ja' ? 'データセット: 日本語' : 'Dataset: English'}</small>
               <div className="sample-card-actions">
-                <ExternalLink href={buildDatasetHandoffUrl(links.narrativeLine, localizedSampleUrl(locale, links.berlinWallDataset, links.berlinWallDatasetJa))}>{text.openNarrative}</ExternalLink>
-                <ExternalLink href={buildDatasetHandoffUrl(links.liaisonScape, localizedSampleUrl(locale, links.berlinWallDataset, links.berlinWallDatasetJa))}>{text.openLiaison}</ExternalLink>
+                <ExternalLink href={buildDatasetHandoffUrl(links.narrativeLine, localizedSampleUrl(locale, links.berlinWallDataset, links.berlinWallDatasetJa), locale)}>{text.openNarrative}</ExternalLink>
+                <ExternalLink href={buildDatasetHandoffUrl(links.liaisonScape, localizedSampleUrl(locale, links.berlinWallDataset, links.berlinWallDatasetJa), locale)}>{text.openLiaison}</ExternalLink>
               </div>
               <ExternalLink className="sample-info-link" href={links.sampleProvenance}>{text.sampleInfo}</ExternalLink>
             </article>
@@ -294,8 +302,8 @@ function App() {
               <p>{text.apolloDescription}</p>
               <small>{locale === 'ja' ? 'データセット: 日本語' : 'Dataset: English'}</small>
               <div className="sample-card-actions">
-                <ExternalLink href={buildDatasetHandoffUrl(links.narrativeLine, localizedSampleUrl(locale, links.apolloDataset, links.apolloDatasetJa))}>{text.openNarrative}</ExternalLink>
-                <ExternalLink href={buildDatasetHandoffUrl(links.liaisonScape, localizedSampleUrl(locale, links.apolloDataset, links.apolloDatasetJa))}>{text.openLiaison}</ExternalLink>
+                <ExternalLink href={buildDatasetHandoffUrl(links.narrativeLine, localizedSampleUrl(locale, links.apolloDataset, links.apolloDatasetJa), locale)}>{text.openNarrative}</ExternalLink>
+                <ExternalLink href={buildDatasetHandoffUrl(links.liaisonScape, localizedSampleUrl(locale, links.apolloDataset, links.apolloDatasetJa), locale)}>{text.openLiaison}</ExternalLink>
               </div>
               <ExternalLink className="sample-info-link" href={links.sampleProvenance}>{text.sampleInfo}</ExternalLink>
             </article>
@@ -304,8 +312,8 @@ function App() {
               <p>{text.lighthouseDescription}</p>
               <small>{locale === 'ja' ? 'データセット: 日本語' : 'Dataset: English'}</small>
               <div className="sample-card-actions">
-                <ExternalLink href={buildDatasetHandoffUrl(links.narrativeLine, localizedSampleUrl(locale, links.lighthouseDataset, links.lighthouseDatasetJa))}>{text.openNarrative}</ExternalLink>
-                <ExternalLink href={buildDatasetHandoffUrl(links.liaisonScape, localizedSampleUrl(locale, links.lighthouseDataset, links.lighthouseDatasetJa))}>{text.openLiaison}</ExternalLink>
+                <ExternalLink href={buildDatasetHandoffUrl(links.narrativeLine, localizedSampleUrl(locale, links.lighthouseDataset, links.lighthouseDatasetJa), locale)}>{text.openNarrative}</ExternalLink>
+                <ExternalLink href={buildDatasetHandoffUrl(links.liaisonScape, localizedSampleUrl(locale, links.lighthouseDataset, links.lighthouseDatasetJa), locale)}>{text.openLiaison}</ExternalLink>
               </div>
               <ExternalLink className="sample-info-link" href={links.sampleProvenance}>{text.sampleInfo}</ExternalLink>
             </article>
@@ -314,8 +322,8 @@ function App() {
               <p>{text.ashenCrownDescription}</p>
               <small>{locale === 'ja' ? 'データセット: 日本語' : 'Dataset: English'}</small>
               <div className="sample-card-actions">
-                <ExternalLink href={buildDatasetHandoffUrl(links.narrativeLine, localizedSampleUrl(locale, links.ashenCrownDataset, links.ashenCrownDatasetJa))}>{text.openNarrative}</ExternalLink>
-                <ExternalLink href={buildDatasetHandoffUrl(links.liaisonScape, localizedSampleUrl(locale, links.ashenCrownDataset, links.ashenCrownDatasetJa))}>{text.openLiaison}</ExternalLink>
+                <ExternalLink href={buildDatasetHandoffUrl(links.narrativeLine, localizedSampleUrl(locale, links.ashenCrownDataset, links.ashenCrownDatasetJa), locale)}>{text.openNarrative}</ExternalLink>
+                <ExternalLink href={buildDatasetHandoffUrl(links.liaisonScape, localizedSampleUrl(locale, links.ashenCrownDataset, links.ashenCrownDatasetJa), locale)}>{text.openLiaison}</ExternalLink>
               </div>
               <ExternalLink className="sample-info-link" href={links.sampleProvenance}>{text.sampleInfo}</ExternalLink>
             </article>
@@ -324,8 +332,8 @@ function App() {
               <p>{text.titanicDescription}</p>
               <small>{locale === 'ja' ? 'データセット: 日本語' : 'Dataset: English'}</small>
               <div className="sample-card-actions">
-                <ExternalLink href={buildDatasetHandoffUrl(links.narrativeLine, localizedSampleUrl(locale, links.titanicDataset, links.titanicDatasetJa))}>{text.openNarrative}</ExternalLink>
-                <ExternalLink href={buildDatasetHandoffUrl(links.liaisonScape, localizedSampleUrl(locale, links.titanicDataset, links.titanicDatasetJa))}>{text.openLiaison}</ExternalLink>
+                <ExternalLink href={buildDatasetHandoffUrl(links.narrativeLine, localizedSampleUrl(locale, links.titanicDataset, links.titanicDatasetJa), locale)}>{text.openNarrative}</ExternalLink>
+                <ExternalLink href={buildDatasetHandoffUrl(links.liaisonScape, localizedSampleUrl(locale, links.titanicDataset, links.titanicDatasetJa), locale)}>{text.openLiaison}</ExternalLink>
               </div>
               <ExternalLink className="sample-info-link" href={links.sampleProvenance}>{text.sampleInfo}</ExternalLink>
             </article>
@@ -334,8 +342,8 @@ function App() {
               <p>{text.cedarDescription}</p>
               <small>{locale === 'ja' ? 'データセット: 日本語' : 'Dataset: English'}</small>
               <div className="sample-card-actions">
-                <ExternalLink href={buildDatasetHandoffUrl(links.narrativeLine, localizedSampleUrl(locale, links.cedarDataset, links.cedarDatasetJa))}>{text.openNarrative}</ExternalLink>
-                <ExternalLink href={buildDatasetHandoffUrl(links.liaisonScape, localizedSampleUrl(locale, links.cedarDataset, links.cedarDatasetJa))}>{text.openLiaison}</ExternalLink>
+                <ExternalLink href={buildDatasetHandoffUrl(links.narrativeLine, localizedSampleUrl(locale, links.cedarDataset, links.cedarDatasetJa), locale)}>{text.openNarrative}</ExternalLink>
+                <ExternalLink href={buildDatasetHandoffUrl(links.liaisonScape, localizedSampleUrl(locale, links.cedarDataset, links.cedarDatasetJa), locale)}>{text.openLiaison}</ExternalLink>
               </div>
               <ExternalLink className="sample-info-link" href={links.sampleProvenance}>{text.sampleInfo}</ExternalLink>
             </article>
@@ -347,8 +355,8 @@ function App() {
           <h2 id="self-description-heading">{text.selfDescriptionTitle}</h2>
           <p>{text.selfDescriptionDescription}</p>
           <div className="documentation-actions">
-            <ExternalLink href={buildDatasetHandoffUrl(links.narrativeLine, links.selfDescriptionDataset)}>{text.openNarrative}</ExternalLink>
-            <ExternalLink href={buildDatasetHandoffUrl(links.liaisonScape, links.selfDescriptionDataset)}>{text.openLiaison}</ExternalLink>
+            <ExternalLink href={buildDatasetHandoffUrl(links.narrativeLine, links.selfDescriptionDataset, locale)}>{text.openNarrative}</ExternalLink>
+            <ExternalLink href={buildDatasetHandoffUrl(links.liaisonScape, links.selfDescriptionDataset, locale)}>{text.openLiaison}</ExternalLink>
             <ExternalLink href={links.sampleProvenance}>{text.selfDescriptionInfo}</ExternalLink>
           </div>
         </section>

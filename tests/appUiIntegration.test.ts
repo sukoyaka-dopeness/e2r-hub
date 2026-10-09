@@ -141,7 +141,7 @@ test('renders the production Hub Home surface', async () => {
   }
 })
 
-test('Lighthouse and Cedar expose localized ParameterPlotter Handoff only when configured', async () => {
+test('sample cards expose localized ParameterPlotter Handoff only when configured', async () => {
   const environment = createDomTestEnvironment()
   environment.installGlobal('IS_REACT_ACT_ENVIRONMENT', true)
   const container = environment.document.createElement('div')
@@ -153,8 +153,8 @@ test('Lighthouse and Cedar expose localized ParameterPlotter Handoff only when c
         'import.meta.env.VITE_PARAMETER_PLOTTER_URL': JSON.stringify('http://localhost:4180/'),
         'import.meta.env.VITE_LIGHTHOUSE_DATASET_EN_URL': JSON.stringify('http://localhost:4190/lighthouse.en.json'),
         'import.meta.env.VITE_LIGHTHOUSE_DATASET_JA_URL': JSON.stringify('http://localhost:4190/lighthouse.ja.json'),
-        'import.meta.env.VITE_ASHEN_CROWN_DATASET_EN_URL': JSON.stringify('http://localhost:4190/ashen-crown.en.json'),
-        'import.meta.env.VITE_ASHEN_CROWN_DATASET_JA_URL': JSON.stringify('http://localhost:4190/ashen-crown.ja.json'),
+        'import.meta.env.VITE_ASHEN_CROWN_DATASET_EN_URL': JSON.stringify('http://localhost:4190/ashen-crown.en.e2r.json'),
+        'import.meta.env.VITE_ASHEN_CROWN_DATASET_JA_URL': JSON.stringify('http://localhost:4190/ashen-crown.ja.e2r.json'),
         'import.meta.env.VITE_CEDAR_DATASET_EN_URL': JSON.stringify('http://localhost:4190/cedar.en.json'),
         'import.meta.env.VITE_CEDAR_DATASET_JA_URL': JSON.stringify('http://localhost:4190/cedar.ja.json'),
       },
@@ -180,8 +180,10 @@ test('Lighthouse and Cedar expose localized ParameterPlotter Handoff only when c
       return link
     }
     let lighthouseLink = assertHandoff(lighthouse, 'lighthouse')
-    const ashenLink = assertHandoff(ashenCrown, 'ashen-crown')
-    assert.equal(ashenLink.getAttribute('href'), `http://localhost:4180/#datasetUrl=${encodeURIComponent('http://localhost:4190/ashen-crown.en.json')}&locale=en`)
+    const ashenLink = [...ashenCrown.querySelectorAll<HTMLAnchorElement>('.sample-card-actions a')]
+      .find((candidate) => candidate.textContent === 'Open ParameterPlotter')!
+    assert.ok(ashenLink)
+    assert.equal(ashenLink.getAttribute('href'), `http://localhost:4180/#datasetUrl=${encodeURIComponent('http://localhost:4190/ashen-crown.en.e2r.json')}&locale=en`)
     assertHandoff(cedar, 'cedar')
     assert.equal(lighthouse.querySelectorAll('.sample-card-actions a').length, 3)
     assert.equal(environment.document.querySelector('.application-grid .application-card')?.getAttribute('href'), 'https://sukoyaka-dopeness.github.io/e2r-narrative-line/#locale=en')
@@ -202,7 +204,39 @@ test('Lighthouse and Cedar expose localized ParameterPlotter Handoff only when c
     assert.equal(cedarLink?.getAttribute('href'), `http://localhost:4180/#datasetUrl=${encodeURIComponent('http://localhost:4190/cedar.ja.json')}&locale=ja`)
     const japaneseAshen = environment.document.querySelector<HTMLElement>(`[data-sample-id="ashen-crown"]`)!
     assert.ok([...japaneseAshen.querySelectorAll<HTMLAnchorElement>('.sample-card-actions a')]
-      .some((link) => link.getAttribute('href') === `http://localhost:4180/#datasetUrl=${encodeURIComponent('http://localhost:4190/ashen-crown.ja.json')}&locale=ja`))
+      .some((link) => link.getAttribute('href') === `http://localhost:4180/#datasetUrl=${encodeURIComponent('http://localhost:4190/ashen-crown.ja.e2r.json')}&locale=ja`))
+  } finally {
+    await environment.cleanup()
+  }
+})
+
+test('Ashen Crown keeps its ParameterPlotter action hidden until both owner sources are explicitly configured', async () => {
+  const environment = createDomTestEnvironment()
+  environment.installGlobal('IS_REACT_ACT_ENVIRONMENT', true)
+  const container = environment.document.createElement('div')
+  environment.document.body.append(container)
+  try {
+    const server = await createServer({
+      root: process.cwd(),
+      define: {
+        'import.meta.env.VITE_PARAMETER_PLOTTER_URL': JSON.stringify('http://localhost:4180/'),
+      },
+      server: { middlewareMode: true, hmr: false },
+      appType: 'custom',
+    })
+    environment.addCleanup(() => server.close())
+    const root = createRoot(container)
+    environment.addCleanup(() => act(async () => root.unmount()))
+    const { default: App } = await server.ssrLoadModule('/src/App.tsx')
+    await act(async () => root.render(React.createElement(App)))
+    const ashenCard = environment.document.querySelector<HTMLElement>('[data-sample-id="ashen-crown"]')
+    assert.ok(ashenCard)
+    assert.ok([...ashenCard.querySelectorAll('a')]
+      .some((link) => link.textContent === 'Open NarrativeLine'))
+    assert.ok([...ashenCard.querySelectorAll('a')]
+      .some((link) => link.textContent === 'Open LiaisonScape'))
+    assert.equal([...ashenCard.querySelectorAll('a')]
+      .some((link) => link.textContent === 'Open ParameterPlotter'), false)
   } finally {
     await environment.cleanup()
   }

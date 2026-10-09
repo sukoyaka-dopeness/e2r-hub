@@ -58,3 +58,6 @@ failure handling, fragment preservation, and reuse of the existing Home and
 replacement surfaces. The local four-route browser review is a separate
 checkpoint. Human Browser Acceptance remains pending; no public deployment or
 release is implied.
+
+The local Ashen Crown EN/JA fixture, loopback setup, and focused Human Browser
+Review procedure are documented in the [local integration checkpoint](./local-ashen-crown-handoff-and-sample-locale-integration-2026-10-09.md).

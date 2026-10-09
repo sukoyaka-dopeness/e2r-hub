@@ -21,13 +21,14 @@ configure a deployed HTTPS ParameterPlotter URL before these actions appear.
 If no ParameterPlotter URL is configured, the existing NarrativeLine and
 LiaisonScape actions remain unchanged.
 
-ParameterPlotter now has task-focused EN/JA guide pages at
-`docs/user-guide-en.html` and `docs/user-guide-ja.html` in its repository.
-The Hub links to these paths relative to the configured ParameterPlotter
-application URL. When that URL is absent, the Hub displays an explanatory
-message instead of inventing a public link. The pages are implemented locally;
-their public availability still depends on a separately configured and
-deployed application URL.
+ParameterPlotter's task-focused EN/JA guides are Markdown files at
+`docs/user-guide-en.md` and `docs/user-guide-ja.md`. The Hub links directly to
+their GitHub `blob/main` pages, matching the NarrativeLine and LiaisonScape
+guide links. These documentation links are available independently of the
+ParameterPlotter app URL. The application launch and sample Handoff actions
+remain conditional on their existing URL configuration. The Markdown files
+are local and unpushed at this checkpoint, so public guide reachability is a
+post-push verification item.
 
 ## Build-time configuration
 
@@ -49,9 +50,10 @@ existing Hub sources. A Hub link does not prove that an unpublished app or
 Dataset revision is reachable from a public URL.
 
 At this checkpoint, the Hub deployment workflow does not configure
-`VITE_PARAMETER_PLOTTER_URL`; the public ParameterPlotter URL checked returned
-404. Public app links therefore remain absent until a separately approved
-deployment/configuration change is made. No deployment is part of this work.
+`VITE_PARAMETER_PLOTTER_URL`; the public ParameterPlotter URL previously
+checked returned 404. Public app links therefore remain absent until a
+separately approved deployment/configuration change is made. No deployment is
+part of this work.
 
 ## Verification boundary
 

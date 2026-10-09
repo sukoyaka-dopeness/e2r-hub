@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import type { ReactNode } from 'react'
 import './App.css'
-import { parameterPlotterGuideHref, parameterPlotterHandoffHref, resolveHandoffUrl } from './services/parameterPlotterHandoff'
+import { parameterPlotterHandoffHref, resolveHandoffUrl } from './services/parameterPlotterHandoff'
 
 type Locale = 'en' | 'ja'
 
@@ -12,6 +12,8 @@ const links = {
   narrativeGuideJa: 'https://github.com/sukoyaka-dopeness/e2r-narrative-line/blob/main/docs/user-guide-ja.md',
   liaisonGuideEn: 'https://github.com/sukoyaka-dopeness/e2r-liaison-scape/blob/main/docs/user-guide-en.md',
   liaisonGuideJa: 'https://github.com/sukoyaka-dopeness/e2r-liaison-scape/blob/main/docs/user-guide-ja.md',
+  parameterPlotterGuideEn: 'https://github.com/sukoyaka-dopeness/e2r-parameter-plotter/blob/main/docs/user-guide-en.md',
+  parameterPlotterGuideJa: 'https://github.com/sukoyaka-dopeness/e2r-parameter-plotter/blob/main/docs/user-guide-ja.md',
   specification: 'https://github.com/sukoyaka-dopeness/e2r-spec',
   specificationDocs: 'https://github.com/sukoyaka-dopeness/e2r-spec/tree/main/docs',
   sampleProvenance: 'https://github.com/sukoyaka-dopeness/e2r-spec/blob/main/docs/public-samples/public-sample-provenance.md',
@@ -84,7 +86,6 @@ const copy = {
     parameterPlotterAction: 'Compare and edit Dimension assessments',
     parameterPlotterDescription: 'Compare and edit Entities using Dimension assessments.',
     parameterPlotterUnavailable: 'The public application URL is not configured.',
-    parameterPlotterGuideUnavailable: 'Guide links appear when the application URL is configured.',
     mobileNote: 'Editing is best on a desktop screen.',
     tryIt: 'Try real examples',
     berlinTitle: 'History of the Berlin Wall',
@@ -147,7 +148,6 @@ const copy = {
     parameterPlotterAction: '評価軸でEntityを比較・編集',
     parameterPlotterDescription: 'Dimension / Assessmentを使ってEntityを比較・編集できます。',
     parameterPlotterUnavailable: '公開アプリURLはまだ設定されていません。',
-    parameterPlotterGuideUnavailable: 'アプリのURLが設定されるとガイドへのリンクが表示されます。',
     timeline: '年表',
     relationshipDiagram: '相関図',
     narrativeAction: '年表を見たり、作ったり',
@@ -459,12 +459,10 @@ function App() {
             <article className="documentation-card">
               <h3>{text.parameterPlotterTitle}</h3>
               <p>{text.parameterPlotterDescription}</p>
-              {parameterPlotterUrl ? (
-                <div className="documentation-actions">
-                  <ExternalLink href={parameterPlotterGuideHref(parameterPlotterUrl, 'en')}>{landing.guide} (EN)</ExternalLink>
-                  <ExternalLink href={parameterPlotterGuideHref(parameterPlotterUrl, 'ja')}>{landing.guide} (JA)</ExternalLink>
-                </div>
-              ) : <p className="documentation-unavailable">{text.parameterPlotterGuideUnavailable}</p>}
+              <div className="documentation-actions">
+                <ExternalLink href={links.parameterPlotterGuideEn}>{landing.guide} (EN)</ExternalLink>
+                <ExternalLink href={links.parameterPlotterGuideJa}>{landing.guide} (JA)</ExternalLink>
+              </div>
             </article>
             <article className="documentation-card">
               <h3>{text.specificationRepo}</h3>

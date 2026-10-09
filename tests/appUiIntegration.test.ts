@@ -61,8 +61,14 @@ test('renders the production Hub Home surface', async () => {
     assert.equal(ashenCard?.querySelectorAll('.sample-card-actions a').length, 2)
     const parameterPlotterDocs = [...environment.document.querySelectorAll('.documentation-card')]
       .find((card) => card.querySelector('h3')?.textContent === 'ParameterPlotter')
-    assert.ok(parameterPlotterDocs?.textContent?.includes('Guide links appear when the application URL is configured.'))
-    assert.equal(parameterPlotterDocs?.querySelectorAll('a').length, 0)
+    assert.deepEqual(
+      [...(parameterPlotterDocs?.querySelectorAll<HTMLAnchorElement>('.documentation-actions a') ?? [])]
+        .map((link) => [link.textContent, link.getAttribute('href')]),
+      [
+        ['User Guide (EN)', 'https://github.com/sukoyaka-dopeness/e2r-parameter-plotter/blob/main/docs/user-guide-en.md'],
+        ['User Guide (JA)', 'https://github.com/sukoyaka-dopeness/e2r-parameter-plotter/blob/main/docs/user-guide-ja.md'],
+      ],
+    )
     const lighthouseCard = sampleCards.find((card) => card.querySelector('h3')?.textContent === 'Lighthouse Restoration Project')
     assert.equal(lighthouseCard?.querySelectorAll('.sample-card-actions a').length, 2)
     assert.equal(cedarCard.querySelector('.sample-card-actions a')?.getAttribute('href'),
@@ -196,8 +202,8 @@ test('sample cards expose localized ParameterPlotter Handoff only when configure
       [...(parameterPlotterDocs?.querySelectorAll<HTMLAnchorElement>('.documentation-actions a') ?? [])]
         .map((link) => [link.textContent, link.getAttribute('href')]),
       [
-        ['User Guide (EN)', 'http://localhost:4180/docs/user-guide-en.html'],
-        ['User Guide (JA)', 'http://localhost:4180/docs/user-guide-ja.html'],
+        ['User Guide (EN)', 'https://github.com/sukoyaka-dopeness/e2r-parameter-plotter/blob/main/docs/user-guide-en.md'],
+        ['User Guide (JA)', 'https://github.com/sukoyaka-dopeness/e2r-parameter-plotter/blob/main/docs/user-guide-ja.md'],
       ],
     )
 

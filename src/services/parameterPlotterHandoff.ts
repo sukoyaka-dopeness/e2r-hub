@@ -21,10 +21,3 @@ export function parameterPlotterHandoffHref(applicationUrl: string, datasetUrl: 
   target.hash = new URLSearchParams([['datasetUrl', datasetUrl], ['locale', locale]]).toString()
   return target.toString()
 }
-
-export function parameterPlotterGuideHref(applicationUrl: string, locale: Locale) {
-  const base = new URL(applicationUrl)
-  base.hash = ''
-  if (!base.pathname.endsWith('/')) base.pathname += '/'
-  return new URL(`docs/user-guide-${locale}.html`, base).toString()
-}

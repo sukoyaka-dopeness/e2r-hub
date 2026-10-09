@@ -21,9 +21,13 @@ configure a deployed HTTPS ParameterPlotter URL before these actions appear.
 If no ParameterPlotter URL is configured, the existing NarrativeLine and
 LiaisonScape actions remain unchanged.
 
-ParameterPlotter is listed in the Hub documentation section, but no public
-EN/JA user-guide URLs were found in its repository. The Hub therefore shows
-that the guides are not yet available instead of linking to nonexistent pages.
+ParameterPlotter now has task-focused EN/JA guide pages at
+`docs/user-guide-en.html` and `docs/user-guide-ja.html` in its repository.
+The Hub links to these paths relative to the configured ParameterPlotter
+application URL. When that URL is absent, the Hub displays an explanatory
+message instead of inventing a public link. The pages are implemented locally;
+their public availability still depends on a separately configured and
+deployed application URL.
 
 ## Build-time configuration
 

@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import type { ReactNode } from 'react'
 import './App.css'
-import { parameterPlotterHandoffHref, resolveHandoffUrl } from './services/parameterPlotterHandoff'
+import { parameterPlotterGuideHref, parameterPlotterHandoffHref, resolveHandoffUrl } from './services/parameterPlotterHandoff'
 
 type Locale = 'en' | 'ja'
 
@@ -84,7 +84,7 @@ const copy = {
     parameterPlotterAction: 'Compare and edit Dimension assessments',
     parameterPlotterDescription: 'Compare and edit Entities using Dimension assessments.',
     parameterPlotterUnavailable: 'The public application URL is not configured.',
-    parameterPlotterGuideUnavailable: 'English and Japanese user guides are not available yet.',
+    parameterPlotterGuideUnavailable: 'Guide links appear when the application URL is configured.',
     mobileNote: 'Editing is best on a desktop screen.',
     tryIt: 'Try real examples',
     berlinTitle: 'History of the Berlin Wall',
@@ -147,7 +147,7 @@ const copy = {
     parameterPlotterAction: '評価軸でEntityを比較・編集',
     parameterPlotterDescription: 'Dimension / Assessmentを使ってEntityを比較・編集できます。',
     parameterPlotterUnavailable: '公開アプリURLはまだ設定されていません。',
-    parameterPlotterGuideUnavailable: '英語・日本語のユーザーガイドはまだありません。',
+    parameterPlotterGuideUnavailable: 'アプリのURLが設定されるとガイドへのリンクが表示されます。',
     timeline: '年表',
     relationshipDiagram: '相関図',
     narrativeAction: '年表を見たり、作ったり',
@@ -459,7 +459,12 @@ function App() {
             <article className="documentation-card">
               <h3>{text.parameterPlotterTitle}</h3>
               <p>{text.parameterPlotterDescription}</p>
-              <p className="documentation-unavailable">{text.parameterPlotterGuideUnavailable}</p>
+              {parameterPlotterUrl ? (
+                <div className="documentation-actions">
+                  <ExternalLink href={parameterPlotterGuideHref(parameterPlotterUrl, 'en')}>{landing.guide} (EN)</ExternalLink>
+                  <ExternalLink href={parameterPlotterGuideHref(parameterPlotterUrl, 'ja')}>{landing.guide} (JA)</ExternalLink>
+                </div>
+              ) : <p className="documentation-unavailable">{text.parameterPlotterGuideUnavailable}</p>}
             </article>
             <article className="documentation-card">
               <h3>{text.specificationRepo}</h3>

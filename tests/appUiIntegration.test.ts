@@ -61,7 +61,7 @@ test('renders the production Hub Home surface', async () => {
     assert.equal(ashenCard?.querySelectorAll('.sample-card-actions a').length, 2)
     const parameterPlotterDocs = [...environment.document.querySelectorAll('.documentation-card')]
       .find((card) => card.querySelector('h3')?.textContent === 'ParameterPlotter')
-    assert.ok(parameterPlotterDocs?.textContent?.includes('user guides are not available yet'))
+    assert.ok(parameterPlotterDocs?.textContent?.includes('Guide links appear when the application URL is configured.'))
     assert.equal(parameterPlotterDocs?.querySelectorAll('a').length, 0)
     const lighthouseCard = sampleCards.find((card) => card.querySelector('h3')?.textContent === 'Lighthouse Restoration Project')
     assert.equal(lighthouseCard?.querySelectorAll('.sample-card-actions a').length, 2)
@@ -190,6 +190,16 @@ test('sample cards expose localized ParameterPlotter Handoff only when configure
     const parameterPlotterAppCard = [...environment.document.querySelectorAll<HTMLAnchorElement>('.application-grid .application-card')]
       .find((link) => link.textContent?.includes('ParameterPlotter'))
     assert.equal(parameterPlotterAppCard?.getAttribute('href'), 'http://localhost:4180/#locale=en')
+    const parameterPlotterDocs = [...environment.document.querySelectorAll<HTMLElement>('.documentation-card')]
+      .find((candidate) => candidate.querySelector('h3')?.textContent === 'ParameterPlotter')
+    assert.deepEqual(
+      [...(parameterPlotterDocs?.querySelectorAll<HTMLAnchorElement>('.documentation-actions a') ?? [])]
+        .map((link) => [link.textContent, link.getAttribute('href')]),
+      [
+        ['User Guide (EN)', 'http://localhost:4180/docs/user-guide-en.html'],
+        ['User Guide (JA)', 'http://localhost:4180/docs/user-guide-ja.html'],
+      ],
+    )
 
     const japaneseButton = environment.document.querySelector<HTMLButtonElement>('.locale-switch button:last-child')
     assert.ok(japaneseButton)

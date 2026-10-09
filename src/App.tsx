@@ -52,6 +52,15 @@ function sampleSource(configured: string | undefined, fallback: string) {
 const parameterPlotterSources = {
   lighthouseEn: sampleSource(import.meta.env.VITE_LIGHTHOUSE_DATASET_EN_URL, links.lighthouseDataset),
   lighthouseJa: sampleSource(import.meta.env.VITE_LIGHTHOUSE_DATASET_JA_URL, links.lighthouseDatasetJa),
+  // The public Ashen Crown files have not yet received the locally adopted
+  // Dimension Assessment payload. Require an explicit source override until
+  // that owner Dataset revision is publicly available.
+  ashenCrownEn: import.meta.env.VITE_ASHEN_CROWN_DATASET_EN_URL === undefined
+    ? undefined
+    : sampleSource(import.meta.env.VITE_ASHEN_CROWN_DATASET_EN_URL, links.ashenCrownDataset),
+  ashenCrownJa: import.meta.env.VITE_ASHEN_CROWN_DATASET_JA_URL === undefined
+    ? undefined
+    : sampleSource(import.meta.env.VITE_ASHEN_CROWN_DATASET_JA_URL, links.ashenCrownDatasetJa),
   cedarEn: sampleSource(import.meta.env.VITE_CEDAR_DATASET_EN_URL, links.cedarDataset),
   cedarJa: sampleSource(import.meta.env.VITE_CEDAR_DATASET_JA_URL, links.cedarDatasetJa),
 }
@@ -60,9 +69,9 @@ const copy = {
   en: {
     ecosystem: 'E2R application ecosystem',
     footerDescriptor: 'application ecosystem',
-    hero: 'One dataset\ntwo views.',
-    heroIntro: 'View and edit the same dataset as a timeline or a relationship diagram.',
-    choose: 'Which would you like to use?',
+    hero: 'One Dataset\nthree views.',
+    heroIntro: 'View and edit the same Dataset as a timeline, relationship diagram, or Dimension assessment comparison.',
+    choose: 'Which application would you like to use?',
     timeline: 'Timeline',
     relationshipDiagram: 'Relationship diagram',
     narrativeAction: 'View and edit a timeline',
@@ -71,6 +80,11 @@ const copy = {
     narrativeDescription: 'View and edit events over time.',
     liaisonTitle: 'LiaisonScape',
     liaisonDescription: 'View and edit relationships between entities.',
+    parameterPlotterTitle: 'ParameterPlotter',
+    parameterPlotterAction: 'Compare and edit Dimension assessments',
+    parameterPlotterDescription: 'Compare and edit Entities using Dimension assessments.',
+    parameterPlotterUnavailable: 'The public application URL is not configured.',
+    parameterPlotterGuideUnavailable: 'English and Japanese user guides are not available yet.',
     mobileNote: 'Editing is best on a desktop screen.',
     tryIt: 'Try real examples',
     berlinTitle: 'History of the Berlin Wall',
@@ -126,9 +140,14 @@ const copy = {
   ja: {
     ecosystem: 'E2R アプリケーションエコシステム',
     footerDescriptor: 'アプリケーションエコシステム',
-    hero: 'ひとつのDatasetを\nふたつの視点で\n見てみよう。',
-    heroIntro: '同じDatasetを年表と相関図で見たり編集したりできます。',
-    choose: 'どちらを使いますか？',
+    hero: 'ひとつのDatasetを\nみっつの視点で\n見てみよう。',
+    heroIntro: '同じDatasetを、年表・相関図・評価軸による比較の3つの視点で見たり編集したりできます。',
+    choose: 'どれを使いますか？',
+    parameterPlotterTitle: 'ParameterPlotter',
+    parameterPlotterAction: '評価軸でEntityを比較・編集',
+    parameterPlotterDescription: 'Dimension / Assessmentを使ってEntityを比較・編集できます。',
+    parameterPlotterUnavailable: '公開アプリURLはまだ設定されていません。',
+    parameterPlotterGuideUnavailable: '英語・日本語のユーザーガイドはまだありません。',
     timeline: '年表',
     relationshipDiagram: '相関図',
     narrativeAction: '年表を見たり、作ったり',
@@ -296,6 +315,18 @@ function App() {
               <p className="product-name">{text.liaisonTitle}</p>
               <small>{text.mobileNote}</small>
             </ExternalLink>
+            {parameterPlotterUrl ? (
+              <ExternalLink className="application-card" href={buildLocaleRequestUrl(parameterPlotterUrl, locale)}>
+                <h3>{text.parameterPlotterAction}</h3>
+                <p className="product-name">{text.parameterPlotterTitle}</p>
+              </ExternalLink>
+            ) : (
+              <article className="application-card application-card-unavailable" aria-label={text.parameterPlotterTitle}>
+                <h3>{text.parameterPlotterAction}</h3>
+                <p className="product-name">{text.parameterPlotterTitle}</p>
+                <small>{text.parameterPlotterUnavailable}</small>
+              </article>
+            )}
           </div>
         </section>
 
@@ -327,6 +358,16 @@ function App() {
               <ExternalLink className="sample-info-link" href={links.sampleProvenance}>{text.sampleInfo}</ExternalLink>
             </article>
             <article className="sample-card">
+              <h3>{text.titanicTitle}</h3>
+              <p>{text.titanicDescription}</p>
+              <small>{locale === 'ja' ? 'データセット: 日本語' : 'Dataset: English'}</small>
+              <div className="sample-card-actions">
+                <ExternalLink href={buildDatasetHandoffUrl(links.narrativeLine, localizedSampleUrl(locale, links.titanicDataset, links.titanicDatasetJa), locale)}>{text.openNarrative}</ExternalLink>
+                <ExternalLink href={buildDatasetHandoffUrl(links.liaisonScape, localizedSampleUrl(locale, links.titanicDataset, links.titanicDatasetJa), locale)}>{text.openLiaison}</ExternalLink>
+              </div>
+              <ExternalLink className="sample-info-link" href={links.sampleProvenance}>{text.sampleInfo}</ExternalLink>
+            </article>
+            <article className="sample-card sample-card-parameterplotter" data-sample-id="lighthouse">
               <h3>{text.lighthouse}</h3>
               <p>{text.lighthouseDescription}</p>
               <small>{locale === 'ja' ? 'データセット: 日本語' : 'Dataset: English'}</small>
@@ -337,27 +378,18 @@ function App() {
               </div>
               <ExternalLink className="sample-info-link" href={links.sampleProvenance}>{text.sampleInfo}</ExternalLink>
             </article>
-            <article className="sample-card">
+            <article className="sample-card sample-card-parameterplotter" data-sample-id="ashen-crown">
               <h3>{text.ashenCrownTitle}</h3>
               <p>{text.ashenCrownDescription}</p>
               <small>{locale === 'ja' ? 'データセット: 日本語' : 'Dataset: English'}</small>
               <div className="sample-card-actions">
                 <ExternalLink href={buildDatasetHandoffUrl(links.narrativeLine, localizedSampleUrl(locale, links.ashenCrownDataset, links.ashenCrownDatasetJa), locale)}>{text.openNarrative}</ExternalLink>
                 <ExternalLink href={buildDatasetHandoffUrl(links.liaisonScape, localizedSampleUrl(locale, links.ashenCrownDataset, links.ashenCrownDatasetJa), locale)}>{text.openLiaison}</ExternalLink>
+                {parameterPlotterUrl && parameterPlotterSources.ashenCrownEn && parameterPlotterSources.ashenCrownJa && <ExternalLink href={parameterPlotterHandoffHref(parameterPlotterUrl, localizedSampleUrl(locale, parameterPlotterSources.ashenCrownEn, parameterPlotterSources.ashenCrownJa), locale)}>{text.openParameterPlotter}</ExternalLink>}
               </div>
               <ExternalLink className="sample-info-link" href={links.sampleProvenance}>{text.sampleInfo}</ExternalLink>
             </article>
-            <article className="sample-card">
-              <h3>{text.titanicTitle}</h3>
-              <p>{text.titanicDescription}</p>
-              <small>{locale === 'ja' ? 'データセット: 日本語' : 'Dataset: English'}</small>
-              <div className="sample-card-actions">
-                <ExternalLink href={buildDatasetHandoffUrl(links.narrativeLine, localizedSampleUrl(locale, links.titanicDataset, links.titanicDatasetJa), locale)}>{text.openNarrative}</ExternalLink>
-                <ExternalLink href={buildDatasetHandoffUrl(links.liaisonScape, localizedSampleUrl(locale, links.titanicDataset, links.titanicDatasetJa), locale)}>{text.openLiaison}</ExternalLink>
-              </div>
-              <ExternalLink className="sample-info-link" href={links.sampleProvenance}>{text.sampleInfo}</ExternalLink>
-            </article>
-            <article className="sample-card">
+            <article className="sample-card sample-card-parameterplotter" data-sample-id="cedar">
               <h3>{text.cedarTitle}</h3>
               <p>{text.cedarDescription}</p>
               <small>{locale === 'ja' ? 'データセット: 日本語' : 'Dataset: English'}</small>
@@ -425,6 +457,11 @@ function App() {
               </div>
             </article>
             <article className="documentation-card">
+              <h3>{text.parameterPlotterTitle}</h3>
+              <p>{text.parameterPlotterDescription}</p>
+              <p className="documentation-unavailable">{text.parameterPlotterGuideUnavailable}</p>
+            </article>
+            <article className="documentation-card">
               <h3>{text.specificationRepo}</h3>
               <p>{landing.documentationIntro}</p>
               <div className="documentation-actions">
@@ -439,9 +476,9 @@ function App() {
                 <div className="documentation-actions">
                   <ExternalLink href={localizedSampleUrl(locale, links.berlinWall, links.berlinWallJa)}>{text.berlinTitle}</ExternalLink>
                   <ExternalLink href={localizedSampleUrl(locale, links.apollo, links.apolloJa)}>{text.apollo}</ExternalLink>
+                  <ExternalLink href={localizedSampleUrl(locale, links.titanic, links.titanicJa)}>{text.titanicTitle}</ExternalLink>
                   <ExternalLink href={localizedSampleUrl(locale, links.lighthouse, links.lighthouseJa)}>{text.lighthouse}</ExternalLink>
                   <ExternalLink href={localizedSampleUrl(locale, links.ashenCrown, links.ashenCrownJa)}>{text.ashenCrownTitle}</ExternalLink>
-                  <ExternalLink href={localizedSampleUrl(locale, links.titanic, links.titanicJa)}>{text.titanicTitle}</ExternalLink>
                   <ExternalLink href={localizedSampleUrl(locale, links.cedar, links.cedarJa)}>{text.cedarTitle}</ExternalLink>
                 </div>
                 <ExternalLink className="sample-info-link" href={links.sampleProvenance}>{text.sampleInfo}</ExternalLink>

@@ -30,11 +30,14 @@ test('renders the production Hub Home surface', async () => {
     assert.equal(environment.document.querySelector('.brand')?.textContent, 'E2R Hub')
     assert.equal(environment.document.documentElement.lang, 'en')
     assert.ok(environment.document.querySelector('h1'))
-    assert.equal(environment.document.querySelector('#choose-heading')?.textContent, 'Which would you like to use?')
-    assert.equal(environment.document.querySelector('h1')?.textContent, 'One datasettwo views.')
+    assert.equal(environment.document.querySelector('#choose-heading')?.textContent, 'Which application would you like to use?')
+    assert.equal(environment.document.querySelector('h1')?.textContent, 'One Datasetthree views.')
     assert.equal(environment.document.querySelectorAll('.card-arrow').length, 0)
     assert.ok(environment.document.querySelector('.application-card h3')?.textContent?.includes('View and edit a timeline'))
     assert.ok(environment.document.querySelector('.application-card:nth-child(2) h3')?.textContent?.includes('View and edit a relationship diagram'))
+    assert.equal(environment.document.querySelectorAll('.application-grid .application-card').length, 3)
+    assert.equal(environment.document.querySelector('.application-card-unavailable h3')?.textContent, 'Compare and edit Dimension assessments')
+    assert.equal(environment.document.querySelector('.application-card-unavailable small')?.textContent, 'The public application URL is not configured.')
     assert.equal(environment.document.querySelectorAll('.application-card > p:not(.product-name)').length, 0)
     assert.equal(environment.document.querySelector('.application-card:nth-child(2) small')?.textContent, 'Editing is best on a desktop screen.')
     assert.equal(new URL(environment.document.querySelector('.application-card')!.getAttribute('href')!, 'https://sukoyaka-dopeness.github.io/e2r-hub/').hash, '#locale=en')
@@ -43,15 +46,23 @@ test('renders the production Hub Home surface', async () => {
     assert.equal(specificationLink?.getAttribute('rel'), 'noreferrer')
     assert.equal(environment.document.querySelectorAll('.sample-info-link').length, 7)
     const sampleCards = [...environment.document.querySelectorAll<HTMLElement>('.sample-card')]
-    assert.deepEqual(sampleCards.map((card) => card.querySelector('h3')?.textContent), [
-      'History of the Berlin Wall', 'Apollo 11 Mission', 'Lighthouse Restoration Project',
-      'The Ashen Crown', 'Titanic: Final Voyage', 'Cedar Observatory: An Open Night',
-    ])
+    assert.deepEqual(sampleCards.filter((card) => !card.classList.contains('sample-card-parameterplotter'))
+      .map((card) => card.querySelector('h3')?.textContent), [
+        'History of the Berlin Wall', 'Apollo 11 Mission', 'Titanic: Final Voyage',
+      ])
+    assert.deepEqual(sampleCards.filter((card) => card.classList.contains('sample-card-parameterplotter'))
+      .map((card) => card.dataset.sampleId), ['lighthouse', 'ashen-crown', 'cedar'])
     const cedarCard = sampleCards
       .find((card) => card.querySelector('h3')?.textContent === 'Cedar Observatory: An Open Night')
     assert.ok(cedarCard)
     assert.equal(cedarCard.querySelector('small')?.textContent, 'Dataset: English')
     assert.equal(cedarCard.querySelectorAll('.sample-card-actions a').length, 2)
+    const ashenCard = sampleCards.find((card) => card.dataset.sampleId === 'ashen-crown')
+    assert.equal(ashenCard?.querySelectorAll('.sample-card-actions a').length, 2)
+    const parameterPlotterDocs = [...environment.document.querySelectorAll('.documentation-card')]
+      .find((card) => card.querySelector('h3')?.textContent === 'ParameterPlotter')
+    assert.ok(parameterPlotterDocs?.textContent?.includes('user guides are not available yet'))
+    assert.equal(parameterPlotterDocs?.querySelectorAll('a').length, 0)
     const lighthouseCard = sampleCards.find((card) => card.querySelector('h3')?.textContent === 'Lighthouse Restoration Project')
     assert.equal(lighthouseCard?.querySelectorAll('.sample-card-actions a').length, 2)
     assert.equal(cedarCard.querySelector('.sample-card-actions a')?.getAttribute('href'),
@@ -96,9 +107,10 @@ test('renders the production Hub Home surface', async () => {
     assert.ok(japaneseButton)
     await act(async () => japaneseButton?.click())
     assert.equal(environment.document.documentElement.lang, 'ja')
-    assert.equal(environment.document.querySelector('#choose-heading')?.textContent, 'どちらを使いますか？')
+    assert.equal(environment.document.querySelector('#choose-heading')?.textContent, '\u3069\u308c\u3092\u4f7f\u3044\u307e\u3059\u304b\uff1f')
+    assert.equal(environment.document.querySelector('h1')?.textContent, '\u3072\u3068\u3064\u306eDataset\u3092\u307f\u3063\u3064\u306e\u8996\u70b9\u3067\u898b\u3066\u307f\u3088\u3046\u3002')
     const japaneseCedarCard = [...environment.document.querySelectorAll<HTMLElement>('.sample-card')]
-      .find((card) => card.querySelector('h3')?.textContent === 'シダー天文台：公開観望会')
+      .find((card) => card.dataset.sampleId === 'cedar')
     assert.ok(japaneseCedarCard)
     assert.equal(japaneseCedarCard.querySelector('small')?.textContent, 'データセット: 日本語')
     assert.equal(japaneseCedarCard, environment.document.querySelector('.sample-card:last-child'))
@@ -141,6 +153,8 @@ test('Lighthouse and Cedar expose localized ParameterPlotter Handoff only when c
         'import.meta.env.VITE_PARAMETER_PLOTTER_URL': JSON.stringify('http://localhost:4180/'),
         'import.meta.env.VITE_LIGHTHOUSE_DATASET_EN_URL': JSON.stringify('http://localhost:4190/lighthouse.en.json'),
         'import.meta.env.VITE_LIGHTHOUSE_DATASET_JA_URL': JSON.stringify('http://localhost:4190/lighthouse.ja.json'),
+        'import.meta.env.VITE_ASHEN_CROWN_DATASET_EN_URL': JSON.stringify('http://localhost:4190/ashen-crown.en.json'),
+        'import.meta.env.VITE_ASHEN_CROWN_DATASET_JA_URL': JSON.stringify('http://localhost:4190/ashen-crown.ja.json'),
         'import.meta.env.VITE_CEDAR_DATASET_EN_URL': JSON.stringify('http://localhost:4190/cedar.en.json'),
         'import.meta.env.VITE_CEDAR_DATASET_JA_URL': JSON.stringify('http://localhost:4190/cedar.ja.json'),
       },
@@ -156,6 +170,7 @@ test('Lighthouse and Cedar expose localized ParameterPlotter Handoff only when c
     const card = (title: string) => [...environment.document.querySelectorAll<HTMLElement>('.sample-card')]
       .find((candidate) => candidate.querySelector('h3')?.textContent === title)!
     const lighthouse = card('Lighthouse Restoration Project')
+    const ashenCrown = card('The Ashen Crown')
     const cedar = card('Cedar Observatory: An Open Night')
     const assertHandoff = (sample: HTMLElement, path: string) => {
       const link = [...sample.querySelectorAll<HTMLAnchorElement>('.sample-card-actions a')]
@@ -165,12 +180,19 @@ test('Lighthouse and Cedar expose localized ParameterPlotter Handoff only when c
       return link
     }
     let lighthouseLink = assertHandoff(lighthouse, 'lighthouse')
+    const ashenLink = assertHandoff(ashenCrown, 'ashen-crown')
+    assert.equal(ashenLink.getAttribute('href'), `http://localhost:4180/#datasetUrl=${encodeURIComponent('http://localhost:4190/ashen-crown.en.json')}&locale=en`)
     assertHandoff(cedar, 'cedar')
     assert.equal(lighthouse.querySelectorAll('.sample-card-actions a').length, 3)
+    assert.equal(environment.document.querySelector('.application-grid .application-card')?.getAttribute('href'), 'https://sukoyaka-dopeness.github.io/e2r-narrative-line/#locale=en')
+    const parameterPlotterAppCard = [...environment.document.querySelectorAll<HTMLAnchorElement>('.application-grid .application-card')]
+      .find((link) => link.textContent?.includes('ParameterPlotter'))
+    assert.equal(parameterPlotterAppCard?.getAttribute('href'), 'http://localhost:4180/#locale=en')
 
     const japaneseButton = environment.document.querySelector<HTMLButtonElement>('.locale-switch button:last-child')
     assert.ok(japaneseButton)
     await act(async () => japaneseButton.click())
+    assert.equal(parameterPlotterAppCard?.getAttribute('href'), 'http://localhost:4180/#locale=ja')
     lighthouseLink = [...lighthouse.querySelectorAll<HTMLAnchorElement>('.sample-card-actions a')]
       .find((candidate) => candidate.getAttribute('href')?.includes('lighthouse.ja.json'))!
     assert.equal(lighthouseLink.getAttribute('href'), `http://localhost:4180/#datasetUrl=${encodeURIComponent('http://localhost:4190/lighthouse.ja.json')}&locale=ja`)
@@ -178,6 +200,9 @@ test('Lighthouse and Cedar expose localized ParameterPlotter Handoff only when c
     const cedarLink = [...japaneseCedar.querySelectorAll<HTMLAnchorElement>('.sample-card-actions a')]
       .find((candidate) => candidate.getAttribute('href')?.includes('cedar.ja.json'))
     assert.equal(cedarLink?.getAttribute('href'), `http://localhost:4180/#datasetUrl=${encodeURIComponent('http://localhost:4190/cedar.ja.json')}&locale=ja`)
+    const japaneseAshen = environment.document.querySelector<HTMLElement>(`[data-sample-id="ashen-crown"]`)!
+    assert.ok([...japaneseAshen.querySelectorAll<HTMLAnchorElement>('.sample-card-actions a')]
+      .some((link) => link.getAttribute('href') === `http://localhost:4180/#datasetUrl=${encodeURIComponent('http://localhost:4190/ashen-crown.ja.json')}&locale=ja`))
   } finally {
     await environment.cleanup()
   }

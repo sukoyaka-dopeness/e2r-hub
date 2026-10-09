@@ -39,6 +39,10 @@ jobs:
         run: npm run lint
 
       - name: Build
+        env:
+          VITE_PARAMETER_PLOTTER_URL: https://sukoyaka-dopeness.github.io/e2r-parameter-plotter/
+          VITE_ASHEN_CROWN_DATASET_EN_URL: ${{ vars.E2R_ASHEN_CROWN_DATASET_EN_URL }}
+          VITE_ASHEN_CROWN_DATASET_JA_URL: ${{ vars.E2R_ASHEN_CROWN_DATASET_JA_URL }}
         run: npm run build
 
       - name: Configure GitHub Pages

@@ -236,6 +236,8 @@ test('Ashen Crown keeps its ParameterPlotter action hidden until both owner sour
       root: process.cwd(),
       define: {
         'import.meta.env.VITE_PARAMETER_PLOTTER_URL': JSON.stringify('http://localhost:4180/'),
+        'import.meta.env.VITE_ASHEN_CROWN_DATASET_EN_URL': JSON.stringify(''),
+        'import.meta.env.VITE_ASHEN_CROWN_DATASET_JA_URL': JSON.stringify(''),
       },
       server: { middlewareMode: true, hmr: false },
       appType: 'custom',

@@ -78,10 +78,11 @@ After the relevant source changes are separately authorized and pushed:
    Raw revision as fallback.
 4. Verify the ParameterPlotter GitHub Markdown guide links after the guide
    files are pushed.
-5. A separately authorized ParameterPlotter deployment/configuration is still
-   needed before production Hub app actions can appear. Its repository has a
-   check workflow but no Pages deployment workflow, and the Hub Pages workflow
-   does not configure `VITE_PARAMETER_PLOTTER_URL`.
+5. ParameterPlotter's Pages workflow/build and the Hub's
+   `VITE_PARAMETER_PLOTTER_URL` are prepared locally; Pages settings and live
+   availability remain unverified. The Hub build reads the Ashen Crown EN/JA
+   sources from explicit Actions variables, which must not be populated until
+   the owner URLs are checked against the adopted revision.
 6. Once a deployed HTTPS app and Dataset origins are configured, verify
    browser CORS, Handoff v0, EN/JA selection, locale preference, error and
    replacement-safety flows in the public environment.
@@ -98,3 +99,14 @@ remain pending. Dimension Assessment Candidate 0.2.0 remains non-Stable.
 
 No publication, deployment, release, or push is authorized by this readiness
 audit.
+
+## Deployment-preparation addendum (2026-10-09)
+
+After this audit snapshot, local deployment preparation added the
+ParameterPlotter Pages workflow and Hub production build inputs. See
+[`parameterplotter-production-handoff-configuration-2026-10-09.md`](./parameterplotter-production-handoff-configuration-2026-10-09.md)
+and [`deployment-preparation-push-range-audit-2026-10-09.md`](./deployment-preparation-push-range-audit-2026-10-09.md).
+These files supersede the earlier statement above that those configurations
+were absent, while preserving its original snapshot and public-evidence
+limitations. The configurations remain local and no deployment or public
+source verification has occurred.

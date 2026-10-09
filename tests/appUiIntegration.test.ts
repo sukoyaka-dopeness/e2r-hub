@@ -52,6 +52,8 @@ test('renders the production Hub Home surface', async () => {
     assert.ok(cedarCard)
     assert.equal(cedarCard.querySelector('small')?.textContent, 'Dataset: English')
     assert.equal(cedarCard.querySelectorAll('.sample-card-actions a').length, 2)
+    const lighthouseCard = sampleCards.find((card) => card.querySelector('h3')?.textContent === 'Lighthouse Restoration Project')
+    assert.equal(lighthouseCard?.querySelectorAll('.sample-card-actions a').length, 2)
     assert.equal(cedarCard.querySelector('.sample-card-actions a')?.getAttribute('href'),
       'https://sukoyaka-dopeness.github.io/e2r-narrative-line/#datasetUrl=' +
       encodeURIComponent('https://raw.githubusercontent.com/sukoyaka-dopeness/e2r-narrative-line/main/src/sample/cedar-observatory-showcase.en.e2r.json') + '&locale=en')
@@ -122,6 +124,60 @@ test('renders the production Hub Home surface', async () => {
     assert.equal(new URL(environment.document.querySelector('.self-description-section .documentation-actions a')!.getAttribute('href')!, 'https://sukoyaka-dopeness.github.io/e2r-hub/').hash.endsWith('&locale=ja'), true)
     assert.ok(japaneseSelfDescriptionActions[0]?.includes('NarrativeLine'))
     assert.ok(japaneseSelfDescriptionActions[1]?.includes('LiaisonScape'))
+  } finally {
+    await environment.cleanup()
+  }
+})
+
+test('Lighthouse and Cedar expose localized ParameterPlotter Handoff only when configured', async () => {
+  const environment = createDomTestEnvironment()
+  environment.installGlobal('IS_REACT_ACT_ENVIRONMENT', true)
+  const container = environment.document.createElement('div')
+  environment.document.body.append(container)
+  try {
+    const server = await createServer({
+      root: process.cwd(),
+      define: {
+        'import.meta.env.VITE_PARAMETER_PLOTTER_URL': JSON.stringify('http://localhost:4180/'),
+        'import.meta.env.VITE_LIGHTHOUSE_DATASET_EN_URL': JSON.stringify('http://localhost:4190/lighthouse.en.json'),
+        'import.meta.env.VITE_LIGHTHOUSE_DATASET_JA_URL': JSON.stringify('http://localhost:4190/lighthouse.ja.json'),
+        'import.meta.env.VITE_CEDAR_DATASET_EN_URL': JSON.stringify('http://localhost:4190/cedar.en.json'),
+        'import.meta.env.VITE_CEDAR_DATASET_JA_URL': JSON.stringify('http://localhost:4190/cedar.ja.json'),
+      },
+      server: { middlewareMode: true, hmr: false },
+      appType: 'custom',
+    })
+    environment.addCleanup(() => server.close())
+    const root = createRoot(container)
+    environment.addCleanup(() => act(async () => root.unmount()))
+    const { default: App } = await server.ssrLoadModule('/src/App.tsx')
+    await act(async () => root.render(React.createElement(App)))
+
+    const card = (title: string) => [...environment.document.querySelectorAll<HTMLElement>('.sample-card')]
+      .find((candidate) => candidate.querySelector('h3')?.textContent === title)!
+    const lighthouse = card('Lighthouse Restoration Project')
+    const cedar = card('Cedar Observatory: An Open Night')
+    const assertHandoff = (sample: HTMLElement, path: string) => {
+      const link = [...sample.querySelectorAll<HTMLAnchorElement>('.sample-card-actions a')]
+        .find((candidate) => candidate.textContent === 'Open ParameterPlotter')
+      assert.ok(link)
+      assert.equal(link.getAttribute('href'), `http://localhost:4180/#datasetUrl=${encodeURIComponent(`http://localhost:4190/${path}.en.json`)}&locale=en`)
+      return link
+    }
+    let lighthouseLink = assertHandoff(lighthouse, 'lighthouse')
+    assertHandoff(cedar, 'cedar')
+    assert.equal(lighthouse.querySelectorAll('.sample-card-actions a').length, 3)
+
+    const japaneseButton = environment.document.querySelector<HTMLButtonElement>('.locale-switch button:last-child')
+    assert.ok(japaneseButton)
+    await act(async () => japaneseButton.click())
+    lighthouseLink = [...lighthouse.querySelectorAll<HTMLAnchorElement>('.sample-card-actions a')]
+      .find((candidate) => candidate.getAttribute('href')?.includes('lighthouse.ja.json'))!
+    assert.equal(lighthouseLink.getAttribute('href'), `http://localhost:4180/#datasetUrl=${encodeURIComponent('http://localhost:4190/lighthouse.ja.json')}&locale=ja`)
+    const japaneseCedar = environment.document.querySelectorAll<HTMLElement>('.sample-card')[5]!
+    const cedarLink = [...japaneseCedar.querySelectorAll<HTMLAnchorElement>('.sample-card-actions a')]
+      .find((candidate) => candidate.getAttribute('href')?.includes('cedar.ja.json'))
+    assert.equal(cedarLink?.getAttribute('href'), `http://localhost:4180/#datasetUrl=${encodeURIComponent('http://localhost:4190/cedar.ja.json')}&locale=ja`)
   } finally {
     await environment.cleanup()
   }

@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import type { ReactNode } from 'react'
 import './App.css'
+import { parameterPlotterHandoffHref, resolveHandoffUrl } from './services/parameterPlotterHandoff'
 
 type Locale = 'en' | 'ja'
 
@@ -43,6 +44,18 @@ const links = {
   githubSponsors: 'https://github.com/sponsors/sukoyaka-dopeness',
 }
 
+const devHandoff = import.meta.env.DEV
+const parameterPlotterUrl = resolveHandoffUrl(import.meta.env.VITE_PARAMETER_PLOTTER_URL, devHandoff)
+function sampleSource(configured: string | undefined, fallback: string) {
+  return configured === undefined ? fallback : resolveHandoffUrl(configured, devHandoff)
+}
+const parameterPlotterSources = {
+  lighthouseEn: sampleSource(import.meta.env.VITE_LIGHTHOUSE_DATASET_EN_URL, links.lighthouseDataset),
+  lighthouseJa: sampleSource(import.meta.env.VITE_LIGHTHOUSE_DATASET_JA_URL, links.lighthouseDatasetJa),
+  cedarEn: sampleSource(import.meta.env.VITE_CEDAR_DATASET_EN_URL, links.cedarDataset),
+  cedarJa: sampleSource(import.meta.env.VITE_CEDAR_DATASET_JA_URL, links.cedarDatasetJa),
+}
+
 const copy = {
   en: {
     ecosystem: 'E2R application ecosystem',
@@ -72,6 +85,7 @@ const copy = {
     titanicDescription: "A historical sample following Titanic's final voyage through people, ships, relationships, and events.",
     openNarrative: 'Open NarrativeLine',
     openLiaison: 'Open LiaisonScape',
+    openParameterPlotter: 'Open ParameterPlotter',
     viewDataset: 'View Dataset JSON',
     sampleInfo: 'Sources / License',
     selfDescriptionEyebrow: 'Dogfood Dataset',
@@ -137,6 +151,7 @@ const copy = {
     titanicDescription: 'タイタニック号の最後の航海を、人々、船、関係、出来事からたどる歴史サンプルです。',
     openNarrative: 'NarrativeLineで開く',
     openLiaison: 'LiaisonScapeで開く',
+    openParameterPlotter: 'ParameterPlotterで開く',
     viewDataset: 'Dataset JSONを見る',
     sampleInfo: '出典・ライセンス',
     selfDescriptionEyebrow: 'ドッグフードDataset',
@@ -318,6 +333,7 @@ function App() {
               <div className="sample-card-actions">
                 <ExternalLink href={buildDatasetHandoffUrl(links.narrativeLine, localizedSampleUrl(locale, links.lighthouseDataset, links.lighthouseDatasetJa), locale)}>{text.openNarrative}</ExternalLink>
                 <ExternalLink href={buildDatasetHandoffUrl(links.liaisonScape, localizedSampleUrl(locale, links.lighthouseDataset, links.lighthouseDatasetJa), locale)}>{text.openLiaison}</ExternalLink>
+                {parameterPlotterUrl && parameterPlotterSources.lighthouseEn && parameterPlotterSources.lighthouseJa && <ExternalLink href={parameterPlotterHandoffHref(parameterPlotterUrl, localizedSampleUrl(locale, parameterPlotterSources.lighthouseEn, parameterPlotterSources.lighthouseJa), locale)}>{text.openParameterPlotter}</ExternalLink>}
               </div>
               <ExternalLink className="sample-info-link" href={links.sampleProvenance}>{text.sampleInfo}</ExternalLink>
             </article>
@@ -348,6 +364,7 @@ function App() {
               <div className="sample-card-actions">
                 <ExternalLink href={buildDatasetHandoffUrl(links.narrativeLine, localizedSampleUrl(locale, links.cedarDataset, links.cedarDatasetJa), locale)}>{text.openNarrative}</ExternalLink>
                 <ExternalLink href={buildDatasetHandoffUrl(links.liaisonScape, localizedSampleUrl(locale, links.cedarDataset, links.cedarDatasetJa), locale)}>{text.openLiaison}</ExternalLink>
+                {parameterPlotterUrl && parameterPlotterSources.cedarEn && parameterPlotterSources.cedarJa && <ExternalLink href={parameterPlotterHandoffHref(parameterPlotterUrl, localizedSampleUrl(locale, parameterPlotterSources.cedarEn, parameterPlotterSources.cedarJa), locale)}>{text.openParameterPlotter}</ExternalLink>}
               </div>
               <ExternalLink className="sample-info-link" href={links.sampleProvenance}>{text.sampleInfo}</ExternalLink>
             </article>

@@ -300,3 +300,50 @@ prove a production build or public Handoff. Hub `0.2.0` and Credits First releas
 `2026-08-18` / Updated `2026-10-01` are unchanged; Updated requires a decision
 against the actual future deployment date. The four-app Ko-fi support link
 remains an independent, unimplemented follow-up.
+
+<a id="hub-3app-review2-human-checkpoint"></a>
+
+## HUB-3APP-REVIEW2 — bounded Human Browser checkpoint and resumption
+
+**Current status: HUMAN BROWSER EVIDENCE RECORDED (BOUNDED) / OVERALL FORMAL
+HUMAN ACCEPTANCE PENDING.** This records Human's local Edge review before its
+pause. It does not turn the broader Hub review into a formal closure. The
+earlier Source, automated, HTTP and Codex Browser checks in HUB-3APP-REVIEW1
+remain separate evidence; HUB-CREDITS-FOCUS1 has its own limited Human closure
+above.
+
+Human reported PASS in EN and JA at 1200px and 390px for the three application
+cards, the six-sample Gallery and its adopted ordering/action composition, and
+Documentation presentation. Human also reported these specific navigation
+results:
+
+| Local Human Browser route | Reported result |
+| --- | --- |
+| Hub Berlin EN to NarrativeLine | Dataset Handoff PASS. |
+| Hub Lighthouse JA to LiaisonScape | Dataset Handoff PASS; the observed Dimension Assessment `unknown_extension` and `specification_unavailable` warnings do not establish Extension editing or safe UI round-trip. |
+| Hub Ashen Crown EN and JA to ParameterPlotter | Each Handoff PASS with 10 Entities, 7 Dimensions and 70 Assessments. |
+| Failed URL while an Ashen JA Workspace was saved | An error appeared; Continue Editing returned to the original Workspace with its title, counts and visible Assessment values. Human did not compare the entire saved Dataset byte for byte. |
+| Ordinary app cards | NarrativeLine, LiaisonScape and ParameterPlotter opened English Home. For ParameterPlotter, Human closed the existing Owner tab and reloaded after Single Active Editor guidance before confirming Home. |
+| ParameterPlotter EN/JA guide links | Each opened the corresponding language guide. Guide clarity remains separate. |
+
+Human separately accepted HUB-CREDITS-FOCUS1 after its EN/JA 1200px/390px
+focus and spacing recheck. This does not accept the whole three-app/Gallery
+review. The checkpoint above is Human-reported browser evidence, not a new
+Codex Browser run or an assertion of unvisited routes.
+
+**Resume from the unconfirmed scope, preserving the PASS above:** decide the
+bounded formal acceptance scope for the three-app/Gallery review and Hub-origin
+Handoff. Other Gallery routes, including Lighthouse/Cedar to ParameterPlotter
+in both Hub locales and ordinary JA app-card navigation, were not part of the
+reported Human PASS. Do not infer all route combinations from the four checked
+Handoffs. Public Hub HTTPS end-to-end Handoff requires a deployed Hub and its
+own verification. The future Hub release candidate, Updated date, ordinary
+push, automatic Pages deployment, post-deployment checks and closure remain
+separate Human gates.
+
+In the subsequent E2R-ROADMAP-SYNC1 Human decision, the four-app Ko-fi Home
+support direction alongside GitHub Sponsors was adopted for future work; this
+checkpoint adds no Ko-fi runtime or publication. Human also selected a limited
+LiaisonScape UI preservation investigation for Dimension Assessment-bearing
+Datasets **before** the Hub publication decision. Neither decision changes
+the currently published Hub or its Credits dates.

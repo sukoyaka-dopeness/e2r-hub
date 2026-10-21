@@ -201,12 +201,19 @@ Hub publication SHA/range and ordinary push with automatic Pages deployment
 and review public Gallery and HTTPS/CORS Handoff results. The current public
 Hub remains `0.2.0`; this local readiness result does not update it.
 
+The variable status above is the earlier readiness snapshot. In the separate
+HUB-PROD-CONFIG3 checkpoint, Human authorized and Codex reported creation and
+read-back verification of both Ashen Crown URL Repository Actions variables for
+a future production build. No Hub build, push, deployment or public Handoff was
+performed by that configuration checkpoint.
+
 <a id="hub-credits-focus1"></a>
 
 ## HUB-CREDITS-FOCUS1 — 2026-10-22 Credits follow-up to Human Review
 
-**Status: LOCAL FIX IMPLEMENTED / CODEX BROWSER VERIFIED (BOUNDED) /
-HUMAN BROWSER REVIEW PENDING.** This is a Credits-only correction to the local
+**Implementation checkpoint status: LOCAL FIX IMPLEMENTED / CODEX BROWSER VERIFIED
+(BOUNDED) / HUMAN BROWSER REVIEW PENDING.** This was the status before the
+post-fix Human review recorded below. This is a Credits-only correction to the local
 three-app Hub candidate. It does not close HUB-3APP-REVIEW2 or authorize a Hub
 push or deployment.
 
@@ -268,3 +275,28 @@ Human decision and production HTTPS review remain separate.
 Human's proposed Ko-fi Home support link alongside GitHub Sponsors is an
 independent future implementation across the four applications. This
 Credits-only checkpoint does not implement or accept that proposal.
+
+### HUB-CREDITS-FOCUS1 formal Human acceptance (bounded)
+
+**Current status: HUMAN ACCEPTED / CLOSED (BOUNDED).** Human formally approved
+this limited Credits closure after reviewing the fix at source commit
+`0372a52aaac4261e7c4e2ec34110a0a405e22a30`. The initial 2026-10-21
+HUB-3APP-REVIEW2 focus escape and excessive metadata spacing above remain the
+pre-fix Human Browser FAIL, not evidence of a passing implementation.
+
+In the post-fix local Human Browser review, EN and JA at 1200px and 390px
+**PASS** for the Credits information rows and spacing, Tab/Shift+Tab cycling
+inside the modal, prevention of focus escape to the background, visible focus
+outline, Close/Escape/backdrop dismissal, and focus restoration to the Credits
+button. Human then explicitly approved HUB-CREDITS-FOCUS1 formal closure within
+this scope. The Source/DOM, 7/7 automated tests, lint/build, and isolated Codex
+Browser results above are separate supporting evidence; they are not the Human
+Browser review.
+
+This closure does not accept HUB-3APP-REVIEW2 as a whole, Hub-origin Dataset
+Handoff, public HTTPS end-to-end behavior, or Hub publication/deployment. The
+separately configured Ashen Crown EN/JA Repository Actions variables do not
+prove a production build or public Handoff. Hub `0.2.0` and Credits First release
+`2026-08-18` / Updated `2026-10-01` are unchanged; Updated requires a decision
+against the actual future deployment date. The four-app Ko-fi support link
+remains an independent, unimplemented follow-up.

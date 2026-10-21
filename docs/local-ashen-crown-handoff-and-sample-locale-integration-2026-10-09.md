@@ -347,3 +347,22 @@ checkpoint adds no Ko-fi runtime or publication. Human also selected a limited
 LiaisonScape UI preservation investigation for Dimension Assessment-bearing
 Datasets **before** the Hub publication decision. Neither decision changes
 the currently published Hub or its Credits dates.
+
+### Subsequent LiaisonScape preservation closure — separate bounded gate
+
+The [LS-DA-PRESERVE2 record](../../e2r-liaison-scape/docs/dimension-assessment-ui-preservation-human-acceptance-2026-10-22.md)
+now records **FORMAL HUMAN ACCEPTED / CLOSED (BOUNDED)** for the specific
+Lighthouse JA path: Hub Handoff into published LiaisonScape, one Entity and one
+Relation description edit, actual UI Export, Human-submitted JSON structural
+comparison, and fresh InPrivate re-import. LS-DA-PRESERVE1's inability to obtain
+its own UI Export file remains historical; the later Human evidence supplies
+the limited comparison and re-import result. The actual submitted file was not
+directly available for this documentation pass. This completes the selected
+pre-Hub-publication preservation investigation only; it does not retroactively
+expand the earlier HUB-3APP-REVIEW2 Handoff PASS to all Gallery routes.
+
+**HUB-3APP-REVIEW2 overall Formal Human Acceptance remains PENDING.** The Hub
+release candidate audit, public HTTPS end-to-end Handoff, push, Pages deployment,
+post-deployment verification, and formal publication closure remain separate.
+LiaisonScape Diagnostics D2 is still OPEN. No Hub source, production variable,
+Credits date, or published revision changed in this documentation checkpoint.

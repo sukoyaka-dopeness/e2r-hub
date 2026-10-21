@@ -4,6 +4,11 @@ Date: 2026-10-09
 
 Status: **LOCAL CONFIGURATION PREPARED / PUBLIC HANDOFF ACCEPTANCE PENDING**
 
+This is the 2026-10-09 production-preparation snapshot. The currently
+published application and Dataset state, local Human Review setup, and
+remaining Hub production gate are recorded in the
+[HUB-3APP-REVIEW1 checkpoint](./local-ashen-crown-handoff-and-sample-locale-integration-2026-10-09.md#hub-3app-review1).
+
 ## Production build inputs
 
 The Hub Pages workflow now builds the ParameterPlotter application link with
@@ -52,3 +57,19 @@ was performed for this preparation. The direct four-language handoff review
 and local Hub-originated routes do not accept failure, Cancel, unsaved-work
 replacement, public CORS, or current public source revisions. Those Human
 Browser Acceptance items remain pending.
+
+## Current production configuration boundary — 2026-10-21
+
+ParameterPlotter `0.1.0` is now published at the workflow's configured HTTPS
+URL; E2R-SPEC Ashen Crown EN/JA Raw files are published and byte-verified
+against their canonical local candidates. The earlier 404 and unpublished Raw
+warnings above describe the 2026-10-09 snapshot, not current availability.
+GitHub reported zero **repository-level** Actions variables; effective
+`github-pages` environment values could not be conclusively inspected because
+later API requests were blocked. The current workflow has the ParameterPlotter
+application URL, but whether its production build receives explicit Ashen
+EN/JA sources is **unverified**. Without both values, the production build
+suppresses Ashen's ParameterPlotter action. Confirm the effective values and
+obtain separate Human authorization for any needed configuration change.
+Local Hub review uses explicit process-only values and does not establish
+the deployed Hub's Gallery or production HTTPS/CORS Handoff acceptance.

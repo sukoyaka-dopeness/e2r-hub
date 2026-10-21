@@ -2,6 +2,10 @@
 
 Status: **IMPLEMENTED / AUTOMATED CHECKS PASS / HUMAN BROWSER ACCEPTANCE PENDING**
 
+This document preserves the original pre-publication integration checkpoint.
+Current published source revisions and the local three-app/Gallery Human
+Review procedure are recorded in [HUB-3APP-REVIEW1](./local-ashen-crown-handoff-and-sample-locale-integration-2026-10-09.md#hub-3app-review1).
+
 The Lighthouse Restoration Project, The Ashen Crown, and Cedar Observatory
 cards add an `Open ParameterPlotter` action when `VITE_PARAMETER_PLOTTER_URL`
 is configured and the card's source is eligible.

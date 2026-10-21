@@ -54,9 +54,8 @@ function sampleSource(configured: string | undefined, fallback: string) {
 const parameterPlotterSources = {
   lighthouseEn: sampleSource(import.meta.env.VITE_LIGHTHOUSE_DATASET_EN_URL, links.lighthouseDataset),
   lighthouseJa: sampleSource(import.meta.env.VITE_LIGHTHOUSE_DATASET_JA_URL, links.lighthouseDatasetJa),
-  // The public Ashen Crown files have not yet received the locally adopted
-  // Dimension Assessment payload. Require an explicit source override until
-  // that owner Dataset revision is publicly available.
+  // Ashen Crown's published owner files include the adopted Candidate payload.
+  // Keep its ParameterPlotter action gated on explicit production source URLs.
   ashenCrownEn: import.meta.env.VITE_ASHEN_CROWN_DATASET_EN_URL === undefined
     ? undefined
     : sampleSource(import.meta.env.VITE_ASHEN_CROWN_DATASET_EN_URL, links.ashenCrownDataset),
@@ -543,7 +542,7 @@ function App() {
               <h2 id="credits-heading">{text.credits}</h2>
             </div>
             <div className="credits-metadata">
-              <p>{text.creditsApplication}: E2R Hub 0.2.0</p>
+              <p>{text.creditsApplication}: E2R Hub 0.3.0</p>
               <p>{text.creditsCreator}: sukoyaka-dopeness</p>
               <p>{text.creditsFirstRelease}: {text.creditsFirstReleaseDate}</p>
               <p>{text.creditsUpdated}: {text.creditsUpdatedDate}</p>

@@ -2,10 +2,12 @@
 
 E2R Hub is a lightweight entry point to the E2R application ecosystem.
 
-Status: First Distribution preparation; public rollout remains subject to
-separate release approval.
+Status: Hub 0.2.0 is published. The local three-app integration and Sample
+Gallery update is a Human-accepted (bounded) local 0.3.0 candidate. Its final
+Release Candidate, GitHub Pages deployment, and public HTTPS Handoff remain
+pending separate approval and verification.
 
-Expected GitHub Pages URL:
+Published GitHub Pages URL (currently Hub 0.2.0):
 
 ```text
 https://sukoyaka-dopeness.github.io/e2r-hub/
@@ -15,6 +17,7 @@ Related applications and resources:
 
 - NarrativeLine — timeline editor
 - LiaisonScape — relationship editor
+- ParameterPlotter — Dimension assessment comparison
 - E2R Validator
 - E2R Specification
 

@@ -58,7 +58,7 @@ and local Hub-originated routes do not accept failure, Cancel, unsaved-work
 replacement, public CORS, or current public source revisions. Those Human
 Browser Acceptance items remain pending.
 
-## Current production configuration boundary — 2026-10-21
+## Production configuration checkpoint — 2026-10-21
 
 ParameterPlotter `0.1.0` is now published at the workflow's configured HTTPS
 URL; E2R-SPEC Ashen Crown EN/JA Raw files are published and byte-verified
@@ -73,3 +73,39 @@ suppresses Ashen's ParameterPlotter action. Confirm the effective values and
 obtain separate Human authorization for any needed configuration change.
 Local Hub review uses explicit process-only values and does not establish
 the deployed Hub's Gallery or production HTTPS/CORS Handoff acceptance.
+
+## HUB-RC-PREP1 configuration and release boundary — 2026-10-22
+
+The 2026-10-21 unverified-variable statement above is a historical checkpoint.
+Authenticated GitHub read-back now confirms that the Hub **repository-level**
+Actions variables `E2R_ASHEN_CROWN_DATASET_EN_URL` and
+`E2R_ASHEN_CROWN_DATASET_JA_URL` each contain the corresponding published
+E2R-SPEC `main/examples/ashen-crown.{en,ja}.e2r.json` HTTPS Raw URL. The
+`github-pages` environment has zero environment-level variables. The existing
+Pages workflow maps both repository values into the Vite build for its
+`github-pages` deployment job. The separate HUB-PROD-CONFIG3 checkpoint
+authorized and verified their creation; no variable was changed here.
+
+Hub `0.2.0` remains the published application. The local three-app/Gallery
+candidate has bounded formal Human acceptance, and HUB-RC-PREP1 sets its
+user-facing Credits Application Version to `0.3.0`. The private package and
+lockfile stay at internal version `0.0.0`. Credits First release remains
+`2026-08-18`. Its current `Updated: 2026-10-01` is the prior published date,
+**not** a claim about a future `0.3.0` deployment. Before final release
+approval, set Updated to the actual planned deployment date in JST, verify
+the resulting source and new commit SHA, and obtain Human approval of the
+exact publication range and ordinary push. A push to `main` automatically
+starts the existing Pages workflow; the workflow runs lint and build but
+does not run the test suite.
+
+HUB-RC-PREP1 local verification passed: 7/7 tests (including EN/JA Credits
+version/date and modal operation assertions), lint, ordinary build, and a
+production-shaped build with the exact published ParameterPlotter and Ashen
+EN/JA URLs. The built JS contains `E2R Hub 0.3.0` and all three configured
+HTTPS URLs. These are local automated and build results, not new Human Browser
+acceptance or proof of a GitHub-hosted production build. No new GitHub Pages
+deployment or public Hub-origin HTTPS Handoff has occurred. The configured
+build inputs alone do not prove that the next deployed Gallery action or
+Handoff works over public HTTPS. Publication, post-deployment verification,
+and formal closure remain
+separate gates.

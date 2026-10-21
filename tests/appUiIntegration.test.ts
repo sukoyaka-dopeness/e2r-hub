@@ -314,7 +314,7 @@ test('renders localized Credits metadata with one Close action and restores focu
     await act(async () => opener.focus())
     assert.equal(environment.document.activeElement, close)
     for (const expected of [
-      'Application: E2R Hub 0.2.0',
+      'Application: E2R Hub 0.3.0',
       'Creator: sukoyaka-dopeness',
       'First release: 2026-08-18',
       'Updated: 2026-10-01',
@@ -354,7 +354,7 @@ test('renders localized Credits metadata with one Close action and restores focu
     assert.equal((await pressTab(dialog.querySelector<HTMLElement>('.modal-close')!)).defaultPrevented, true)
     assert.equal(environment.document.activeElement, dialog.querySelector('a[href]'))
     for (const expected of [
-      '\u30a2\u30d7\u30ea\u30b1\u30fc\u30b7\u30e7\u30f3: E2R Hub 0.2.0',
+      '\u30a2\u30d7\u30ea\u30b1\u30fc\u30b7\u30e7\u30f3: E2R Hub 0.3.0',
       '\u4f5c\u6210\u8005: sukoyaka-dopeness',
       '\u521d\u56de\u30ea\u30ea\u30fc\u30b9: 2026-08-18',
       '\u66f4\u65b0\u65e5: 2026-10-01',

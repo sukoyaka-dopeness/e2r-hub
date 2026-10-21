@@ -107,5 +107,31 @@ acceptance or proof of a GitHub-hosted production build. No new GitHub Pages
 deployment or public Hub-origin HTTPS Handoff has occurred. The configured
 build inputs alone do not prove that the next deployed Gallery action or
 Handoff works over public HTTPS. Publication, post-deployment verification,
-and formal closure remain
-separate gates.
+and formal closure remain separate gates.
+
+## HUB-RC-FINAL1 local date checkpoint — 2026-10-22
+
+Human selected `2026-10-22` JST as the planned Hub `0.3.0` deployment date.
+The local candidate now displays Credits Application `E2R Hub 0.3.0`, First
+release `2026-08-18`, and Updated `2026-10-22` in EN and JA. Updated is planned
+release metadata, **not** evidence that deployment has succeeded. If the
+deployment moves to `2026-10-23` JST or later, its date and candidate SHA
+require a separate Human decision before publication.
+
+Only the two localized Updated values, their two Credits test expectations,
+and this record changed after HUB-RC-PREP1. Local verification passed: 7/7
+tests, lint, ordinary build, and a production-shaped build using the exact
+published ParameterPlotter URL and repository-configured Ashen Crown EN/JA
+Raw URLs. The resulting JS contains Hub `0.3.0`, both Credits dates, and all
+three HTTPS URLs. The private package and lockfile remain at `0.0.0`. The
+existing bounded Human acceptance of Credits focus and the three-app/Gallery
+review is unchanged; these automated results do not create new Human Browser
+acceptance.
+
+This local checkpoint is a **candidate for Human Go/No-Go**, not publication
+authorization. Human must approve the final full SHA and remote-to-candidate
+commit range, confirm the planned JST date, and separately authorize the
+ordinary `main` push with its automatic Pages deployment and subsequent
+public HTTPS verification. The workflow runs lint and build but no tests.
+No push, GitHub-hosted production build, Pages deployment, or public
+Hub-origin HTTPS Handoff verification was performed in this checkpoint.

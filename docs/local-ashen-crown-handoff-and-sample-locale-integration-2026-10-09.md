@@ -1,6 +1,10 @@
 # Local Ashen Crown Handoff and Sample Locale Integration
 
-Status: **IMPLEMENTED / AUTOMATED CHECKS PASS / HUMAN BROWSER ACCEPTANCE PENDING**
+2026-10-09 local integration status: **IMPLEMENTED / AUTOMATED CHECKS PASS /
+HUMAN BROWSER ACCEPTANCE PENDING at that checkpoint**. The subsequent
+[HUB-3APP-REVIEW2 formal decision](#hub-3app-review2-formal-human-acceptance)
+is **FORMAL HUMAN ACCEPTED / CLOSED (BOUNDED)** for the reviewed local Hub
+three-app/Gallery scope; Hub publication remains separate.
 
 The setup and publication assumptions below describe the 2026-10-09
 checkpoint. For the current three-app/Gallery review environment and Human
@@ -305,9 +309,9 @@ remains an independent, unimplemented follow-up.
 
 ## HUB-3APP-REVIEW2 — bounded Human Browser checkpoint and resumption
 
-**Current status: HUMAN BROWSER EVIDENCE RECORDED (BOUNDED) / OVERALL FORMAL
-HUMAN ACCEPTANCE PENDING.** This records Human's local Edge review before its
-pause. It does not turn the broader Hub review into a formal closure. The
+**Status at this interrupted checkpoint: HUMAN BROWSER EVIDENCE RECORDED
+(BOUNDED) / FORMAL HUMAN ACCEPTANCE PENDING.** This records Human's local Edge
+review before its pause and before the later formal decision below. The
 earlier Source, automated, HTTP and Codex Browser checks in HUB-3APP-REVIEW1
 remain separate evidence; HUB-CREDITS-FOCUS1 has its own limited Human closure
 above.
@@ -361,8 +365,58 @@ directly available for this documentation pass. This completes the selected
 pre-Hub-publication preservation investigation only; it does not retroactively
 expand the earlier HUB-3APP-REVIEW2 Handoff PASS to all Gallery routes.
 
-**HUB-3APP-REVIEW2 overall Formal Human Acceptance remains PENDING.** The Hub
+At this preservation checkpoint, **HUB-3APP-REVIEW2 Formal Human Acceptance
+remained PENDING**; the later bounded decision is recorded below. The Hub
 release candidate audit, public HTTPS end-to-end Handoff, push, Pages deployment,
 post-deployment verification, and formal publication closure remain separate.
 LiaisonScape Diagnostics D2 is still OPEN. No Hub source, production variable,
 Credits date, or published revision changed in this documentation checkpoint.
+
+<a id="hub-3app-review2-formal-human-acceptance"></a>
+
+### HUB-3APP-REVIEW2 formal Human acceptance — bounded local review
+
+**Current status: FORMAL HUMAN ACCEPTED / CLOSED (BOUNDED).** Human expressly
+accepted the local three-app/Gallery review described in the interrupted
+checkpoint above. This later decision closes that bounded review; it does not
+turn the earlier pending status into a PASS at the time of interruption. The
+reviewed local candidate includes the Credits correction at source commit
+`0372a52aaac4261e7c4e2ec34110a0a405e22a30`; subsequent local documentation
+commits have not published the Hub.
+
+The accepted **Human Browser** scope is EN/JA at 1200px and 390px for the three
+app cards, six Gallery samples and their adopted order/action layout, and
+Documentation display. Human also accepted the four actual Hub-origin Handoffs
+listed above (Berlin EN, Lighthouse JA, Ashen Crown EN and JA), the observed
+Ashen 10-Entity/7-Dimension/70-Assessment counts in each locale, the failed-URL
+error and visible Ashen JA Workspace recovery through Continue Editing, the
+three English Home destinations, and the ParameterPlotter EN/JA User Guide
+link destinations. ParameterPlotter's English Home required closing its
+existing Owner tab and reloading after Single Active Editor guidance. Human
+did not compare the entire saved Workspace byte for byte.
+
+The **Source, automated, public HTTP and isolated Codex Browser** checks in
+HUB-3APP-REVIEW1 remain supporting evidence with their own scope. In particular,
+the earlier Codex Browser saved-Workspace byte comparison is not Human Browser
+evidence. HUB-CREDITS-FOCUS1 has its separate limited Human closure, as does
+[LS-DA-PRESERVE2](../../e2r-liaison-scape/docs/dimension-assessment-ui-preservation-human-acceptance-2026-10-22.md)
+for Lighthouse JA UI editing, actual Export comparison and fresh re-import.
+Neither separate closure extends this Hub review to unvisited routes or general
+Dataset and Extension preservation.
+
+The accepted scope excludes Lighthouse/Cedar-to-ParameterPlotter Gallery routes
+in EN/JA, ordinary Japanese app-card destinations, all other Sample/app/locale
+combinations, unreviewed Dataset edits/deletes/Exports, full Workspace byte
+identity under Human Browser review, and general Extension safety. These
+unvisited routes are not automatically publication blockers. ParameterPlotter
+Home links and beginner guide clarity, the four-app Ko-fi link, and LiaisonScape
+Diagnostics D2 remain independent follow-ups.
+
+**Next Human gate:** audit the exact Hub Public Release Candidate and decide
+what additional pre-publication evidence, if any, is needed. The configured
+Ashen EN/JA Repository Actions variables prepare inputs for a future production
+build; they do not prove that build, Pages deployment, or public HTTPS Handoff.
+The currently published Hub remains `0.2.0`. Its Credits `Updated` date must be
+checked against an actual later deployment date before publication. No push,
+deployment, public HTTPS verification, or formal publication closure occurred
+through this documentation decision.

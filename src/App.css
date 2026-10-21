@@ -73,11 +73,14 @@ main { width: min(1080px, 100%); margin: 0 auto; }
 .site-footer button { padding: 6px 10px; font-size: .86rem; }
 
 .modal-backdrop { position: fixed; z-index: 10; inset: 0; display: grid; place-items: center; padding: 20px; background: rgba(8, 6, 13, .28); }
-.credits-modal { width: min(420px, 100%); padding: 24px; border: 1px solid #e5e4e7; border-radius: 10px; background: #fff; box-shadow: 0 18px 60px rgba(8, 6, 13, .2); }
+.credits-modal { width: min(420px, 100%); max-height: calc(100dvh - 40px); overflow: auto; padding: 16px; border: 1px solid #e5e4e7; border-radius: 10px; background: #fff; box-shadow: 0 18px 60px rgba(8, 6, 13, .2); }
 .modal-header { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
-.modal-header h2 { margin: 0 0 20px; color: #08060d; }
-.credits-modal p { color: #6b6375; }
-.modal-close { display: block; margin-top: 24px; }
+.credits-modal .modal-header h2 { margin: 0 0 8px; color: #08060d; font-size: 24px; line-height: 1.18; }
+.credits-metadata p { margin: 0; color: #6b6375; line-height: 1.5; }
+.credits-acknowledgement { margin: 16px 0 8px; color: #6b6375; line-height: 1.5; }
+.credits-links { display: grid; justify-items: start; gap: 8px; }
+.credits-modal :focus-visible { outline: 2px solid #6d3aa3; outline-offset: 3px; }
+.modal-close { display: block; margin-top: 16px; }
 
 @media (max-width: 700px) {
   .site-header, .site-footer { padding: 14px 16px; }

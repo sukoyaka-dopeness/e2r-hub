@@ -200,3 +200,71 @@ approval for any required configuration, then separately approve the exact
 Hub publication SHA/range and ordinary push with automatic Pages deployment
 and review public Gallery and HTTPS/CORS Handoff results. The current public
 Hub remains `0.2.0`; this local readiness result does not update it.
+
+<a id="hub-credits-focus1"></a>
+
+## HUB-CREDITS-FOCUS1 — 2026-10-22 Credits follow-up to Human Review
+
+**Status: LOCAL FIX IMPLEMENTED / CODEX BROWSER VERIFIED (BOUNDED) /
+HUMAN BROWSER REVIEW PENDING.** This is a Credits-only correction to the local
+three-app Hub candidate. It does not close HUB-3APP-REVIEW2 or authorize a Hub
+push or deployment.
+
+In the 2026-10-21 HUB-3APP-REVIEW2 local Edge review, Human inspected EN/JA
+at 1200px and 390px. The three app cards, six-sample Gallery, documentation
+and responsive presentation were broadly satisfactory within the supplied
+screenshots. Human found that Tab could move focus out of the open Credits
+dialog, and that the Application, Creator, First release and Updated rows had
+excessive vertical spacing. These observations take precedence over earlier
+automated or Codex Browser results; the reviewed Credits behavior was not
+accepted.
+
+The existing `role="dialog"` and `aria-modal="true"` described a modal but did
+not move focus inside it, make the background inert or wrap Tab at its ends.
+The fix focuses Close when Credits opens, makes Hub header/main/footer inert
+while it is open, keeps Tab and Shift+Tab between the repository link and
+Close, and redirects unexpected document focus back inside. Escape, Close and
+backdrop dismissal retain focus restoration to the Credits opener. No Dataset,
+Handoff, locale, Gallery or application-link behavior changed.
+
+For the visual correction, Credits metadata paragraphs now have zero default
+paragraph margins and a compact line height. The heading uses a smaller
+bottom gap, while the acknowledgement, repository link and Close retain
+separate spacing. This follows the compact metadata grouping seen in the
+current NarrativeLine, LiaisonScape and ParameterPlotter Credits without
+requiring pixel-identical styling. The dialog can scroll within a short
+viewport, and the link remains a text-sized target. Hub `0.2.0`, First release
+`2026-08-18`, and Updated `2026-10-01` remain unchanged; Updated needs a
+separate decision against the date of any later deployment.
+
+Evidence for this local correction:
+
+- **Source / DOM:** the background receives `inert` only while Credits is
+  open; the dialog has an internal initial focus and Tab boundary handling.
+  The focused Close/link outline remains visible. Existing dismissal paths
+  return focus to the opener.
+- **Automated:** `npm.cmd test` 7/7 PASS (including localized Credits,
+  focus containment and restoration assertions); `npm.cmd run lint` PASS;
+  `npm.cmd run build` PASS (18 transformed modules); `git diff --check` PASS.
+- **Codex Browser:** an isolated headless Edge profile at the local
+  `http://127.0.0.1:4191/e2r-hub/` confirmed EN/JA at 1200px and 390px.
+  Actual keyboard Tab/Shift+Tab cycled between Close and the repository
+  link, including both wrap boundaries; background elements were inert,
+  the focus outline was visible, and Escape, Close and backdrop restored
+  opener focus. Metadata paragraph margins computed to `0px`, the
+  acknowledgement retained a `16px` preceding gap, no horizontal overflow
+  occurred, and no runtime exception or console error was observed. This
+  does not establish Human Browser Acceptance or public Pages behavior.
+
+Minimum Human recheck: in the local Hub at both widths and locales, open
+Credits, inspect the four compact identity rows and the distinct
+acknowledgement/link/Close spacing, then use Tab and Shift+Tab repeatedly.
+Focus should stay on the link or Close with a visible outline; the background
+must not receive focus. Close by button, Escape and backdrop in separate
+openings and confirm focus returns to the Credits trigger each time. Record
+PASS/FAIL by locale, width and dismissal path. The broader Gallery/Handoff
+Human decision and production HTTPS review remain separate.
+
+Human's proposed Ko-fi Home support link alongside GitHub Sponsors is an
+independent future implementation across the four applications. This
+Credits-only checkpoint does not implement or accept that proposal.

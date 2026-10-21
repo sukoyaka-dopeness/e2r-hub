@@ -296,6 +296,23 @@ test('renders localized Credits metadata with one Close action and restores focu
 
     await openCredits()
     let dialog = assertOneClose()
+    const close = dialog.querySelector<HTMLButtonElement>('.modal-close')!
+    const repository = dialog.querySelector<HTMLAnchorElement>('a[href]')!
+    assert.equal(environment.document.activeElement, close)
+    for (const selector of ['.site-header', 'main', '.site-footer']) {
+      assert.equal(environment.document.querySelector(selector)?.hasAttribute('inert'), true)
+    }
+    const pressTab = async (target: HTMLElement, shiftKey = false) => {
+      const event = new environment.window.KeyboardEvent('keydown', { key: 'Tab', shiftKey, bubbles: true, cancelable: true })
+      await act(async () => target.dispatchEvent(event))
+      return event
+    }
+    assert.equal((await pressTab(close)).defaultPrevented, true)
+    assert.equal(environment.document.activeElement, repository)
+    assert.equal((await pressTab(repository, true)).defaultPrevented, true)
+    assert.equal(environment.document.activeElement, close)
+    await act(async () => opener.focus())
+    assert.equal(environment.document.activeElement, close)
     for (const expected of [
       'Application: E2R Hub 0.2.0',
       'Creator: sukoyaka-dopeness',
@@ -309,6 +326,9 @@ test('renders localized Credits metadata with one Close action and restores focu
     await act(async () => environment.window.dispatchEvent(new environment.window.KeyboardEvent('keydown', { key: 'Escape', bubbles: true })))
     assert.equal(environment.document.querySelector('.credits-modal'), null)
     assert.equal(environment.document.activeElement, opener)
+    for (const selector of ['.site-header', 'main', '.site-footer']) {
+      assert.equal(environment.document.querySelector(selector)?.hasAttribute('inert'), false)
+    }
 
     await openCredits()
     const backdrop = environment.document.querySelector<HTMLElement>('.modal-backdrop')
@@ -330,6 +350,9 @@ test('renders localized Credits metadata with one Close action and restores focu
     await act(async () => japaneseButton.click())
     await openCredits()
     dialog = environment.document.querySelector<HTMLElement>('.credits-modal')!
+    assert.equal(environment.document.activeElement, dialog.querySelector('.modal-close'))
+    assert.equal((await pressTab(dialog.querySelector<HTMLElement>('.modal-close')!)).defaultPrevented, true)
+    assert.equal(environment.document.activeElement, dialog.querySelector('a[href]'))
     for (const expected of [
       '\u30a2\u30d7\u30ea\u30b1\u30fc\u30b7\u30e7\u30f3: E2R Hub 0.2.0',
       '\u4f5c\u6210\u8005: sukoyaka-dopeness',

@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
-import type { ReactNode } from 'react'
+import type { KeyboardEvent as ReactKeyboardEvent, ReactNode } from 'react'
 import './App.css'
 import { parameterPlotterHandoffHref, resolveHandoffUrl } from './services/parameterPlotterHandoff'
 
@@ -258,6 +258,8 @@ function App() {
   const [locale, setLocale] = useState<Locale>('en')
   const [creditsOpen, setCreditsOpen] = useState(false)
   const creditsOpenerRef = useRef<HTMLButtonElement>(null)
+  const creditsDialogRef = useRef<HTMLElement>(null)
+  const creditsCloseRef = useRef<HTMLButtonElement>(null)
   const creditsWasOpenRef = useRef(false)
   const text = copy[locale]
   const landing = landingCopy[locale]
@@ -276,19 +278,47 @@ function App() {
     }
 
     creditsWasOpenRef.current = true
+    creditsCloseRef.current?.focus()
     const dismissOnEscape = (event: KeyboardEvent) => {
       if (event.key === 'Escape') {
         event.preventDefault()
         setCreditsOpen(false)
       }
     }
+    const keepFocusInside = (event: FocusEvent) => {
+      if (event.target instanceof Node && !creditsDialogRef.current?.contains(event.target)) {
+        creditsCloseRef.current?.focus()
+      }
+    }
     window.addEventListener('keydown', dismissOnEscape)
-    return () => window.removeEventListener('keydown', dismissOnEscape)
+    document.addEventListener('focusin', keepFocusInside)
+    return () => {
+      window.removeEventListener('keydown', dismissOnEscape)
+      document.removeEventListener('focusin', keepFocusInside)
+    }
   }, [creditsOpen])
+
+  const keepCreditsTabInside = (event: ReactKeyboardEvent<HTMLElement>) => {
+    if (event.key !== 'Tab') return
+    const dialog = event.currentTarget
+    const focusable = [...dialog.querySelectorAll<HTMLElement>('a[href], button:not([disabled])')]
+    const first = focusable[0]
+    const last = focusable.at(-1)
+    if (!first || !last) {
+      event.preventDefault()
+      dialog.focus()
+    } else if (event.shiftKey && (document.activeElement === first || !dialog.contains(document.activeElement))) {
+      event.preventDefault()
+      last.focus()
+    } else if (!event.shiftKey && (document.activeElement === last || !dialog.contains(document.activeElement))) {
+      event.preventDefault()
+      first.focus()
+    }
+  }
 
   return (
     <div className="hub-shell">
-      <header className="site-header">
+      <header className="site-header" inert={creditsOpen}>
         <a className="brand" href="#top">E2R Hub</a>
         <div className="locale-switch" aria-label="Language">
           <button className={locale === 'en' ? 'active' : ''} type="button" onClick={() => setLocale('en')}>English</button>
@@ -296,7 +326,7 @@ function App() {
         </div>
       </header>
 
-      <main id="top">
+      <main id="top" inert={creditsOpen}>
         <section className="hero-section">
           <p className="eyebrow">{text.ecosystem}</p>
           <h1><MultilineText value={text.hero} /></h1>
@@ -494,7 +524,7 @@ function App() {
         </div>
       </main>
 
-      <footer className="site-footer">
+      <footer className="site-footer" inert={creditsOpen}>
         <span>{text.footerDescriptor}</span>
         <div>
           <button ref={creditsOpenerRef} type="button" onClick={() => setCreditsOpen(true)}>{text.credits}</button>
@@ -508,17 +538,19 @@ function App() {
             setCreditsOpen(false)
           }
         }}>
-          <section className="credits-modal" role="dialog" aria-modal="true" aria-labelledby="credits-heading">
+          <section ref={creditsDialogRef} className="credits-modal" role="dialog" aria-modal="true" aria-labelledby="credits-heading" tabIndex={-1} onKeyDown={keepCreditsTabInside}>
             <div className="modal-header">
               <h2 id="credits-heading">{text.credits}</h2>
             </div>
-            <p>{text.creditsApplication}: E2R Hub 0.2.0</p>
-            <p>{text.creditsCreator}: sukoyaka-dopeness</p>
-            <p>{text.creditsFirstRelease}: {text.creditsFirstReleaseDate}</p>
-            <p>{text.creditsUpdated}: {text.creditsUpdatedDate}</p>
-            <p>{text.gratitude}</p>
-            <ExternalLink href={links.specification}>{text.specificationRepo}</ExternalLink>
-            <button className="modal-close" type="button" onClick={() => setCreditsOpen(false)}>{text.close}</button>
+            <div className="credits-metadata">
+              <p>{text.creditsApplication}: E2R Hub 0.2.0</p>
+              <p>{text.creditsCreator}: sukoyaka-dopeness</p>
+              <p>{text.creditsFirstRelease}: {text.creditsFirstReleaseDate}</p>
+              <p>{text.creditsUpdated}: {text.creditsUpdatedDate}</p>
+            </div>
+            <p className="credits-acknowledgement">{text.gratitude}</p>
+            <nav className="credits-links"><ExternalLink href={links.specification}>{text.specificationRepo}</ExternalLink></nav>
+            <button ref={creditsCloseRef} className="modal-close" type="button" onClick={() => setCreditsOpen(false)}>{text.close}</button>
           </section>
         </div>
       )}

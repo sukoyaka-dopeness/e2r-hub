@@ -97,6 +97,12 @@ test('renders the production Hub Home surface', async () => {
     assert.equal(supportLink?.getAttribute('href'), 'https://github.com/sponsors/sukoyaka-dopeness')
     assert.equal(supportLink?.getAttribute('target'), '_blank')
     assert.equal(supportLink?.getAttribute('rel'), 'noreferrer')
+    const koFiLink = environment.document.querySelectorAll('.site-support-link')[1]
+    assert.equal(koFiLink?.textContent, 'Support E2R on Ko-fi')
+    assert.equal(koFiLink?.getAttribute('href'), 'https://ko-fi.com/sukoyaka_dopeness')
+    assert.equal(koFiLink?.getAttribute('target'), '_blank')
+    assert.equal(koFiLink?.getAttribute('rel'), 'noreferrer')
+    assert.equal(koFiLink?.previousElementSibling, supportLink)
     assert.equal(environment.document.querySelector('main')?.lastElementChild?.className, 'site-support')
     assert.equal(environment.document.querySelector('.site-footer')?.previousElementSibling?.tagName, 'MAIN')
     assert.equal(environment.document.querySelector('.self-description-section h2')?.textContent, 'E2R Self-Description')
@@ -136,6 +142,7 @@ test('renders the production Hub Home surface', async () => {
     assert.equal(environment.document.querySelector('.application-card:nth-child(2) small')?.textContent, '編集にはPC画面が適しています。')
     assert.equal(environment.document.querySelectorAll('.application-card > p:not(.product-name)').length, 0)
     assert.equal(environment.document.querySelector('.site-support-link')?.textContent, 'GitHub SponsorsでE2Rを支援する')
+    assert.equal(environment.document.querySelectorAll('.site-support-link')[1]?.textContent, 'Ko-fiでE2Rを支援する')
     const japaneseSelfDescriptionActions = [...environment.document.querySelectorAll('.self-description-section .documentation-actions a')]
       .slice(0, 2)
       .map((link) => link.textContent ?? '')

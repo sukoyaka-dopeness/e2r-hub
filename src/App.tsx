@@ -44,6 +44,7 @@ const links = {
   titanicJa: 'https://github.com/sukoyaka-dopeness/e2r-spec/blob/main/examples/titanic-final-voyage.ja.e2r.json',
   selfDescriptionDataset: 'https://raw.githubusercontent.com/sukoyaka-dopeness/e2r-spec/main/examples/e2r-self-description.json',
   githubSponsors: 'https://github.com/sponsors/sukoyaka-dopeness',
+  koFi: 'https://ko-fi.com/sukoyaka_dopeness',
 }
 
 const devHandoff = import.meta.env.DEV
@@ -136,6 +137,7 @@ const copy = {
     gratitude: 'With gratitude to all the AI systems that contributed to this project.',
     specificationRepo: 'E2R specification repository',
     supportE2r: 'Support E2R on GitHub Sponsors',
+    supportE2rOnKofi: 'Support E2R on Ko-fi',
   },
   ja: {
     ecosystem: 'E2R アプリケーションエコシステム',
@@ -206,6 +208,7 @@ const copy = {
     gratitude: '\u3053\u306e\u30d7\u30ed\u30b8\u30a7\u30af\u30c8\u306b\u8ca2\u732e\u3057\u305f\u3059\u3079\u3066\u306eAI\u30b7\u30b9\u30c6\u30e0\u306b\u611f\u8b1d\u3057\u307e\u3059\u3002',
     specificationRepo: 'E2R\u4ed5\u69d8\u30ea\u30dd\u30b8\u30c8\u30ea',
     supportE2r: 'GitHub SponsorsでE2Rを支援する',
+    supportE2rOnKofi: 'Ko-fiでE2Rを支援する',
   },
 } as const
 
@@ -520,6 +523,7 @@ function App() {
         </section>
         <div className="site-support">
           <ExternalLink className="site-support-link" href={links.githubSponsors}>{text.supportE2r}</ExternalLink>
+          <ExternalLink className="site-support-link" href={links.koFi}>{text.supportE2rOnKofi}</ExternalLink>
         </div>
       </main>
 

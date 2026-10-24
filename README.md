@@ -2,14 +2,14 @@
 
 E2R Hub is a lightweight entry point to the E2R application ecosystem.
 
-Status: Hub 0.3.0 is published at
+Hub 0.3.0 was published at
 `8c48a1dc4e872990d46105fd3573b5e908086bd3`. The three-app integration
 and Sample Gallery retain their bounded local Human acceptance. The
 [representative public HTTPS Handoff checkpoint](docs/hub-0.3.0-public-https-handoff-bounded-acceptance-2026-10-22.md)
 records the later bounded route results, the Lighthouse JA limits, and the
 Human-approved **Formal Publication Closure: HUMAN ACCEPTED / CLOSED (BOUNDED)**.
 
-Published GitHub Pages URL (currently Hub 0.3.0):
+Published GitHub Pages URL:
 
 ```text
 https://sukoyaka-dopeness.github.io/e2r-hub/

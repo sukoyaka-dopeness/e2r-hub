@@ -2,6 +2,13 @@
 
 E2R Hub is a lightweight entry point to the E2R application ecosystem.
 
+Hub **0.3.1** was published on **2026-10-24 JST** from
+`d6f371859d29b78fdb40cea77e4f1f1d6ca18be2`. The Ko-fi Home link and
+release metadata passed the reported bounded public Human Browser review;
+Human formally accepted and closed the `0.3.1` publication within that
+bounded scope on 2026-10-24 JST. See the
+[0.3.1 bounded publication closure](docs/hub-0.3.1-publication-closure-decision-preparation-2026-10-24.md).
+
 Hub 0.3.0 was published at
 `8c48a1dc4e872990d46105fd3573b5e908086bd3`. The three-app integration
 and Sample Gallery retain their bounded local Human acceptance. The

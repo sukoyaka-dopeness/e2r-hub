@@ -546,7 +546,7 @@ function App() {
               <h2 id="credits-heading">{text.credits}</h2>
             </div>
             <div className="credits-metadata">
-              <p>{text.creditsApplication}: E2R Hub 0.3.0</p>
+              <p>{text.creditsApplication}: E2R Hub 0.3.1</p>
               <p>{text.creditsCreator}: sukoyaka-dopeness</p>
               <p>{text.creditsFirstRelease}: {text.creditsFirstReleaseDate}</p>
               <p>{text.creditsUpdated}: {text.creditsUpdatedDate}</p>

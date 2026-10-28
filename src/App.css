@@ -35,7 +35,6 @@ main { width: min(1080px, 100%); margin: 0 auto; }
 .section-heading p, .tools-section p { max-width: 700px; color: #6b6375; }
 .sample-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); align-items: stretch; gap: 16px; }
 .sample-card { display: flex; min-height: 260px; flex-direction: column; padding: 24px; border: 1px solid #d9d5df; border-radius: 10px; }
-.sample-card-parameterplotter { border-color: #cdb9df; background: #fdfaff; }
 .sample-card h3 { margin: 0 0 12px; color: #08060d; font-size: 1.25rem; }
 .sample-card p { margin: 0; color: #6b6375; }
 .sample-card-actions { display: flex; flex-wrap: wrap; gap: 8px; align-items: flex-end; margin-top: auto; padding-top: 28px; }

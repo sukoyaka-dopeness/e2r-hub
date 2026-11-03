@@ -39,6 +39,22 @@ npm run lint
 npm run build
 ```
 
+To review the three application launch cards locally with the published
+ParameterPlotter destination, use the same URL as
+[`deploy-pages.yml`](.github/workflows/deploy-pages.yml). In PowerShell:
+
+```powershell
+$env:VITE_PARAMETER_PLOTTER_URL = 'https://sukoyaka-dopeness.github.io/e2r-parameter-plotter/'
+npm.cmd run dev
+```
+
+Set the variable before starting Vite; restart an already-running server after
+changing it. For a local production build, set it before `npm.cmd run build`.
+Without this setting, the ParameterPlotter card deliberately shows the
+unconfigured state. The public Pages build supplies it in the workflow;
+plain local `npm run dev` does not inherit workflow environment variables.
+Sample-specific Dataset source overrides retain their separate configuration.
+
 The Hub is a lightweight entry point to the E2R ecosystem. It links to
 independent E2R applications, the specification, the Validator, canonical
 sample Dataset sources, and NarrativeLine's application-owned Cedar Observatory

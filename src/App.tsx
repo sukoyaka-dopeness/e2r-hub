@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import type { KeyboardEvent as ReactKeyboardEvent, ReactNode } from 'react'
 import './App.css'
+import { DatasetWorkflow } from './components/DatasetWorkflow'
 import { parameterPlotterHandoffHref, resolveHandoffUrl } from './services/parameterPlotterHandoff'
 
 type Locale = 'en' | 'ja'
@@ -334,6 +335,8 @@ function App() {
           <h1><MultilineText value={text.hero} /></h1>
           <p>{text.heroIntro}</p>
         </section>
+
+        <DatasetWorkflow locale={locale} />
 
         <section className="section choice-section" aria-labelledby="choose-heading">
           <h2 id="choose-heading">{text.choose}</h2>

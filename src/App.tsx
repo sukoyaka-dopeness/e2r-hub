@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import type { KeyboardEvent as ReactKeyboardEvent, ReactNode } from 'react'
 import './App.css'
 import { DatasetWorkflow } from './components/DatasetWorkflow'
+import { initialHubLocale, withHubLocale } from './services/startupLocale'
 import { parameterPlotterHandoffHref, resolveHandoffUrl } from './services/parameterPlotterHandoff'
 
 type Locale = 'en' | 'ja'
@@ -258,7 +259,7 @@ function localizedSampleUrl(locale: Locale, englishUrl: string, japaneseUrl: str
 }
 
 function App() {
-  const [locale, setLocale] = useState<Locale>('en')
+  const [locale, setLocale] = useState<Locale>(() => initialHubLocale(window.location.hash))
   const [creditsOpen, setCreditsOpen] = useState(false)
   const creditsOpenerRef = useRef<HTMLButtonElement>(null)
   const creditsDialogRef = useRef<HTMLElement>(null)
@@ -266,6 +267,11 @@ function App() {
   const creditsWasOpenRef = useRef(false)
   const text = copy[locale]
   const landing = landingCopy[locale]
+
+  const selectLocale = (nextLocale: Locale) => {
+    window.history.replaceState(window.history.state, '', withHubLocale(window.location.hash, nextLocale))
+    setLocale(nextLocale)
+  }
 
   useEffect(() => {
     document.documentElement.lang = locale
@@ -322,10 +328,15 @@ function App() {
   return (
     <div className="hub-shell">
       <header className="site-header" inert={creditsOpen}>
-        <a className="brand" href="#top">E2R Hub</a>
+        <a className="brand" href={withHubLocale(window.location.hash, locale)} onClick={(event) => {
+          if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return
+          event.preventDefault()
+          window.history.replaceState(window.history.state, '', withHubLocale(window.location.hash, locale))
+          document.getElementById('top')?.scrollIntoView()
+        }}>E2R Hub</a>
         <div className="locale-switch" aria-label="Language">
-          <button className={locale === 'en' ? 'active' : ''} type="button" onClick={() => setLocale('en')}>English</button>
-          <button className={locale === 'ja' ? 'active' : ''} type="button" onClick={() => setLocale('ja')}>日本語</button>
+          <button className={locale === 'en' ? 'active' : ''} type="button" onClick={() => selectLocale('en')}>English</button>
+          <button className={locale === 'ja' ? 'active' : ''} type="button" onClick={() => selectLocale('ja')}>日本語</button>
         </div>
       </header>
 

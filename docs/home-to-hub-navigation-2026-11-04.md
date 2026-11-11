@@ -2,7 +2,7 @@
 
 Date: 2026-11-04 JST
 
-Status: BOUNDED HUMAN ACCEPTANCE RECORDED / SEQUENTIAL PUBLICATION AUTHORIZED / PUBLICATION AND HUMAN CLOSURE PENDING
+Status: HUB PUBLIC PASS / SEQUENTIAL PUBLICATION STOPPED AT PHASE C / HUMAN CLOSURE PENDING
 
 ## Receiver behavior
 
@@ -298,3 +298,97 @@ or public regression; no force push or history rewrite is authorized.
 
 Publication has not yet been verified at this checkpoint. Later measured
 publication results will be recorded locally without an automatic extra push.
+## Publication evidence — partial sequential publication, 2026-11-04
+
+Bounded Human Acceptance was committed in `30d9393725aef87194c0ccba544c8d1148ee958a`
+with exactly App.tsx, startupLocale.ts, the two startupLocale tests and this record.
+Ordinary main push succeeded. [Pages run 41818459760](https://github.com/sukoyaka-dopeness/e2r-hub/actions/runs/41818459760)
+completed successfully for that exact SHA. The public entry asset
+`assets/index-CtXpjorW.js` matched its deployment build log.
+
+Public URL: https://sukoyaka-dopeness.github.io/e2r-hub/
+Codex-operated isolated Edge 156, fresh disposable browser Context: JA/EN at
+1280 and 390px passed startup reception, manual UI/URL replacement, reload both
+ways, no history growth, top click/keyboard behavior, Back/Forward startup-only
+resolution, invalid/duplicate fallback/repair, Credits keyboard and no Dataset
+fetch. Four chains passed; screenshots were inspected with no material layout
+issue. Existing Workflow Visualization and ParameterPlotter available card remain
+present. Actual public Hub-to-app launches passed in both languages for all
+three apps (six new-tab launches, null opener, expected Home and locale). These
+reverse launches do not establish the unpublished apps' new Home-to-Hub links.
+
+NarrativeLine `e85c5d6802c862708e17918572413194f3af9a6f` was then pushed and
+[Pages run 41818751921](https://github.com/sukoyaka-dopeness/e2r-narrative-line/actions/runs/41818751921)
+passed. Its actual public Home-to-public-Hub navigation passed EN/JA at 1280 and
+390px, exact labels/attributes, typography parity, no overflow, null opener,
+receiver language, top/manual toggle, unchanged source Home and serialized
+Dataset keys. Its public `assets/index-BnAi9UVJ.js` matched that SHA's build log.
+
+Phase C STOPPED: LiaisonScape commit `e75f79de38795e941dd0097128f7ac857adbfdff`
+contains exactly four approved files. First push received Empty reply from
+server; readback showed the old base. The same ordinary push retry was rejected
+by GitHub with Internal Server Error (request ED42:2160A3:7FFC16:BA65DE,
+2026-11-04T11:10:06Z). Git transport and GitHub API both still returned remote
+main `5e010a77b3a1bc4f390559e30880588633f1a125`; no run for the candidate SHA.
+No force, workflow change or alternative publication was attempted. Phase D
+ParameterPlotter was not committed or pushed; its remote remains
+`0f54693cad15d18d51710fa1a69876b0ce9f1198`. Its four candidate paths remain local.
+
+Public Home-to-Hub E2E: NarrativeLine EN/JA PASS; LiaisonScape EN/JA NOT VERIFIED;
+ParameterPlotter EN/JA NOT VERIFIED. Four-app post-deployment E2E NOT VERIFIED,
+because sequential publication is incomplete. No public application regression
+was observed in performed checks; the new publication blocker is GitHub's push
+failure, not a test/build failure. No later phase was treated as PASS.
+
+Fresh local gates: Hub 11 tests plus lint/build; NarrativeLine 409 plus
+lint/build; LiaisonScape 679 plus lint/build; ParameterPlotter 42 syntax modules,
+242 tests plus static build, all PASS. Implementation/test/dependency fingerprints
+matched the accepted candidate before commits. Hub's unrelated publication
+addendum and all three LiaisonScape untracked items were preserved, with seven
+underlying files SHA-256 checked unchanged.
+
+Evidence is under `workspace/diagnostics/home-to-hub-2026-11-04/` at the workspace
+root: public-hub-locale-results.json, public-e2e-narrative-results.json,
+public-hub-launch-results.json, matching screenshots, preflight logs and exact-SHA
+workflow outputs. Local candidate evidence was not copied as public PASS.
+
+These publication-result additions are LOCAL ONLY: no extra documentation commit
+or push was made. Human Publication Closure remains PENDING. Resume Phase C only
+after reviewing GitHub availability and unchanged remote/candidate scope; then
+finish its public check before Phase D and the final four-app public matrix.
+Actual screen-reader speech, all pending-edit/save-failure cases and exhaustive
+browser engines remain NOT VERIFIED. Acceptance does not expand other releases.
+
+Knowledge applied: accepted responsibility-local modularization (no extra
+refactor), bounded public-release evidence reconciliation (source/build/public
+observations/Human decisions separated), and workspace placement (isolated
+profile and diagnostics under workspace/diagnostics). No Core, Extension,
+Dataset, Handoff semantics, workflow or deployment configuration was changed.
+
+## Resumed publication reconciliation - 2026-11-12
+
+Current bounded status: FOUR-APP PUBLICATION COMPLETE / PUBLIC E2E PASS
+(BOUNDED) / HUMAN PUBLICATION CLOSURE PENDING. The preceding Phase C failure,
+partial publication and Phase D hold remain the factual historical snapshot;
+they were superseded by the separately authorized resume, not erased.
+
+The unchanged LiaisonScape commit e75f79de38795e941dd0097128f7ac857adbfdff
+was normally pushed; [Pages 41820884504](https://github.com/sukoyaka-dopeness/e2r-liaison-scape/actions/runs/41820884504)
+succeeded. Only after its public EN/JA verification passed, ParameterPlotter
+commit 1afa30613efc443352ca1a19cf5d94f2273ff7c6 was pushed and [Pages 41821372129](https://github.com/sukoyaka-dopeness/e2r-parameter-plotter/actions/runs/41821372129)
+succeeded. The final bounded public E2E then passed, including 12 EN/JA Home
+views at effective 1280/390px, Hub Locale/navigation checks, six synthetic
+Dataset round trips and six reverse app launches. These are Codex-operated
+public Edge observations in isolated contexts, not Human-operated tests.
+
+Detailed evidence remains in [LiaisonScape's local addendum](../../e2r-liaison-scape/docs/home-to-hub-navigation-2026-11-04.md)
+and workspace/diagnostics/home-to-hub-2026-11-04/resume-publication-summary.json.
+The then-reviewed Hub/NL/LS/PP revisions were 30d9393/e85c5d6/e75f79d/1afa306;
+the latter three later advanced for the separate accepted Locale Dialog and
+NarrativeLine Home-width publication. This later publication does not imply a
+new four-app E2E pass, acceptance of unrelated behavior, or Home-to-Hub Closure.
+
+Human Publication Closure remains an independent pending decision. Actual
+screen-reader speech, exhaustive browser engines and all editing/save-failure
+states remain NOT VERIFIED. This local Documentation addendum makes no new
+acceptance, Commit, Push, Deployment, Dataset, Handoff or schema change.

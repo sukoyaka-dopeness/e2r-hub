@@ -2,11 +2,12 @@
 
 Date: 2026-11-04 JST
 
-Status: **FORMAL HUMAN ACCEPTANCE RECORDED (BOUNDED) / COMMIT, MAIN PUSH AND EXISTING PAGES DEPLOYMENT AUTHORIZED / PUBLICATION PENDING**
+Status: **FORMAL HUMAN ACCEPTANCE RECORDED (BOUNDED) / PUBLISHED / PAGES AND CODEX PUBLIC BROWSER CHECKS PASS (BOUNDED) / PUBLICATION CLOSURE HUMAN DECISION PENDING / POST-PUBLICATION ADDENDUM LOCAL ONLY**
 
 Earlier pending-acceptance and no-publication statements below preserve the
 implementation and pre-publication snapshots. The Human acceptance section at
-the end records the subsequent decision and its publication boundary.
+the end records the subsequent decision and its publication boundary; the
+post-publication section records later results locally without an additional push.
 
 ## Scope and meaning
 
@@ -197,3 +198,77 @@ Workflow completion and public JA/EN Desktop/Narrow checks remain required.
 Publication Closure is **PENDING**. Post-deployment results may be recorded
 locally in this same document, but publishing that later documentation is a
 separate public write and is not authorized by the present push approval.
+
+## Publication result — 2026-11-04 JST — local addendum, not pushed
+
+The accepted five-file checkpoint was committed as
+`a8a89fb8f942bf78303608e2e7ebac345bdb219f`, subject
+`Add accepted Dataset workflow visualization to Hub`. Before committing, exact
+paths were staged, the cached name/status list contained only the five authorized
+files, and cached whitespace checks passed. Current lint, all seven existing
+tests, and the configured production build passed again. No source changed after
+those checks.
+
+Normal push advanced public `main` from
+`9f19d276d9469489ac3b3b2be0e361d21ab8bccb` to that exact commit. Both remote
+`main` and local HEAD were confirmed at `a8a89fb8f942bf78303608e2e7ebac345bdb219f`.
+No unrelated file, history rewrite, workflow change, or second push was included.
+
+[Deploy to GitHub Pages run 41714795017](https://github.com/sukoyaka-dopeness/e2r-hub/actions/runs/41714795017)
+completed **SUCCESS** for that exact SHA; dependency installation, lint, build,
+artifact upload and Pages deployment steps all succeeded. The completed run's
+updated time is `2026-11-03T20:42:08Z` (2026-11-04 05:42:08 JST). The published
+HTML loaded `index-h89QrtoG.css` and `index-D-G7xk9B.js`, matching the asset names
+in the successful workflow's build log. HTML, CSS and JS returned HTTP 200 in
+the public browser check.
+
+Codex inspected the actual [public Hub](https://sukoyaka-dopeness.github.io/e2r-hub/)
+in the existing isolated headless Edge review profile, with browser cache disabled
+and effective viewport widths measured at 1280 and 390px in EN and JA:
+
+- The diagram is present with the accepted exact JA/EN synchronization copy,
+  five nodes, desktop bidirectional arrows and narrow app/return arrows.
+- The future-app card retains its dashed border. ParameterPlotter's launch card
+  is a solid-border link, with no unavailable-state class.
+- No page or diagram-node horizontal overflow was measured. Four rendered
+  screenshots were visually inspected; labels, captions, arrows and the adjacent
+  chooser remained readable at both widths.
+- NarrativeLine, LiaisonScape and ParameterPlotter launch hrefs retained their
+  official HTTPS destinations and selected locale. Actual public-Hub clicks to
+  ParameterPlotter opened its public Home in EN and JA with New/Open/Sample
+  actions visible. No action on those Home screens was invoked.
+- No Hub Runtime exception or console error was observed. No Dataset was created,
+  opened, imported, edited, exported or overwritten during this verification.
+
+Evidence is `public-review.mjs`, `public-review-results.json`, and
+`public-{locale}-{width}.png` in the diagnostic directory above. These are Codex
+browser observations using virtual viewport overrides, not a new Human-operated
+public browser review. Full live Dataset Handoff, exhaustive application routes,
+other browser engines and manual screen-reader use were outside this check.
+No material publication problem was found within the tested scope.
+
+Technical publication and the bounded public verification are complete.
+Formal **Publication Closure remains pending Human decision**; the prior formal
+acceptance applies to the candidate and is not automatically extended to a new
+public Human review. This post-publication addendum is deliberately uncommitted
+and unpushed. The deployed commit contains the pre-publication acceptance record;
+publishing these additional results requires a separately authorized push and
+would trigger another Pages deployment.
+
+
+## Current status cross-reference - 2026-11-12
+
+The bounded publication result above remains the operative record for this
+visualization: accepted source a8a89fb8f942bf78303608e2e7ebac345bdb219f,
+[Pages workflow 41714795017](https://github.com/sukoyaka-dopeness/e2r-hub/actions/runs/41714795017)
+SUCCESS and bounded Codex-operated public technical review. The Hub main later
+advanced to 30d9393725aef87194c0ccba544c8d1148ee958a for the separate accepted
+Home-to-Hub Locale work; the Dataset Workflow visualization remains in that
+source. Human Publication Closure for this visualization is still PENDING.
+
+The prior Research checkpoint captured this explanation before implementation;
+it does not override the later published result. The related [Home-to-Hub record](home-to-hub-navigation-2026-11-04.md)
+now points to its separately bounded four-app E2E PASS and independently pending
+Closure. Neither result asserts automatic synchronization, shared storage or merge.
+No new Human acceptance, public browser test, Commit, Push or Deployment is
+performed by this local documentation cross-reference.

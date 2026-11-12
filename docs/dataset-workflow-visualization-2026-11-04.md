@@ -2,7 +2,7 @@
 
 Date: 2026-11-04 JST
 
-Status: **FORMAL HUMAN ACCEPTANCE RECORDED (BOUNDED) / PUBLISHED / PAGES AND CODEX PUBLIC BROWSER CHECKS PASS (BOUNDED) / PUBLICATION CLOSURE HUMAN DECISION PENDING / POST-PUBLICATION ADDENDUM LOCAL ONLY**
+Status: **PUBLISHED / BOUNDED PUBLIC CHECKS PASS / HUMAN PUBLICATION CLOSURE APPROVED (BOUNDED) / CLOSURE ADDENDUM LOCAL ONLY**
 
 Earlier pending-acceptance and no-publication statements below preserve the
 implementation and pre-publication snapshots. The Human acceptance section at
@@ -272,3 +272,21 @@ now points to its separately bounded four-app E2E PASS and independently pending
 Closure. Neither result asserts automatic synchronization, shared storage or merge.
 No new Human acceptance, public browser test, Commit, Push or Deployment is
 performed by this local documentation cross-reference.
+
+## Bounded Publication Closure — 2026-11-12 JST
+
+Human separately confirmed the published Japanese and English diagrams and
+approved bounded Publication Closure for this visualization. The earlier formal
+Human Acceptance covered the final copy and layout. The published source was
+`a8a89fb8f942bf78303608e2e7ebac345bdb219f`; Pages run 41714795017
+succeeded, and the Codex-operated public Edge review above checked EN/JA at
+effective 1280/390px, diagram content and arrows, layout, launch destinations,
+and absence of observed Runtime errors. Human's public diagram confirmation is
+distinct from those Codex measurements; no new public test is claimed here.
+
+**PUBLICATION CLOSURE: HUMAN APPROVED / CLOSED (BOUNDED).** Live Dataset
+Handoff, exhaustive application routes, other browser engines and manual
+screen-reader use remain unverified. The diagram does not promise real-time
+synchronization, shared storage, automatic merge or complete Dataset retention.
+This decision is independent of Home-to-Hub Navigation's separate Closure and
+authorizes no runtime, Dataset or schema work.

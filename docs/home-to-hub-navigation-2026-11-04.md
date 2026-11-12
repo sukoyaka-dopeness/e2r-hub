@@ -2,7 +2,7 @@
 
 Date: 2026-11-04 JST
 
-Status: HUB PUBLIC PASS / SEQUENTIAL PUBLICATION STOPPED AT PHASE C / HUMAN CLOSURE PENDING
+Status: FOUR-APP PUBLICATION COMPLETE / PUBLIC E2E PASS (BOUNDED) / HUMAN PUBLICATION CLOSURE APPROVED (BOUNDED)
 
 ## Receiver behavior
 
@@ -392,3 +392,20 @@ Human Publication Closure remains an independent pending decision. Actual
 screen-reader speech, exhaustive browser engines and all editing/save-failure
 states remain NOT VERIFIED. This local Documentation addendum makes no new
 acceptance, Commit, Push, Deployment, Dataset, Handoff or schema change.
+
+## Bounded Publication Closure — 2026-11-12 JST
+
+Human confirmed that Hub opens in a new tab from the application links and
+approved bounded Publication Closure for Home-to-Hub Navigation. The earlier
+bounded Human Acceptance of the candidate and the Codex-operated final public
+E2E evidence above provide the remaining basis: three source Homes in EN/JA at
+effective 1280/390px, public Hub locale reception, six synthetic Dataset round
+trips, and six reverse Hub-to-app launches. The Human confirmation does not mean
+Human personally performed the twelve-view browser matrix or Dataset checks.
+
+**PUBLICATION CLOSURE: HUMAN APPROVED / CLOSED (BOUNDED).** Actual screen-reader
+speech, exhaustive browser engines, pending edits, replacement/save failures,
+and full Dataset byte identity remain unverified. The later separate Locale
+Dialog and Home-width publications do not establish a fresh Home-to-Hub matrix.
+This Closure adds no Dataset transfer, synchronization or Handoff guarantee.
+It is independent of the Hub Dataset Workflow visualization's Closure.
